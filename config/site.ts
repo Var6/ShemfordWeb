@@ -1,69 +1,65 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: 'Shemford Futuristic School',
+  description: 'One Stop Solution for all you Academic Need',
   navItems: [
     {
-      label: "Home",
-      href: "/",
+      label: 'Messages',
+      href: '/Message',
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: 'Books',
+      href: '/books',
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: 'Accessories',
+      href: '/accessories',
     },
     {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
+      label: 'About Us',
+      href: '/About',
     },
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: 'Profile',
+      href: '/profile',
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: 'Dashboard',
+      href: '/dashboard',
     },
     {
-      label: "Projects",
-      href: "/projects",
+      label: 'Projects',
+      href: '/projects',
     },
     {
-      label: "Team",
-      href: "/team",
+      label: 'Team',
+      href: '/team',
     },
     {
-      label: "Calendar",
-      href: "/calendar",
+      label: 'Calendar',
+      href: '/calendar',
     },
     {
-      label: "Settings",
-      href: "/settings",
+      label: 'Settings',
+      href: '/settings',
     },
     {
-      label: "Help & Feedback",
-      href: "/help-feedback",
+      label: 'Help & Feedback',
+      href: '/help-feedback',
     },
     {
-      label: "Logout",
-      href: "/logout",
+      label: 'Logout',
+      href: '/logout',
     },
   ],
   links: {
-    github: "https://github.com/heroui-inc/heroui",
-    twitter: "https://twitter.com/hero_ui",
-    docs: "https://heroui.com",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    facebook: 'https://www.facebook.com/shemfordschoolpatna',
+    twitter: 'https://twitter.com/shemford_patna?lang=en',
+    instagram: 'https://instagram.com/shemfordschoolpatna',
+    youtube: 'https://www.youtube.com/channel/UCVsGbdY1le2-XPoCq2z6Ccg',
+    telegram: 'https://t.me/shemfordschoolpatna',
   },
 };
