@@ -38,7 +38,7 @@ const blogData: Blog[] = [
     writer: "Rishabh Stark",
     image: "/Rishabh.jpeg", // Replace with actual image URL
     content: () => (
-      <div className="text-black">
+      <div className="text-clip text-left bg-gradient-to-br from-orange-700 to-yellow-400 bg-clip-text text-transparent">
         <p>Cognitive skills are the core skills our brain uses to think, read, learn, remember, reason, and pay attention. Working together, they gain information and move process it into knowledge we apply in our everyday life. 
         </p>
         <p>Cognitive skill refers to the ability of your child to think, explore and understand. Development of cognitive skill for your child is the development of knowledge, ability to solving problems, figuring out things himself and his capacity to understand the world around him. Cognitive skill development of your child will largely depend on his learning in the early years.
@@ -55,13 +55,95 @@ const blogData: Blog[] = [
   },
   {
     id: 3,
-    title: "Building Strong Foundations",
-    writer: "Jane Smith",
-    image: "/example3.jpeg", // Replace with actual image URL
+    title: "SOCIO-EMOTIONAL DEVELOPMENT",
+    writer: "Meera Sinha ",
+    image: "/ChairPerson.jpeg", // Replace with actual image URL
     content: () => (
-      <div className="text-black">
-        "Building a strong foundation during early years helps..."
-        {/* Full content here */}
+      <div className="text-black text-left">
+        <p className="text-lg text-gray-700 mb-4">
+        Socio-emotional skills are one of the most important skills children develop as they grow. Developing social skills in your child will prepare him for effective communication and cooperation with others; he will respect feelings of others and at the same time he will be able to express his personal views. Social skills include initiating conversations, making friends, having good relationships with friends and neighbors, and actively participating in community work.
+      </p>
+
+      <p className="text-lg text-gray-700 mb-4">
+        Once your child reaches age three, he will be more likely to play with other children instead of playing with you. During this process, he will start realizing the fact that not everyone thinks exactly the way he does, and different children in his peer group have different interests and qualities. During the process, he will start drifting towards some specific children and start making distance from others. This is the time when he will be less dependent on you and will develop his own sense of identity and start making social connections.
+      </p>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">Emotional Skills Development</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        Children perceive and express emotions even before they understand them. Emotional skills of the child include the ability:
+      </p>
+
+      <ul className="list-inside list-disc space-y-2 text-lg text-gray-700 mb-4">
+        <li>To identify and understand his own feelings and regulate his own behavior.</li>
+        <li>To understand other&apos;s feelings.</li>
+        <li>To develop empathy for others.</li>
+        <li>To establish and maintain good relationships.</li>
+      </ul>
+
+      <p className="text-lg text-gray-700 mb-4">
+        Preschool plays a very important role in the cultivation of social and emotional skills in a child. He will start to recognize his emotional expression like happiness or anger and begin to learn how to control them. He also starts understanding and respecting the feelings of others.
+      </p>
+
+      <p className="text-lg text-gray-700 mb-4">
+        At his preschool, a child undergoes significant socio-emotional development. In the company of his classmates and teachers, he will start learning to recognize and communicate his emotions and at the same time, he will start understanding the emotions of others; during this process, he will start building skills to connect with family, peers, teachers, and the community.
+      </p>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">The Role of Preschool in Development</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        The socio-emotional skills they learn at this stage pave the way for them to understand friendship, develop routines, and interpret various situations. They learn to share a toy, take turns with a classmate when playing, share their tiffin with their friends, and pay attention when the teacher reads a story.
+      </p>
+
+      <p className="text-lg text-gray-700 mb-4">
+        However, the most common emotional milestone for the preschooler is the self-regulation of his own temperament. Children of this age have a tendency toward anxiety and many of them still throw tantrums, but they have a good understanding of their moods. Preschool helps them to better manage their anxiety and mood by creating the right environment and communicating essential information. Preschool children are more likely to understand the value of cooperation and they like to play with their friends rather than alone and form positive relationships with their classmates.
+      </p>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">Language Development</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        The development of speech and language refers to the skills your child uses to understand and communicate with others. Language development helps him to communicate what he feels. Though language development continues throughout life, initially your child will pick up the language from you and other family members and he will learn most of the basics by age 6.
+      </p>
+
+      <p className="text-lg text-gray-700 mb-4">
+        Once your child starts going to his preschool, his vocabulary will start developing fast. He will start understanding formal and informal words and will learn how to speak to his teachers, caregivers, and classmates.
+      </p>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">Gross Motor Skills</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        Gross motor skills are the skills which involve large muscles of our legs, arms, and the rest of the body. The process that a child follows from learning to lift his head or leg as a baby and walk, run, and jump as a toddler to playing a sport in school is known as his gross motor development.
+      </p>
+
+      <p className="text-lg text-gray-700 mb-4">
+        It is very important for children to develop skills such as muscle strength, balance, core strength, posture control, and coordination. Preschools help children develop gross motor skills by encouraging activities to run, jump, hop, throw, and catch, climb, pedal tricycles, push and pull, and more.
+      </p>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">Fine Motor Skills</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        Fine motor skills involve small muscle movements, such as those required for eating, lacing shoes, coloring, writing, and other detailed tasks.
+      </p>
+
+      <ul className="list-inside list-disc space-y-2 text-lg text-gray-700 mb-4">
+        <li>To hold a spoon or fork to eat.</li>
+        <li>Button & un-button, Zip & un-zip.</li>
+        <li>Scribbling with pencil or crayons.</li>
+        <li>Sketching.</li>
+        <li>Making objects using floor dough.</li>
+        <li>Opening and closing containers.</li>
+        <li>Paper folding and cutting.</li>
+        <li>Using paint & brush, markers, and chalk.</li>
+      </ul>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">Preschool Nurtures Curiosity</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        Curiosity is at the heart of creativity, and it&apos;s essential to nurture your child's curiosity at preschool. Teachers play an important role in this by observing, asking questions, and listening to their imaginations and ideas. Children are encouraged to ask questions and explore the world around them.
+      </p>
+
+      <h2 className="text-3xl font-bold text-gray-800 mt-8 mb-4">Preparing for Formal School</h2>
+      <p className="text-lg text-gray-700 mb-4">
+        Preschool is the first stage of learning in a structured environment. It prepares children for their formal school education by expanding their vocabulary, teaching them social behavior, and introducing them to basic academics.
+      </p>
+
+      <p className="text-lg text-gray-700 mb-4">
+        By the time they finish preschool, children become more confident, responsible, and disciplined. They start to take care of their school bags, tiffins, and other belongings, getting ready for their formal school education.
+      </p>
       </div>
     ),
   },
@@ -102,32 +184,19 @@ const BlogPage: React.FC = () => {
       <h1 className="text-3xl font-semibold items-center text-center mb-8">Our Blogs</h1>
 
       {/* Display first 3 blogs in a column */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {firstThreeBlogs.map((blog) => (
-          <BlogCard
-            key={blog.id}
-            id={blog.id}
-            title={blog.title}
-            writer={blog.writer}
-            image={blog.image}
-            onClick={openModal}
-          />
-        ))}
-      </div>
-
-      {/* Display the rest of the blogs in a row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
-        {remainingBlogs.map((blog) => (
-          <BlogCard
-            key={blog.id}
-            id={blog.id}
-            title={blog.title}
-            writer={blog.writer}
-            image={blog.image}
-            onClick={openModal}
-          />
-        ))}
-      </div>
+      <div className="flex flex-wrap gap-4 w-fit justify-start">
+  {[...firstThreeBlogs, ...remainingBlogs].map((blog) => (
+    <div key={blog.id} className="w-fit">
+      <BlogCard
+        id={blog.id}
+        title={blog.title}
+        writer={blog.writer}
+        image={blog.image}
+        onClick={() => openModal(blog.id)} // Properly wrap the function call to avoid issues
+      />
+    </div>
+  ))}
+</div>
 
       {/* Show modal if a blog is selected */}
       {selectedBlog && (

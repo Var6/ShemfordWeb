@@ -12,7 +12,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, writer, image, onClick }
       
   return (
     <div
-    className="flex justify-center cursor-pointer shadow-lg rounded-lg overflow-hidden items-start"
+    className="flex justify-center cursor-pointer shadow-lg  rounded-lg overflow-hidden items-start dark:border-2 dark:border-orange-500 dark:bg-gradient-to-br from-orange-200 to-yellow-400"
     onClick={() => onClick(id)}
   >
     <img src={`/assets/${image}`} width={500} height={500} alt={title} className="w-fit h-64 object-cover" />

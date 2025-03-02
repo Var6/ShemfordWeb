@@ -26,9 +26,9 @@ const Welcometo = () => {
       {/* Left Side: Text */}
       <div className="flex flex-col space-y-4 w-full md:w-1/2">
         <TypewriterEffectSmooth words={words} />
-        Best CBSE School in Patna – Shemford Futuristic School : We Build Future
+        Best CBSE School in Patna  Shemford Futuristic School : We Build Future
         Here A Future Choice with Futuristic School! As the word Futuristic
-        finds its place in the School’s name we too absolutely believe in the
+        finds its place in the School&apos;s name we too absolutely believe in the
         futuristic approach and look forward to achieving it in a very holistic
         way.
         <span>

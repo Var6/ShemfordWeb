@@ -5,12 +5,12 @@ export default function About() {
   return (
     <div>
       <div className="flex justify-center items-center mb-4">
-        <h1 className={title()}>About</h1>
+        <h1 className={title()}>About Us</h1>
       </div>
       <div className="flex flex-row w-full">
         <br />
         <div className=" flex gap-4 flex-col mt-3 text-xl mr-8 ">
-          <span className=" ">
+          <span className=" text-left">
             <p>
               Best CBSE School in Patna - <b>Shemford Futuristic School </b> :
               We Build Future Here A Future Choice with Futuristic School! As

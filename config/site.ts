@@ -9,15 +9,19 @@ export const siteConfig = {
       href: '/Message',
     },
     {
-      label: 'Books',
-      href: '/books',
-    },
-    {
       label: 'Blogs',
       href: '/blog',
     },
     {
-      label: 'About',
+      label: 'CBSE',
+      href: '/CBSE',
+    },
+    {
+      label: 'Notification',
+      href: '/Notification',
+    },
+    {
+      label: 'About Us',
       href: '/about',
     },
   ],
@@ -27,31 +31,19 @@ export const siteConfig = {
       href: '/Messages',
     },
     {
-      label: 'Dashboard',
-      href: '/dashboard',
+      label: 'Blog',
+      href: '/blog',
     },
     {
-      label: 'Projects',
-      href: '/projects',
+      label: 'CBSE',
+      href: '/CBSE',
     },
     {
-      label: 'Team',
-      href: '/team',
+      label: 'Notification',
+      href: '/Notification',
     },
     {
-      label: 'Calendar',
-      href: '/calendar',
-    },
-    {
-      label: 'Settings',
-      href: '/settings',
-    },
-    {
-      label: 'Help & Feedback',
-      href: '/help-feedback',
-    },
-    {
-      label: 'About',
+      label: 'About Us',
       href: '/about',
     },
   ],
