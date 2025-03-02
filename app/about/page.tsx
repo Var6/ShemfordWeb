@@ -1,7 +1,7 @@
 import { title } from '@/components/primitives';
 import Image from 'next/image';
 
-export default function AboutPage() {
+export default function About() {
   return (
     <div>
       <div className="flex justify-center items-center mb-4">
