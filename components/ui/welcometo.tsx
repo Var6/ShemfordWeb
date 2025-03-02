@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { TypewriterEffectSmooth } from '../typewritterEffect';
 import AchievementsSection from './AchivementBar';
+import Link from 'next/link';
 
 const Welcometo = () => {
   const words = [
@@ -38,9 +39,11 @@ const Welcometo = () => {
           in house Sports training facilities with world-class facilities.
         </span>
         <AchievementsSection />
+        <Link href='/about'>
         <button className=" p-3 bg-orange-500 rounded-md w-fit shadow-sm hover:shadow-xl ">
           Know More →{' '}
         </button>
+        </Link>
       </div>
       {/* Right Side: Image */}
       <div className="w-full md:w-1/2">

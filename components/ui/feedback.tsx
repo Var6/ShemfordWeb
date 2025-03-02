@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, AvatarGroup, AvatarIcon } from '@heroui/avatar';
+import { Avatar } from '@heroui/avatar';
 const Feedback = () => {
   return (
     <div className="mt-10">

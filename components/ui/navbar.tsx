@@ -7,7 +7,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from '@heroui/navbar';
-import { Button } from '@heroui/button';
 import { Kbd } from '@heroui/kbd';
 import { Link } from '@heroui/link';
 import { Input } from '@heroui/input';
@@ -109,15 +108,6 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <Button
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100 mx-10"
-            href={'/Login'}
-            startContent={'text'}
-            variant="flat"
-          >
-            Login
-          </Button>
           <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>

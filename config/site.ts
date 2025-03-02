@@ -13,18 +13,18 @@ export const siteConfig = {
       href: '/books',
     },
     {
-      label: 'Accessories',
-      href: '/accessories',
+      label: 'Blogs',
+      href: '/blog',
     },
     {
-      label: 'About Us',
-      href: '/About',
+      label: 'About',
+      href: '/about',
     },
   ],
   navMenuItems: [
     {
-      label: 'Profile',
-      href: '/profile',
+      label: 'Message',
+      href: '/Messages',
     },
     {
       label: 'Dashboard',
@@ -51,8 +51,8 @@ export const siteConfig = {
       href: '/help-feedback',
     },
     {
-      label: 'Logout',
-      href: '/logout',
+      label: 'About',
+      href: '/about',
     },
   ],
   links: {

@@ -1,12 +1,15 @@
 // src/components/Carousel.tsx
 'use client';
 import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 interface CarouselProps {
-  images: string[]; // Array of image URLs
+  images: string[];
+  className?:String ;
+  // Array of image URLs
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const Carousel: React.FC<CarouselProps> = ({ images,className }) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
   useEffect(() => {
@@ -28,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className={cn('relative w-full overflow-hidden',className)}>
       {/* Carousel Images */}
       <div
         className="flex transition-transform duration-500 ease-in-out"
@@ -39,7 +42,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
             <img
               src={imageUrl}
               alt={`Slide ${index + 1}`}
-              className="w-full h-[400px] object-cover"
+              className="w-full h-fit object-cover"
             />
           </div>
         ))}
