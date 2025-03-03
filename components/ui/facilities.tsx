@@ -5,11 +5,15 @@ import { cn } from '@/lib/utils';
 
 const Facilities = () => {
   const images: string[] = [
-    'https://via.placeholder.com/1200x500/ff7f50/ffffff?text=Slide+1',
-    'https://via.placeholder.com/1200x500/87cefa/ffffff?text=Slide+2',
-    'https://via.placeholder.com/1200x500/32cd32/ffffff?text=Slide+3',
+    '/assets/banner1.jpg',
+    '/assets/banner2.jpg',
+    '/assets/banner3.jpg',
+    '/assets/banner4.jpg',
+    '/assets/banner5.jpg',
+   
     // Add more image URLs here
   ];
+
   return (
     <div className="flex flex-col w-full md:flex-row items-center justify-between gap-8 p-6">
       <div className="flex flex-col space-y-4 w-full md:w-1/2">
