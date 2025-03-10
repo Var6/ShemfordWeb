@@ -1,151 +1,114 @@
-import {
-  Navbar as HeroUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from '@heroui/navbar';
-import { Kbd } from '@heroui/kbd';
-import { Link } from '@heroui/link';
-import { Input } from '@heroui/input';
-import { link as linkStyles } from '@heroui/theme';
-import NextLink from 'next/link';
-import clsx from 'clsx';
+"use client";
 
-import { siteConfig } from '@/config/site';
-import { ThemeSwitch } from '@/components/theme-switch';
-import {
-  TwitterIcon,
-  FacebookIcon,
-  InstagramIcon,
-  SearchIcon,
-} from '@/components/icons';
-import Image from 'next/image';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { ChevronDownIcon, NavIcon } from "../icons";
 
-export const Navbar = () => {
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: 'bg-default-100',
-        input: 'text-sm',
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={['command']}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <HeroUINavbar
-      maxWidth="xl"
-      position="sticky"
-      className=" flex items-center"
-    >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center" href="/">
-            <Image
-              src="/icon.png"
-              className="scale-75"
-              alt="logo"
-              height={50}
-              width={50}
-            />
-            <p className="font-bold text-inherit">Shemford</p>
-          </NextLink>
-        </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item: any) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: 'foreground' }),
-                  'data-[active=true]:text-primary data-[active=true]:font-medium',
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
-      </NavbarContent>
-
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
+    <div className="relative bg-orange-600 z-10 mb-3" >
+      {/* Small hoverable area */}
+      <div
+        className="h-[25px] bg-gradient-to-r  from-orange-600 to-yellow-400 w-full mb-10 absolute top-0 left-0"
+        onMouseEnter={() => setIsOpen(true)}
+      ></div>
+      
+      {/* Menu button */}
+      <button
+        className="absolute top-2 right-2 bg-yellow-400 text-white px-4 py-2 rounded flex items-center gap-1"
+        onClick={() => setIsOpen(!isOpen)}
       >
-        <NavbarItem className="hidden sm:flex gap-2">
-          <Link
-            isExternal
-            aria-label="facebook"
-            href={siteConfig.links.facebook}
-          >
-            <FacebookIcon className="text-default-500" />
-          </Link>
-          <Link
-            isExternal
-            aria-label="instagram"
-            href={siteConfig.links.instagram}
-          >
-            <InstagramIcon className="text-default-500" />
-          </Link>
-          <Link isExternal aria-label="Github" href={siteConfig.links.twitter}>
-            <TwitterIcon className="text-default-500" />
-          </Link>
-        </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <ThemeSwitch />
-        </NavbarItem>
-      </NavbarContent>
+        Menu
+        <ChevronDownIcon/>
+      </button>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link
-          isExternal
-          aria-label="instagram"
-          href={siteConfig.links.instagram}
-        >
-          <InstagramIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? 'primary'
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? 'danger'
-                      : 'foreground'
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
+      {/* Navbar with animation */}
+      <motion.nav
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -50 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed top-0 left-0 w-full 
+          bg-gradient-to-l from-orange-600 to-yellow-400 shadow-md p-4 ${isOpen ? "relative" : "absolute -z-10"} flex items-center justify-between`}
+        onMouseLeave={() => setIsOpen(false)}
+      >
+        {/* Hide logo on small screens */}
+        <div className="hidden md:flex md:w-1/3 items-center justify-center gap-2">
+  <Link href="/" className="flex flex-col items-center">
+    <Image
+      src="/icon.png"
+      className="scale-75"
+      alt="logo"
+      height={150}
+      width={150}
+    />
+    <p className="font-bold text-white">Shemford</p>
+  </Link>
+</div>
+        <div className="flex md:w-2/3  flex-row">
+{/* Main div for links */}
+        <div className="flex md:w-1/3  flex-col">
+{/* First div for links */}
+        <ul className="flex-col gap-4 justify-center md:justify-center">
+          <li>
+            <Link href="/Message" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
+            <NavIcon/>Message
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
+            <NavIcon/> Blog
+            </Link>
+          </li>
+          <li>
+            <Link href="/Notification" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
+            <NavIcon/>Notification
+            </Link>
+          </li>
+          <li>
+            <Link href="/CBSE" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1 ">
+             <NavIcon/> CBSE
+            </Link>
+          </li>
+        </ul>
         </div>
-      </NavbarMenu>
-    </HeroUINavbar>
+        {/* Second Div for links */}
+        <div className="flex-col w-1/3">
+          {/* Test links */}
+          <ul className="flex-col gap-4 justify-center md:justify-center">
+          <li>
+            <Link href="/about" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>About Us
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Blog
+            </Link>
+          </li>
+          </ul>
+        </div>
+{/* third div for links */}
+        <div className="flex-col w-1/3">
+        {/* Test links */}
+        <ul className="flex-col gap-4 justify-center md:justify-center">
+          <li>
+            <Link href="/Message" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Message
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Blog
+            </Link>
+          </li>
+          </ul>
+        </div>
+        </div>
+      </motion.nav>
+    </div>
   );
-};
+}

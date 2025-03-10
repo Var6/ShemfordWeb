@@ -66,6 +66,30 @@ export const TwitterIcon: React.FC<IconSvgProps> = ({
     </svg>
   );
 };
+export const ChevronDownIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    viewBox="0 0 24 24"
+    width={size || width}
+    {...props}
+  >
+    <path
+      d="M6 9l6 6 6-6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fillRule="inherit"
+    />
+  </svg>
+);
 
 export const InstagramIcon: React.FC<IconSvgProps> = ({
   size = 24,
@@ -84,6 +108,7 @@ export const InstagramIcon: React.FC<IconSvgProps> = ({
         d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z"
         fill="currentColor"
         fillRule="evenodd"
+
       />
     </svg>
   );
@@ -185,6 +210,24 @@ export const SearchIcon = (props: IconSvgProps) => (
     />
   </svg>
 );
+export const NavIcon = (props:IconSvgProps)=>(
+
+  <svg  
+  aria-hidden="true"
+  fill="none"
+  focusable="false"
+  height="1em"
+  role="presentation"
+  viewBox="0 0 24 24"
+  width="1em"
+  {...props}
+  className="flex mt-2 ml-3">
+      <path d="M3.24182 2.32181C3.3919 2.23132 3.5784 2.22601 3.73338 2.30781L12.7334 7.05781C12.8974 7.14436 13 7.31457 13 7.5C13 7.68543 12.8974 7.85564 12.7334 7.94219L3.73338 12.6922C3.5784 12.774 3.3919 12.7687 3.24182 12.6782C3.09175 12.5877 3 12.4252 3 12.25V2.75C3 2.57476 3.09175 2.4123 3.24182 2.32181ZM4 3.57925V11.4207L11.4288 7.5L4 3.57925Z" 
+      fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
+      </svg>
+    )
+  
+
 export const IconArrowNarrowRight: React.FC<IconSvgProps> = ({
   size = 24,
   width,
