@@ -7,11 +7,11 @@ import { siteConfig } from '@/config/site';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-r from-orange-600 to-yellow-400 text-white pt-8 mt-10">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-4 gap-2">
         {/* Map Section */}
-        <div className="h-50 md:h-auto">
+        <div className="h-[156px] w-[372px] md:h-fill">
           <iframe
-            className="w-full h-full"
+            className="h-[156px] w-[372px]"
             src="https://maps.google.com/maps?width=600&height=400&hl=en&q=SHEMFORD%20Futuristic%20School%20Patna&t=&z=13&ie=UTF8&iwloc=B&output=embed"
             loading="lazy"
           ></iframe>

@@ -8,18 +8,20 @@ import { ChevronDownIcon, NavIcon } from "../icons";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
+// <div className="py-3 bg-gradient-to-r  from-orange-600 to-yellow-400 w-full"></div>
   return (
-    <div className="relative bg-orange-600 z-10 mb-3" >
+    <div className="relative bg-tansparent z-10 mb-3" >
       {/* Small hoverable area */}
       <div
         className="h-[25px] bg-gradient-to-r  from-orange-600 to-yellow-400 w-full mb-10 absolute top-0 left-0"
         onMouseEnter={() => setIsOpen(true)}
-      ></div>
+      >
+        
+      </div>
       
       {/* Menu button */}
       <button
-        className="absolute top-2 right-2 bg-yellow-400 text-white px-4 py-2 rounded flex items-center gap-1"
+        className="absolute top-2 right-2 bg-yellow-400 text-white px-4 mt-3 py-2 rounded flex items-center gap-1"
         onClick={() => setIsOpen(!isOpen)}
       >
         Menu
@@ -30,11 +32,15 @@ export default function Navbar() {
       <motion.nav
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -50 }}
-        transition={{ duration: 0.3 }}
+        transition={{ 
+          duration: isOpen ? 0.6 : 0.8,  // Slower closing animation
+    ease: isOpen ? "easeOut" : "easeIn"  // Smooth opening and closing
+  }}
         className={`fixed top-0 left-0 w-full 
-          bg-gradient-to-l from-orange-600 to-yellow-400 shadow-md p-4 ${isOpen ? "relative" : "absolute -z-10"} flex items-center justify-between`}
+          bg-gradient-to-l from-orange-400 to-yellow-400 shadow-md p-4 ${isOpen ? "relative" : "absolute -z-10"} flex items-center justify-between`}
         onMouseLeave={() => setIsOpen(false)}
       >
+        
         {/* Hide logo on small screens */}
         <div className="hidden md:flex md:w-1/3 items-center justify-center gap-2">
   <Link href="/" className="flex flex-col items-center">
@@ -80,15 +86,22 @@ export default function Navbar() {
           {/* Test links */}
           <ul className="flex-col gap-4 justify-center md:justify-center">
           <li>
+            <Link href="/Campus" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Campus
+            </Link>
+          </li>
+          <li>
+            <Link href="/Achivement" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Achivement
+            </Link>
+          </li>
+          <li>
             <Link href="/about" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
             <NavIcon/>About Us
             </Link>
           </li>
-          <li>
-            <Link href="/blog" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
-            <NavIcon/>Blog
-            </Link>
-          </li>
+          
+         
           </ul>
         </div>
 {/* third div for links */}
@@ -107,8 +120,11 @@ export default function Navbar() {
           </li>
           </ul>
         </div>
+
         </div>
+
       </motion.nav>
+        
     </div>
   );
 }
