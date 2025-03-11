@@ -65,13 +65,13 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/blog" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
-            <NavIcon/> Blog
+            <Link href="/Journal" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
+            <NavIcon/> Journal
             </Link>
           </li>
           <li>
-            <Link href="/Notification" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
-            <NavIcon/>Notification
+            <Link href="/Calender" className=" px-4 py-2 text-white hover:bg-orange-500 rounded flex items-center gap-1">
+            <NavIcon/>Calender
             </Link>
           </li>
           <li>
@@ -96,6 +96,11 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+            <Link href="/Events" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Events
+            </Link>
+          </li>
+          <li>
             <Link href="/about" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
             <NavIcon/>About Us
             </Link>
@@ -109,13 +114,13 @@ export default function Navbar() {
         {/* Test links */}
         <ul className="flex-col gap-4 justify-center md:justify-center">
           <li>
-            <Link href="/Message" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
-            <NavIcon/>Message
+            <Link href="/Announcement" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Announcement
             </Link>
           </li>
           <li>
-            <Link href="/blog" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
-            <NavIcon/>Blog
+            <Link href="/Faculties" className="flex items-center gap-1 px-4 py-2 text-white hover:bg-orange-500 rounded">
+            <NavIcon/>Our Faculties
             </Link>
           </li>
           </ul>

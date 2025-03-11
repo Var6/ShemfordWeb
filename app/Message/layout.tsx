@@ -9,7 +9,7 @@ export default function MessageLayout({
     <section className="w-full">
       {/* Ensure CustomNav takes full width */}
       <div className="w-full mt-4">
-        <CustomNav className="w-full" Page="Message" />
+        <CustomNav className="w-full relative" Page="Message" />
       </div>
 
       {/* Centered Content */}
