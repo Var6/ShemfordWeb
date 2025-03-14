@@ -29,6 +29,7 @@ const Footer: React.FC = () => {
         <div className="md:border-r md:border-white pr-4">
           <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
           <ul className="space-y-2">
+            <li><Link href="/" className="hover:underline">Home</Link></li>
             <li><Link href="/about" className="hover:underline">About Us</Link></li>
             <li><Link href="/admissions" className="hover:underline">Admissions</Link></li>
             <li><Link href="/academics" className="hover:underline">Academics</Link></li>
