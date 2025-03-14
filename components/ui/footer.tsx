@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
   </div>
 
   {/* Right-aligned Social Icons and Theme Switch */}
-  <div className="flex items-center gap-4 md:justify-end w-full md:w-auto mr-4 sm:ml-6">
+  <div className="flex items-center gap-4 md:justify-end w-full md:w-auto mr-4 sm:items-center">
     <Link aria-label="Facebook" href={siteConfig.links.facebook}>
       <FacebookIcon className="text-default-500" />
     </Link>

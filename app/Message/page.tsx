@@ -157,51 +157,41 @@ export default function Message() {
       title: 'Our Vision',
       value: 'Our Vision',
       content: (
-        <div className="flex flex-row w-full md:flex-col items-center justify-between gap-5 overflow-hidden relative rounded-2xl p-10 text-white bg-gradient-to-tr from-blue-700 to-blue-200 text-justify shadow-xl ">
-          <span className="text-3xl text-primary">Our Vision</span>
-          <div className="flex flex-col w-full md:flex-row items-center justify-between gap-5">
-            <span className="text-xl">
-              <ul>
-                <li>
-                  At SHEMFORD Schools we believe in the power of “What if…”
-                </li>
-                <li>
-                  What if children wake up their parents to go to school every
-                  day?
-                </li>
-                <li>What if they run to school and walk back home?</li>
-                <li>
-                  What if they are as excited about learning as they are about
-                  playing?
-                </li>
-                <li>What if they look forward to tests?</li>
-                <li>What if children love school days more than holidays?</li>
-                <li>
-                  &apos;What if…&apos; is a question that inventors ask
-                  themselves every day. It drives people to innovate their
-                  world.
-                </li>
-                <li>
-                  At Shemford, we love this question. It makes us think of the
-                  unusual, of the extraordinary, and allows us to explore new
-                  possibilities.
-                </li>
-                <li>
-                  Possibilities of making schooling interesting, engaging, and
-                  motivating.
-                </li>
-              </ul>
-            </span>
-            <Image
-              src="/assets/images1.png"
-              alt="dummy image"
-              width={500}
-              height={500}
-              className=" rounded-xl h-fit mx-auto object-cover"
-            />
+        <div className="flex flex-col w-full items-center gap-5 overflow-hidden relative rounded-2xl p-6 text-white bg-gradient-to-tr from-blue-700 to-blue-200 text-justify shadow-xl">
+          {/* Centered Title */}
+          <h2 className="text-3xl text-primary text-center">Our Vision</h2>
+          
+          {/* Content Container */}
+          <div className="flex flex-col w-full gap-5 text-lg">
+            <ul className="space-y-2 px-4 md:px-10">
+              <li>At SHEMFORD Schools we believe in the power of “What if…”</li>
+              <li>What if children wake up their parents to go to school every day?</li>
+              <li>What if they run to school and walk back home?</li>
+              <li>What if they are as excited about learning as they are about playing?</li>
+            </ul>
+            
+            {/* Image in Between */}
+            <div className="flex justify-center">
+              <Image
+                src="/assets/images1.png"
+                alt="dummy image"
+                width={400}
+                height={400}
+                className="rounded-xl h-auto object-cover"
+              />
+            </div>
+            
+            <ul className="space-y-2 px-4 md:px-10">
+              <li>What if they look forward to tests?</li>
+              <li>What if children love school days more than holidays?</li>
+              <li>'What if…' is a question that inventors ask themselves every day. It drives people to innovate their world.</li>
+              <li>At Shemford, we love this question. It makes us think of the unusual, of the extraordinary, and allows us to explore new possibilities.</li>
+              <li>Possibilities of making schooling interesting, engaging, and motivating.</li>
+            </ul>
           </div>
         </div>
       ),
+
     },
   ];
 

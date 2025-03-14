@@ -2,11 +2,13 @@ import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 import { Link } from '@heroui/link';
 import clsx from 'clsx';
+import { fontSans, fontMono } from '@/config/fonts';
+
 
 import { Providers } from './providers';
 
 import { siteConfig } from '@/config/site';
-import { fontSans } from '@/config/fonts';
+// import { fontSans } from '@/config/fonts';
 import  Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
 
@@ -38,8 +40,8 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable,
+          `min-h-screen bg-background font-sans antialiased
+          ${fontSans.variable} ${fontMono.variable} font-sans`,
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>

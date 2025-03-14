@@ -6,6 +6,14 @@
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 }
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+}
 
 .no-visible-scrollbar::-webkit-scrollbar {
   display: none;
