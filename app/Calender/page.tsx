@@ -61,7 +61,7 @@ const NotificationPage: React.FC = () => {
     { day: 'WED - SAT', date: '12 to 15 March 2025', holiday: 'HOLI' },
   
     // Adding your birthday for testing purposes
-    { day: 'TUESDAY', date: '4/3/2025', holiday: "Rishabh Ranjan's Birthday" },  // Your birthday for testing tomorrow
+    { day: 'TUESDAY', date: '26/3/2025', holiday: "Rishabh Ranjan's Birthday" },  // Your birthday for testing tomorrow
   ];
 
   return (
