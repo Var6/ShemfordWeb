@@ -25,7 +25,7 @@ export default function Navbar() {
 
       {/* Menu button */}
       <button
-        className="absolute top-2 right-2 bg-yellow-400 text-white px-4 mt-3 py-2 rounded flex items-center gap-1 md:hidden"
+        className="absolute top-2 right-2 bg-yellow-400 text-white px-4 mt-3 py-2 rounded flex items-center gap-1 "
         onClick={() => setIsOpen(!isOpen)}
       >
         Menu
@@ -52,8 +52,8 @@ export default function Navbar() {
               <Image
                 src="/icon.png"
                 alt="logo"
-                width={100}
-                height={100}
+                width={200}
+                height={200}
                 className="scale-75"
               />
               <p className="font-bold text-white ml-2">Shemford</p>
