@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { BookOpen, User, Calendar, Clock, Search, Filter, X, Heart, Share2, Bookmark, Eye, ArrowLeft, ArrowRight } from 'lucide-react';
+import { BookOpen, User, Calendar, Clock, Search, Filter, X, Heart, Share2, Bookmark, Eye } from 'lucide-react';
 
 interface Blog {
   id: number;

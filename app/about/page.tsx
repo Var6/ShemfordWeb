@@ -1,6 +1,5 @@
 import { title } from '@/components/primitives';
 import { Timeline } from '@/components/ui/timeline';
-import Image from 'next/image';
 
 export default function About() {
   const data = [

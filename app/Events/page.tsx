@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Calendar, Clock, MapPin, Users, Star, Filter, Search, ChevronRight, Bookmark, BookmarkCheck } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Star, Search, ChevronRight, Bookmark, BookmarkCheck } from 'lucide-react';
 
 interface Event {
   id: number;

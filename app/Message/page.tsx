@@ -1,4 +1,3 @@
-import { title } from '@/components/primitives';
 import { Tabs } from '@/components/tabs';
 import Image from 'next/image';
 
@@ -197,7 +196,6 @@ export default function Message() {
 
   return (
     <div>
-      <h1 className={title()}>Messages</h1>
       <div className="h-full md:h-[40rem] [perspective:1000px] relative b flex flex-col mx-auto w-full  items-start justify-start mb-40">
         <Tabs tabs={tabs} />
       </div>

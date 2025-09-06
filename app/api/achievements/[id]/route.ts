@@ -2,15 +2,28 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Achievement from "@/models/Achievement";
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(
+  request: Request,
+  context: { params: { id: string } }
+) {
   await connectDB();
-  const data = await req.json();
-  const updatedAchievement = await Achievement.findByIdAndUpdate(params.id, data, { new: true });
+  const { id } = context.params;
+
+  const data = await request.json();
+  const updatedAchievement = await Achievement.findByIdAndUpdate(id, data, {
+    new: true,
+  });
+
   return NextResponse.json(updatedAchievement);
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+  request: Request,
+  context: { params: { id: string } }
+) {
   await connectDB();
-  await Achievement.findByIdAndDelete(params.id);
+  const { id } = context.params;
+
+  await Achievement.findByIdAndDelete(id);
   return NextResponse.json({ message: "Achievement deleted" });
 }
