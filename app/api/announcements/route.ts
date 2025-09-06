@@ -10,16 +10,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   await connectDB();
-  const { title, date, description, priority, category, files } = await req.json();
-
-  const announcement = await Announcement.create({
-    title,
-    date,
-    description,
-    priority,
-    category,
-    files, // [{ url, name }]
-  });
-
+  const body = await req.json();
+  const announcement = await Announcement.create(body);
   return NextResponse.json(announcement);
 }

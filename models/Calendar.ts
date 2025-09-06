@@ -1,42 +1,25 @@
 import mongoose, { Schema, model, models } from "mongoose";
 
-const CalendarSchema = new Schema({
-  type: { 
-    type: String, 
-    enum: ['holiday', 'vacation', 'notice'], 
-    required: true 
+const CalendarSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    description: { type: String },
+    category: { type: String, required: true }, // e.g., religious, national, vacation, academic
+    date: { type: Date },                        // For single-day events
+    start: { type: Date },                       // For vacations
+    end: { type: Date },                         // For vacations
+    reopen: { type: Date },                      // Optional reopen date
+    priority: { type: String, default: "medium" }, // high, medium, low
+    color: { type: String },                     // gradient class for UI
+    files: [
+      {
+        url: String,
+        name: String,
+      },
+    ],
   },
+  { timestamps: true }
+);
 
-  // Common fields
-  title: { type: String, required: true },
-  description: { type: String },
-
-  // Dates
-  date: { type: String }, // For single-day holidays
-  start: { type: String }, // For vacations
-  end: { type: String },
-  reopen: { type: String },
-
-  // Holiday-specific fields
-  category: { 
-    type: String, 
-    enum: ['religious', 'national', 'cultural', 'educational', 'celebration', null],
-    default: null
-  },
-  color: { type: String },
-
-  // Notice-specific fields
-  priority: { 
-    type: String, 
-    enum: ['high', 'medium', 'low', null], 
-    default: null 
-  },
-  fileUrl: { type: String }, // Cloudinary link
-  fileName: { type: String },
-
-  // Vacation-specific
-  icon: { type: String }, // e.g., 'Sun'
-
-}, { timestamps: true });
-
-export default models.Calendar || model("Calendar", CalendarSchema);
+const Calendar = models.Calendar || model("Calendar", CalendarSchema);
+export default Calendar;

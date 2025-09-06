@@ -1,5 +1,6 @@
-'use client'
-import React, { useEffect, useState } from 'react';
+"use client";
+
+import React from "react";
 
 interface Holiday {
   day: string;
@@ -7,58 +8,32 @@ interface Holiday {
   holiday: string;
 }
 
-const getUpcomingHolidayWithinTwoDays = (holidays: Holiday[]) => {
-  const today = new Date();
-
-  const upcomingHoliday = holidays
-    .map((holiday) => {
-      // Handle holiday date ranges like '08 to 12 Oct 2025'
-      if (holiday.date.includes('to')) {
-        const [startDate, endDate] = holiday.date.split(' to ');
-        const [day, month, year] = startDate.split(' ');
-        const formattedDate = `${year}-${month}-${day.padStart(2, '0')}`;
-        return { ...holiday, dateObj: new Date(formattedDate) };
-      }
-
-      // Handle other dates, parse the format `MM/DD/YYYY` or `DD/MM/YYYY`
-      const [day, month, year] = holiday.date.split('/');
-      const formattedDate = `${year}-${month}-${day.padStart(2, '0')}`;
-      return { ...holiday, dateObj: new Date(formattedDate) };
-    })
-    .filter((holiday) => {
-      if (isNaN(holiday.dateObj.getTime())) return false;
-
-      const diffInTime = holiday.dateObj.getTime() - today.getTime();
-      const diffInDays = diffInTime / (1000 * 3600 * 24); // Convert time difference to days
-      console.log(`${holiday.holiday}: ${diffInDays} days away`); // Debugging log
-      return diffInDays > 0 && diffInDays <= 2; // Only return holidays in the next 1 or 2 days
-    })
-    .sort((a, b) => a.dateObj.getTime() - b.dateObj.getTime()); // Sort by date
-
-  return upcomingHoliday.length > 0 ? upcomingHoliday[0] : null; // Return the first upcoming holiday within 2 days, or null if none
-};
-
 interface HolidayRibbonProps {
   holidays: Holiday[];
 }
 
+const getUpcomingHolidayWithinTwoDays = (holidays: Holiday[]): Holiday | null => {
+  const today = new Date();
+  for (const holiday of holidays) {
+    const holidayDate = new Date(holiday.date);
+    const diffTime = holidayDate.getTime() - today.getTime();
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    if (diffDays >= 0 && diffDays <= 2) {
+      return holiday;
+    }
+  }
+  return null;
+};
+
 const HolidayRibbon: React.FC<HolidayRibbonProps> = ({ holidays }) => {
-  const [upcomingHoliday, setUpcomingHoliday] = useState<Holiday | null>(null);
+  const upcomingHoliday = getUpcomingHolidayWithinTwoDays(holidays);
 
-  useEffect(() => {
-    const holiday = getUpcomingHolidayWithinTwoDays(holidays);
-    setUpcomingHoliday(holiday);
-  }, [holidays]);
-
-  if (!upcomingHoliday) return null; // Don't render if no upcoming holiday
+  if (!upcomingHoliday) return null;
 
   return (
-    <div className="bg-transparent text-danger p-4 text-center font-bold">
-      <div className="overflow-hidden whitespace-nowrap">
-        <p className="inline-block animate-marquee">
-          Upcoming Holiday: {upcomingHoliday.holiday} on {upcomingHoliday.day}, {upcomingHoliday.date}
-        </p>
-      </div>
+    <div className="bg-yellow-200 text-black p-3 text-center font-semibold rounded-md mb-2">
+      Upcoming Holiday: {upcomingHoliday.holiday} on{" "}
+      {new Date(upcomingHoliday.date).toLocaleDateString()}
     </div>
   );
 };
