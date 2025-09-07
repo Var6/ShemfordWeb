@@ -89,7 +89,7 @@ export default function AnnouncementsPage() {
             </button>
           ))}
         </div>
-
+          
         {/* Announcements Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredAnnouncements.map((announcement, index) => (
