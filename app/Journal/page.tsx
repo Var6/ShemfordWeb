@@ -249,6 +249,7 @@ const BlogPage: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-400 text-lg">
             Discover expert perspectives on early childhood development and education
           </p>
+     
         </div>
 
         {/* Search and Filter */}

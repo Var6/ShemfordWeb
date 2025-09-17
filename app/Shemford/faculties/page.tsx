@@ -154,7 +154,7 @@ export default function FacultiesAdmin() {
   const subjects = [
     "Mathematics", "Science", "English", "Hindi", "Social Studies", 
     "Physics", "Chemistry", "Biology", "Computer Science", "Physical Education",
-    "Art", "Music", "Sanskrit", "French", "German"
+    "Art", "Music", "Sanskrit", "French", "Mother Teacher"
   ];
 
   return (
