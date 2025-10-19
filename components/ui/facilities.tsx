@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from '../carousel';
 import { CardStack } from '../cardStack';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const Facilities = () => {
   const images: string[] = [
@@ -28,7 +29,9 @@ const Facilities = () => {
           children, we offer the following facilities at our school.
         </div>
         <div className="flex items-center justify-center">
-          <CardStack items={CARDS} />
+         <Link href="/Campus">
+         <CardStack items={CARDS} />
+         </Link> 
         </div>
       </div>
     </div>

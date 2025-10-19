@@ -26,34 +26,56 @@ export const CardStack = ({
 
   useEffect(() => {
     startFlipping();
-
     return () => clearInterval(interval);
   }, []);
+
   const startFlipping = () => {
     interval = setInterval(() => {
       setCards((prevCards: Card[]) => {
-        const newArray = [...prevCards]; // create a copy of the array
-        newArray.unshift(newArray.pop()!); // move the last element to the front
+        const newArray = [...prevCards];
+        newArray.unshift(newArray.pop()!);
         return newArray;
       });
     }, 5000);
   };
 
   return (
-    <div className="relative  h-60 w-60 md:h-60 md:w-96">
-      {cards.map((card, index) => {
-        return (
-          <motion.div
-            key={card.id}
-            className="absolute dark:bg-orange-400 bg-white h-60 w-60 md:h-60 md:w-96 rounded-3xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
-            style={{
-              transformOrigin: 'top center',
-            }}
-            animate={{
-              top: index * -CARD_OFFSET,
-              scale: 1 - index * SCALE_FACTOR, // decrease scale for cards that are behind
-              zIndex: cards.length - index, //  decrease z-index for the cards that are behind
-            }}
+    <div className="relative h-60 w-60 md:h-60 md:w-96">
+      {cards.map((card, index) => (
+        /* OUTER wrapper: acts as the gradient border */
+        <motion.div
+          key={card.id}
+          className="
+            absolute
+            p-[3px]               /* border thickness */
+            rounded-3xl
+            bg-gradient-to-r from-yellow-500 to-orange-700
+            /* keep a subtle outer shadow so it isn't clipped */
+            shadow-3xl shadow-black/[0.06] dark:shadow-white/[0.03]
+            /* allow child to size itself (inner sets the card size) */
+            flex
+          "
+          style={{
+            transformOrigin: 'top center',
+          }}
+          animate={{
+            top: index * -CARD_OFFSET,
+            scale: 1 - index * SCALE_FACTOR,
+            zIndex: cards.length - index,
+          }}
+        >
+          {/* INNER card: actual content area (same radius so gradient shows as border) */}
+          <div
+            className="
+              h-60 w-60 md:h-60 md:w-96
+              bg-white dark:bg-orange-400
+              rounded-3xl
+              p-4
+              flex flex-col justify-between
+              /* inner shadow if you want more depth;
+                 note: if you add overflow-hidden on the outer wrapper it may clip this  */
+              shadow-black/[0.1] dark:shadow-white/[0.05]
+            "
           >
             <div className="font-normal text-neutral-700 dark:text-neutral-200">
               {card.content}
@@ -66,9 +88,9 @@ export const CardStack = ({
                 {card.designation}
               </p>
             </div>
-          </motion.div>
-        );
-      })}
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 };

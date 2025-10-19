@@ -76,7 +76,7 @@ const CampusPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Hero Section */}
       <div className="relative h-[70vh] overflow-hidden">
         {/* Background with parallax effect */}
@@ -90,7 +90,7 @@ const CampusPage = () => {
         
         {/* Hero Content */}
         <div className="relative h-full flex items-center justify-center">
-          <div className="text-center text-white px-4 max-w-4xl mx-auto">
+          <div className="text-center text-white">
             <div className="inline-flex items-center justify-center w-24 h-24 bg-white/10 backdrop-blur-md rounded-2xl mb-8 border border-white/20">
               <GraduationCap className="w-12 h-12 text-white" />
             </div>

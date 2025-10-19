@@ -53,7 +53,7 @@ export default function Home() {
         {!loading && <HolidayRibbon holidays={holidays} />}
 
         {/* Banner Carousel */}
-        <Carousel images={images} className="rounded-md h-fit" />
+        <Carousel images={images} className="rounded-md h-fit w-full" />
 
         {/* Other Sections */}
         <Welcometo />
