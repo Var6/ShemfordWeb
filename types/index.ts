@@ -45,3 +45,6 @@ export interface SiteData {
 export interface PageProps {
   params: Promise<{ Product: string }>; // params is a Promise now
 }
+
+
+// helper type for filtering products by category
