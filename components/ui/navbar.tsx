@@ -102,6 +102,9 @@ export default function Navbar() {
               <Link href="/Faculties" onClick={() => setIsOpen(false)} className="px-4 py-2 text-white hover:bg-orange-500 rounded flex items-start gap-1">
                 <NavIcon /> Our Faculties
               </Link>
+              <Link href="/contact" onClick={() => setIsOpen(false)} className="px-4 py-2 bg-gradient-to-r from-[#FF705B] to-[#FFB457] text-white hover:from-[#FF705B] hover:to-[#FFA540] rounded font-semibold flex items-start gap-1">
+                ✉️ Get in Touch
+              </Link>
             </div>
           </div>
         </motion.nav>

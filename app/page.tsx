@@ -60,7 +60,7 @@ export default function Home() {
         <Carousel images={images} className="rounded-md h-fit w-full" />
 
         {/* CTA Section for Admissions */}
-        <div className="w-full my-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg p-8">
+        <div className="w-full my-8 bg-gradient-to-r from-orange-300 to-orange-600 text-white rounded-lg p-8">
           <h2 className="text-3xl font-bold mb-3">Admissions Open Now!</h2>
           <p className="text-lg mb-6">Join Shemford Futuristic School and shape your future with quality education</p>
           <div className="flex gap-4 justify-center flex-wrap">

@@ -11,6 +11,7 @@ import { siteConfig } from '@/config/site';
 import  Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
 import AIChartbot from '@/components/AIChat';
+import AdmissionModal from '@/components/AdmissionModal';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shemford.edu'),
@@ -113,6 +114,7 @@ export default function RootLayout({
             </main>
             <Footer/>
             <AIChartbot />
+            <AdmissionModal />
           </div>
         </Providers>
       </body>

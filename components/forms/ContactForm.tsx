@@ -28,28 +28,37 @@ export default function ContactForm({
     setError("");
 
     try {
-      // Initialize EmailJS (make sure to set your public key)
-      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
+      if (!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+        throw new Error("EmailJS public key not configured");
+      }
+
+      // Initialize EmailJS
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
       // Send email with form data
       const response = await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-        formRef.current || "",
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ""
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
 
       if (response.status === 200) {
         setSubmitted(true);
         formRef.current?.reset();
+        setError("");
         setTimeout(() => setSubmitted(false), 5000);
       }
-    } catch (err) {
-      setError("Failed to send message. Please try again later.");
+    } catch (err: any) {
+      setError(err.message || "Failed to send message. Please try again later.");
       console.error("EmailJS error:", err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handlePhoneCall = () => {
+    window.location.href = "tel:+919431201060";
   };
 
   return (
@@ -70,7 +79,7 @@ export default function ContactForm({
                 <div>
                   <p className="text-sm font-semibold">Phone</p>
                   <p className="text-gray-600 dark:text-gray-400">
-                    +91 XXXX-XXXX-7X
+                    +91 9431201060
                   </p>
                 </div>
               </div>
@@ -84,7 +93,7 @@ export default function ContactForm({
                 <div>
                   <p className="text-sm font-semibold">Email</p>
                   <p className="text-gray-600 dark:text-gray-400">
-                    admin@shemford.edu
+                   admissions@shemfordpatna.com
                   </p>
                 </div>
               </div>
@@ -185,21 +194,27 @@ export default function ContactForm({
                 />
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-col md:flex-row gap-4">
                 <Button
                   type="submit"
-                  color="primary"
-                  size="lg"
                   disabled={loading}
-                  className="w-full md:w-auto"
+                  className="flex-1 md:flex-initial bg-gradient-to-r from-[#5EA2EF] to-[#0072F5] text-white font-semibold hover:from-[#5EA2EF] hover:to-[#0062E5] disabled:opacity-60"
+                  size="lg"
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </Button>
                 <Button
-                  type="reset"
-                  variant="bordered"
+                  type="button"
+                  onClick={handlePhoneCall}
+                  className="flex-1 md:flex-initial bg-gradient-to-r from-[#FF705B] to-[#FFB457] text-white font-semibold hover:from-[#FF705B] hover:to-[#FFA540]"
                   size="lg"
-                  className="w-full md:w-auto"
+                >
+                  📞 Call Now
+                </Button>
+                <Button
+                  type="reset"
+                  className="flex-1 md:flex-initial border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-100 dark:hover:bg-gray-700"
+                  size="lg"
                 >
                   Clear
                 </Button>

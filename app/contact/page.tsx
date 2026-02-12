@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Shemford Futuristic School",
     description: "Inquire about admissions and school programs",
-    url: "https://shemford.edu/contact",
+    url: "https://shemford.com/contact",
     type: "website",
   },
 };

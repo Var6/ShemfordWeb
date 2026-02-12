@@ -89,7 +89,7 @@ export default function AIChatbot() {
         id: (Date.now() + 2).toString(),
         role: "assistant",
         content:
-          "Sorry, I encountered an error. Please try again or contact us directly at admin@shemford.edu",
+          "Sorry, I encountered an error. Please try again or contact us directly at admissions@shemfordpatna.com",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -139,7 +139,7 @@ export default function AIChatbot() {
                 <div
                   className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                     message.role === "user"
-                      ? "bg-gradient-to-r from-[#5EA2EF] to-[#0072F5] text-white rounded-br-none"
+                      ? "bg-gradient-to-r from-[#cfa061] to-[#ddb224] text-white rounded-br-none"
                       : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-bl-none"
                   }`}
                 >
@@ -155,11 +155,11 @@ export default function AIChatbot() {
             ))}
             {loading && (
               <div className="flex gap-2 justify-start">
-                <div className="w-7 h-7 flex-shrink-0 bg-gradient-to-br from-[#5EA2EF] to-[#0072F5] rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  AI
+                <div className="w-7 h-7 flex-shrink-0  rounded-full flex items-center justify-center text-white text-xs font-bold">
+                   <Image src="/icon.png" alt="AI" width={28} height={28} />
                 </div>
                 <div className="bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg">
-                  <Loader className="w-4 h-4 animate-spin text-[#0072F5]" />
+                  <Loader className="w-4 h-4 animate-spin text-[#f5ab22]" />
                 </div>
               </div>
             )}
