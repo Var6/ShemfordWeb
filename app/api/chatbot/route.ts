@@ -8,6 +8,11 @@ import {
   getResetTimeSeconds 
 } from "@/lib/rateLimit";
 
+// Validate API key exists
+if (!process.env.OPENAI_API_KEY) {
+  console.error("CRITICAL: OPENAI_API_KEY not set in environment variables");
+}
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -74,18 +79,46 @@ export async function POST(request: NextRequest) {
     const recentMessages = messages.slice(-10);
 
     // ===== CALL OPENAI API =====
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: SYSTEM_PROMPT,
-        },
-        ...recentMessages,
-      ],
-      max_tokens: 500,
-      temperature: 0.2, // Factual responses only
-    });
+    let response;
+    let modelUsed = "gpt-3.5-turbo";
+
+    try {
+      // Try primary model
+      response = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: SYSTEM_PROMPT,
+          },
+          ...recentMessages,
+        ],
+        max_tokens: 500,
+        temperature: 0.2,
+      });
+    } catch (primaryError: any) {
+      console.warn(`Primary model (${modelUsed}) failed, trying fallback...`, primaryError.message);
+      
+      // If primary model fails, try fallback model
+      try {
+        modelUsed = "gpt-4o-mini";
+        response = await openai.chat.completions.create({
+          model: "gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content: SYSTEM_PROMPT,
+            },
+            ...recentMessages,
+          ],
+          max_tokens: 500,
+          temperature: 0.2,
+        });
+      } catch (fallbackError: any) {
+        console.error(`Both models failed. Primary: ${primaryError.message}, Fallback: ${fallbackError.message}`);
+        throw fallbackError; // Throw fallback error for main catch block
+      }
+    }
 
     const assistantMessage =
       response.choices[0]?.message?.content ||
@@ -97,35 +130,45 @@ export async function POST(request: NextRequest) {
     );
 
   } catch (error: any) {
-    console.error("Chatbot API error:", error);
+    console.error("Chatbot API error details:", {
+      message: error.message,
+      status: error.status,
+      code: error.code,
+      type: error.type,
+      fullError: JSON.stringify(error)
+    });
 
     // ===== ERROR HANDLING WITH FALLBACK MESSAGES =====
 
     // OpenAI API Errors
     if (error instanceof OpenAI.APIError) {
-      // Quota exceeded / Rate limit from OpenAI
+      console.error(`OpenAI API Error - Status: ${error.status}, Message: ${error.message}`);
+      
+      // 429 - Rate limit (quota or too many requests)
       if (error.status === 429) {
+        console.error("Rate limit hit:", error.message);
         return NextResponse.json(
           { 
-            response: "Our AI assistant is temporarily busy. Please try again in a few moments, or contact us directly at +91 9431201060 or admissions@shemfordpatna.com. We're here to help!" 
-          },
-          { status: 200 } // Return 200 so client doesn't crash
-        );
-      }
-
-      // Invalid API key
-      if (error.status === 401) {
-        console.error("CRITICAL: OpenAI API key invalid");
-        return NextResponse.json(
-          { 
-            response: "We're experiencing a temporary issue. Please contact the school directly: +91 9431201060" 
+            response: "Our AI assistant is temporarily busy serving other visitors. Please try again in a moment, or contact us directly at +91 9431201060 or admissions@shemfordpatna.com. We're here to help!" 
           },
           { status: 200 }
         );
       }
 
-      // Server error from OpenAI
+      // 401 - Authentication failed (bad API key)
+      if (error.status === 401) {
+        console.error("CRITICAL: OpenAI authentication failed - API key invalid or expired");
+        return NextResponse.json(
+          { 
+            response: "We're experiencing a configuration issue. Please contact the school directly: +91 9431201060. We apologize for the inconvenience." 
+          },
+          { status: 200 }
+        );
+      }
+
+      // 500 - OpenAI server error
       if (error.status === 500) {
+        console.error("OpenAI server error");
         return NextResponse.json(
           { 
             response: "OpenAI servers are temporarily unavailable. Please try again in a moment or contact us at +91 9431201060." 
@@ -134,19 +177,34 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Other OpenAI errors
+      // 403 - Access denied / Account issue
+      if (error.status === 403) {
+        console.error("CRITICAL: Access denied - Check account status and API key permissions");
+        return NextResponse.json(
+          { 
+            response: "We're unable to access our AI service right now. Please contact the school: +91 9431201060" 
+          },
+          { status: 200 }
+        );
+      }
+    }
+
+    // Check for specific error codes
+    if (error.code === "ENOTFOUND" || error.code === "ECONNREFUSED") {
+      console.error("Network error - Cannot reach OpenAI servers");
       return NextResponse.json(
         { 
-          response: "I'm having trouble responding right now. Please call the school at +91 9431201060 for immediate assistance." 
+          response: "Connection error. Please check your internet or try again in a moment. Contact: +91 9431201060" 
         },
         { status: 200 }
       );
     }
 
-    // Network or other errors
+    // Generic fallback for any other error
+    console.error("Unknown error type:", error.type || typeof error);
     return NextResponse.json(
       { 
-        response: "Connection error. Please check your internet connection or contact the school at +91 9431201060." 
+        response: "I'm having trouble responding right now. Please call the school at +91 9431201060 for immediate assistance." 
       },
       { status: 200 }
     );
