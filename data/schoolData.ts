@@ -98,7 +98,7 @@ export const schoolData = {
     mondayToFriday: "Monday to Friday",
     saturday: "Saturday (as per school calendar)",
     sunday: "Closed",
-    officeHours: "9:00 AM - 4:00 PM (Monday to Friday)",
+    officeHours: "9:00 AM - 4:00 PM (Monday to Saturday)",
   },
 
   // Co-curricular Activities
