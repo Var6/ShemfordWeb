@@ -16,15 +16,7 @@ interface Message {
 const INITIAL_MESSAGE = {
   id: "1",
   role: "assistant" as const,
-  content: `Hello! 👋 I'm Shemford Bot. I can help you with:
-  
-• 📚 Information about courses and programs
-• 🏫 School facilities and campus details
-• 📋 Admission process and requirements
-• 📞 Contact information
-• ✨ School achievements and success stories
-
-What would you like to know?`,
+  content: `👋 Hello! I'm Shemford Bot.\n\nI can help you with:\n\n✓ 📚 Courses & Programs\n✓ 🏫 School Facilities\n✓ 🎓 Admission Process\n✓ 📞 Contact Information\n✓ ✨ Achievements & Events\n\nWhat would you like to know?`,
   timestamp: new Date(),
 };
 
@@ -123,28 +115,34 @@ export default function AIChatbot() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 dark:bg-gray-950">
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex gap-2 ${
+                className={`flex items-end gap-2 ${
                   message.role === "user" ? "justify-end" : "justify-start"
                 }`}
               >
                 {message.role === "assistant" && (
-                  <div className="w-7 h-7 flex-shrink-0 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                    <Image src="/icon.png" alt="AI" width={28} height={28} />
+                  <div className="w-8 h-8 flex-shrink-0 rounded-full flex items-center justify-center bg-gradient-to-br from-[#e2a522] to-[#e9890b]">
+                    <Image src="/icon.png" alt="Shem Bot" width={28} height={28} />
                   </div>
                 )}
                 <div
-                  className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
+                  className={`max-w-xs px-4 py-2 rounded-2xl text-sm leading-relaxed ${
                     message.role === "user"
-                      ? "bg-gradient-to-r from-[#cfa061] to-[#ddb224] text-white rounded-br-none"
-                      : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-bl-none"
+                      ? "bg-gradient-to-r from-[#d4a574] to-[#e5b85a] text-white rounded-br-none shadow-md"
+                      : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700"
                   }`}
                 >
-                  <p className="text-sm">{message.content}</p>
-                  <p className="text-xs opacity-60 mt-0.5">
+                  <p className="whitespace-pre-wrap break-words">{message.content}</p>
+                  <p
+                    className={`text-xs mt-1 ${
+                      message.role === "user"
+                        ? "opacity-80 text-white"
+                        : "opacity-50 text-gray-600 dark:text-gray-400"
+                    }`}
+                  >
                     {message.timestamp.toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -154,12 +152,12 @@ export default function AIChatbot() {
               </div>
             ))}
             {loading && (
-              <div className="flex gap-2 justify-start">
-                <div className="w-7 h-7 flex-shrink-0  rounded-full flex items-center justify-center text-white text-xs font-bold">
-                   <Image src="/icon.png" alt="AI" width={28} height={28} />
+              <div className="flex items-center gap-2 justify-start">
+                <div className="w-8 h-8 flex-shrink-0 rounded-full flex items-center justify-center bg-gradient-to-br from-[#e2a522] to-[#e9890b]">
+                  <Image src="/icon.png" alt="Shem Bot" width={28} height={28} />
                 </div>
-                <div className="bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg">
-                  <Loader className="w-4 h-4 animate-spin text-[#f5ab22]" />
+                <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-2xl rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700">
+                  <Loader className="w-4 h-4 animate-spin text-[#e9890b]" />
                 </div>
               </div>
             )}

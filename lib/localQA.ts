@@ -13,129 +13,129 @@ export const schoolQA: QAEntry[] = [
   // Contact & Basic Info
   {
     keywords: ["contact", "phone", "call", "number", "email"],
-    answer: "📞 Contact us at +91 9431201060 or email admissions@shemfordpatna.com. We respond within 24 business hours.",
+    answer: "📞 Contact Shemford:\n\n📱 Phone: +91 9431201060\n📧 Email: admissions@shemfordpatna.com\n⏱️ Response Time: 24 business hours",
   },
   {
     keywords: ["address", "location", "where", "situated"],
-    answer: "📍 Shemford Futuristic School is located in Jaganpur, Patna, Bihar, India.",
+    answer: "📍 Shemford Futuristic School\nJaganpur, Patna, Bihar, India",
   },
   {
     keywords: ["website", "web", "online"],
-    answer: "🌐 Visit us at https://shemfordpatna.com or call +91 9431201060 for more information.",
+    answer: "🌐 Official Website: https://shemfordpatna.com\n\nCall us: +91 9431201060 for more details",
   },
 
   // Admission
   {
     keywords: ["admission", "admit", "join", "enroll", "apply"],
-    answer: "🎓 Admissions are open year-round for Nursery to Class 10. Contact admissions@shemfordpatna.com or call +91 9431201060 to start the process.",
+    answer: "🎓 Admissions Open\n\n✓ Classes: Nursery to Class 10\n✓ Admissions: Year-round\n✓ Contact: admissions@shemfordpatna.com\n✓ Phone: +91 9431201060",
   },
   {
     keywords: ["fee", "cost", "price", "tuition", "charges"],
-    answer: "💰 For detailed fee structure, please contact the school directly at +91 9431201060 or visit https://shemfordpatna.com.",
+    answer: "💰 Fee Structure\n\nFor detailed fee information, please contact:\n📱 +91 9431201060\n🌐 https://shemfordpatna.com\n\nOur admissions team will provide complete details.",
   },
   {
     keywords: ["scholarship", "financial aid", "discount"],
-    answer: "🏆 Merit-based scholarships are available. Contact admissions@shemfordpatna.com for detailed information.",
+    answer: "🏆 Scholarships Available\n\n✓ Merit-based scholarships offered\n✓ Contact: admissions@shemfordpatna.com\n✓ Phone: +91 9431201060\n\nWe look forward to welcoming talented students!",
   },
   {
     keywords: ["entrance exam", "test", "assessment", "interview"],
-    answer: "📝 Admission includes entrance assessment/interview. Contact the school for details about the process.",
+    answer: "📝 Admission Process\n\n1️⃣ Application Form Submission\n2️⃣ Entrance Assessment/Interview\n3️⃣ Document Verification\n4️⃣ Admission Confirmation\n\nContact school for details: +91 9431201060",
   },
 
   // Classes & Curriculum
   {
     keywords: ["class", "grade", "standard", "which classes"],
-    answer: "📚 We offer classes from Nursery to Class 10 following CBSE curriculum.",
+    answer: "📚 Our Classes\n\nNursery → Class 10\nCBSE Curriculum\n✓ Comprehensive education\n✓ Holistic development",
   },
   {
     keywords: ["board", "cbse", "icse", "curriculum"],
-    answer: "📖 Shemford follows the CBSE (Central Board of Secondary Education) curriculum with a focus on academic excellence and holistic development.",
+    answer: "📖 CBSE Curriculum\n\n✓ Central Board of Secondary Education\n✓ Focus: Academic Excellence\n✓ Emphasis: Holistic Development\n✓ Modern Teaching Methods",
   },
   {
     keywords: ["subject", "subjects", "what do you teach"],
-    answer: "📚 Primary: English, Mathematics, Science, Social Studies, Hindi. Secondary: Plus Computer Science and Physical Education.",
+    answer: "📚 Subjects Offered\n\nPrimary:\n✓ English\n✓ Mathematics\n✓ Science\n✓ Social Studies\n✓ Hindi\n\nSecondary (Plus):\n✓ Computer Science\n✓ Physical Education",
   },
   {
     keywords: ["medium", "language", "english"],
-    answer: "🗣️ The medium of instruction is English.",
+    answer: "🗣️ Medium of Instruction: English",
   },
 
   // Timings
   {
     keywords: ["timing", "time", "school hours", "start", "end", "when"],
-    answer: "⏰ Primary (Nursery-Class 5): 8:30 AM - 1:30 PM\nSecondary (Class 6-10): 8:30 AM - 3:30 PM\nMonday to Friday",
+    answer: "⏰ School Timings\n\n📍 Primary (Nursery-Class 5):\n8:30 AM - 1:30 PM\n\n📍 Secondary (Class 6-10):\n8:30 AM - 3:30 PM\n\n📅 Days: Monday to Friday",
   },
   {
-    keywords: ["hours", "schedule", "timing"],
-    answer: "⏰ Primary: 8:30 AM - 1:30 PM | Secondary: 8:30 AM - 3:30 PM",
+    keywords: ["hours", "schedule"],
+    answer: "⏰ Quick Timings\n\nPrimary: 8:30 AM - 1:30 PM\nSecondary: 8:30 AM - 3:30 PM\nMonday - Friday",
   },
 
   // Facilities
   {
-    keywords: ["facility", "facilities", "infrastructure", "lab", "sports", "what facilities"],
-    answer: "🏢 Facilities include: Smart classrooms, Science labs, Computer lab, Library, Sports ground, Basketball court, Badminton court, Medical room, and Cafeteria.",
+    keywords: ["facility", "facilities", "infrastructure", "what facilities"],
+    answer: "🏢 Modern Facilities\n\n✓ Smart Classrooms\n✓ Science & Math Labs\n✓ Computer Lab\n✓ Library with Resources\n✓ Sports Facilities\n✓ Medical Room\n✓ Cafeteria",
   },
   {
     keywords: ["lab", "laboratory", "science", "computer"],
-    answer: "🔬 We have modern Science labs, Mathematics lab, and a fully-equipped Computer lab with latest technology.",
+    answer: "🔬 Laboratory Facilities\n\n✓ Modern Science Lab\n✓ Mathematics Lab\n✓ Fully-equipped Computer Lab\n✓ Latest Technology\n✓ Hands-on Learning",
   },
   {
     keywords: ["playground", "sports", "athletics", "game"],
-    answer: "⚽ Sports facilities include: Sports ground, Basketball court, Badminton court, and various athletics programs.",
+    answer: "⚽ Sports Facilities\n\n✓ Sports Ground\n✓ Basketball Court\n✓ Badminton Court\n✓ Athletics Programs\n✓ Various Sports Activities",
   },
 
   // Activities & Programs
   {
     keywords: ["activity", "activities", "club", "sports", "cultural", "program"],
-    answer: "🎭 Activities: Sports, cultural programs, debate, science club, art & music, computer club, scout & guide, environmental club, and annual events.",
+    answer: "🎭 Co-Curricular Activities\n\n✓ Sports Programs\n✓ Cultural Programs\n✓ Debate & Public Speaking\n✓ Science Club\n✓ Art & Music\n✓ Computer Club\n✓ Scout & Guide\n✓ Environmental Club",
   },
   {
     keywords: ["event", "function", "competition", "festival"],
-    answer: "🎉 We organize Annual Sports Day, Science Exhibition, Annual Day celebration, and inter-school competitions.",
+    answer: "🎉 Annual Events\n\n✓ Annual Sports Day\n✓ Science Exhibition\n✓ Annual Day Celebration\n✓ Inter-school Competitions\n✓ Cultural Festivals",
   },
 
   // Documents & Requirements
   {
     keywords: ["document", "documents", "required", "birth certificate", "proof"],
-    answer: "📋 Required documents: Birth certificate, previous school report card, medical records, address proof, parent ID proof. Contact school for detailed list.",
+    answer: "📋 Required Documents\n\n✓ Birth Certificate\n✓ Previous School Report Card\n✓ Medical Records\n✓ Address Proof\n✓ Parent/Guardian ID Proof\n\nContact school for complete list: +91 9431201060",
   },
 
   // Staff & Teachers
   {
     keywords: ["teacher", "staff", "faculty", "principal", "who teaches"],
-    answer: "👨‍🏫 We have experienced faculty dedicated to academic excellence and student development. Visit https://shemfordpatna.com to see our team.",
+    answer: "👨‍🏫 Our Faculty\n\n✓ Experienced Teachers\n✓ Qualified & Trained\n✓ Student-Focused Approach\n✓ Dedicated to Development\n\nMeet our team: https://shemfordpatna.com",
   },
 
-  // Boarding/Transport
+  // Transport
   {
     keywords: ["hostel", "boarding", "bus", "transport", "pickup"],
-    answer: "🚌 For information about transport and other facilities, please contact +91 9431201060.",
+    answer: "🚌 Transport Information\n\nFor details about school buses and pickup routes:\n📞 Call: +91 9431201060\n📧 Email: admissions@shemfordpatna.com",
   },
 
   // Achievements
   {
     keywords: ["achievement", "result", "success", "award", "rank"],
-    answer: "🏆 Our students excel in academics, sports, and cultural activities. For details on achievements, visit our website or contact the school.",
+    answer: "🏆 Our Achievements\n\n✓ Academic Excellence\n✓ Sports Achievements\n✓ Cultural Recognition\n✓ Student Success Stories\n\nVisit: https://shemfordpatna.com for more details",
   },
 
   // Policies
   {
     keywords: ["dress", "uniform", "code"],
-    answer: "👔 Formal school uniform is required. Details are provided at the time of admission.",
+    answer: "👔 School Uniform\n\nFormal school uniform is required.\nDetails provided at admission time.",
   },
   {
     keywords: ["attendance", "discipline", "policy", "rule"],
-    answer: "📋 75% attendance is mandatory. We maintain strict discipline and have zero tolerance for bullying.",
+    answer: "📋 School Policies\n\n✓ Attendance: 75% mandatory\n✓ Discipline: Strictly maintained\n✓ Bullying: Zero tolerance\n✓ Code of Conduct: Enforced",
   },
 
   // General
   {
     keywords: ["hello", "hi", "hey", "thanks", "thank you"],
-    answer: "👋 Hello! I'm Shemford Bot. How can I help you today? Ask about admissions, classes, facilities, or contact us at +91 9431201060.",
+    answer: "👋 Hello! I'm Shemford Bot.\n\nI can help you with:\n✓ Admissions\n✓ Classes & Curriculum\n✓ School Facilities\n✓ Contact Information\n✓ Events & Activities\n\nHow can I assist you today?",
   },
   {
     keywords: ["help", "what can you do"],
-    answer: "📞 I can help with: Admission info, class details, facilities, school timings, contact information, and more. Ask away!",
+    answer: "📞 I'm Here to Help!\n\nI can answer questions about:\n✓ Admission Process\n✓ Classes (Nursery-10)\n✓ School Facilities\n✓ Timings & Schedule\n✓ Contact Information\n✓ Activities & Events\n\nWhat would you like to know?",
   },
 ];
 
@@ -174,5 +174,5 @@ export function generateLocalResponse(userQuestion: string): string {
   }
 
   // Fallback if no match found
-  return `I don't have that specific information. Please contact us directly:\n📞 Phone: +91 9431201060\n📧 Email: admissions@shemfordpatna.com\n🌐 Website: https://shemfordpatna.com`;
+  return `I don't have that information right now.\n\nPlease contact us directly:\n\n📞 Phone: +91 9431201060\n📧 Email: admissions@shemfordpatna.com\n🌐 Website: https://shemfordpatna.com\n\nWe're here to help! ✨`;
 }
