@@ -102,8 +102,8 @@ export default function Navbar() {
               <Link href="/Faculties" onClick={() => setIsOpen(false)} className="px-4 py-2 text-white hover:bg-orange-500 rounded flex items-start gap-1">
                 <NavIcon /> Our Faculties
               </Link>
-              <Link href="/contact" onClick={() => setIsOpen(false)} className="px-4 py-2 text-orange-600 hover:text-orange-700 font-semibold flex items-start gap-1">
-                ✉️ Get in Touch
+              <Link href="/contact" onClick={() => setIsOpen(false)} className="px-4 py-2 text-white hover:bg-orange-500 rounded flex items-start gap-1">
+                <NavIcon /> Get in Touch
               </Link>
             </div>
           </div>
