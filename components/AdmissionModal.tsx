@@ -9,12 +9,14 @@ export default function AdmissionModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
+    setIsMounted(true);
     // Show modal only once on first page load
     const hasSeenModal = localStorage.getItem("admissionModalShown");
-    if (!hasSeenModal && typeof window !== "undefined") {
+    if (!hasSeenModal) {
       setTimeout(() => {
         setIsOpen(true);
         localStorage.setItem("admissionModalShown", "true");
@@ -55,7 +57,7 @@ export default function AdmissionModal() {
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isMounted && isOpen && (
         <>
           {/* Backdrop */}
           <motion.div
