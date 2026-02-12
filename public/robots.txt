@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Disallow sensitive paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*order=
+
+# Sitemap
+Sitemap: https://shemford.edu/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# User-agent specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

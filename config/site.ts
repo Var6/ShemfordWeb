@@ -2,49 +2,49 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: 'Shemford Futuristic School',
-  description: 'One Stop Solution for all you Academic Need',
+  description: 'Premier CBSE School in Jaganpur, Patna, Bihar - Quality Education with Modern Facilities',
   navItems: [
     {
-      label: 'Messages',
-      href: '/Message',
+      label: 'Admission',
+      href: '/admission',
     },
     {
-      label: 'Blogs',
-      href: '/blog',
+      label: 'About Us',
+      href: '/about',
     },
     {
       label: 'CBSE',
       href: '/CBSE',
     },
     {
-      label: 'Notification',
-      href: '/Notification',
+      label: 'Events',
+      href: '/Events',
     },
     {
-      label: 'About Us',
-      href: '/about',
+      label: 'Contact',
+      href: '/contact',
     },
   ],
   navMenuItems: [
     {
-      label: 'Message',
-      href: '/Messages',
+      label: 'Admission',
+      href: '/admission',
     },
     {
-      label: 'Blog',
-      href: '/blog',
+      label: 'About Us',
+      href: '/about',
     },
     {
       label: 'CBSE',
       href: '/CBSE',
     },
     {
-      label: 'Notification',
-      href: '/Notification',
+      label: 'Events',
+      href: '/Events',
     },
     {
-      label: 'About Us',
-      href: '/about',
+      label: 'Contact',
+      href: '/contact',
     },
   ],
   links: {

@@ -9,9 +9,11 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@heroui/avatar": "^2.2.11",
     "@heroui/button": "2.2.13",
     "@heroui/code": "2.2.10",
+    "@heroui/divider": "^2.2.10",
     "@heroui/input": "2.4.13",
     "@heroui/kbd": "2.2.10",
     "@heroui/link": "2.2.11",
@@ -32,16 +34,22 @@
     "mongoose": "^8.18.0",
     "motion": "^12.23.12",
     "next": "^16.0.1",
+    "next-seo": "^6.4.0",
     "next-themes": "^0.4.4",
+    "nodemailer": "^6.9.7",
+    "openai": "^4.52.7",
     "react": "18.3.1",
     "react-animated-numbers": "^1.0.0",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.50.0",
     "swr": "^2.3.6",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@react-types/shared": "3.25.0",
     "@types/node": "20.5.7",
+    "@types/nodemailer": "^7.0.9",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "autoprefixer": "10.4.19",
