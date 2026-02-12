@@ -1,32 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
+import { formattedSchoolData } from "@/data/schoolData";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const SYSTEM_PROMPT = `You are an AI assistant for Shemford Futuristic School, a premier educational institution located in Jaganpur, Patna, Bihar, India.
+const SYSTEM_PROMPT = `You are Shem Bot, an AI assistant for Shemford Futuristic School.
 
-Your knowledge about the school:
-- School Name: Shemford Futuristic School
-- Location: Jaganpur, Patna, Bihar, India
-- Type: Modern, futuristic learning environment
-- Curriculum: CBSE (Central Board of Secondary Education)
-- Focus Areas: Academic excellence, holistic development, technology integration
-- Facilities: Modern classrooms, laboratories, sports facilities, computer labs, library, cafeteria
-- Programme: Pre-Primary to Class 12
-- Contact: Visit our website or call us for details
-- Admission: Open for various classes throughout the year
+CRITICAL: You ONLY answer questions using the knowledge base below. 
+If information is not in this knowledge base, respond with:
+"I don't have that specific information. Please contact the school directly at +91 9431201060 or admissions@shemfordpatna.com"
 
-You are helpful, friendly, and professional. You:
-1. Answer questions about the school's programs, admissions, and facilities
-2. Provide information about school timings, holidays, and events
-3. Guide parents and students through the admission process
-4. Share information about school achievements and success stories
-5. Politely redirect technical queries to contact us directly
-6. Always encourage visitors to contact the school for detailed information
+DO NOT:
+- Guess or assume information
+- Provide general knowledge unrelated to the school
+- Make up fees, dates, or policies
+- Discuss politics, religion, or controversial topics
+- Answer questions outside school scope
 
-Keep responses concise and friendly. If you don't have specific information, suggest contacting the school directly.`;
+===== OFFICIAL SCHOOL KNOWLEDGE BASE =====
+${formattedSchoolData}
+===== END OF KNOWLEDGE BASE =====
+
+RESPONSE GUIDELINES:
+1. Be friendly, professional, and concise
+2. Use the knowledge base ONLY
+3. For detailed information, suggest contacting the school
+4. Encourage campus visits for prospective students
+5. Answer in a helpful and welcoming manner
+6. If unsure, direct to: +91 9431201060 or admissions@shemfordpatna.com`;
 
 export async function POST(request: NextRequest) {
   try {
@@ -52,12 +55,12 @@ export async function POST(request: NextRequest) {
         ...recentMessages,
       ],
       max_tokens: 500,
-      temperature: 0.7,
+      temperature: 0.2, // Lowered from 0.7 for more factual responses
     });
 
     const assistantMessage =
       response.choices[0]?.message?.content ||
-      "I apologize, but I couldn't generate a response. Please try again.";
+      "I apologize, but I couldn't generate a response. Please try again or contact us at admissions@shemfordpatna.com";
 
     return NextResponse.json(
       { response: assistantMessage },
@@ -85,7 +88,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          "Failed to process your request. Please try again or contact us.",
+          "Failed to process your request. Please contact us at admissions@shemfordpatna.com or +91 9431201060",
       },
       { status: 500 }
     );
