@@ -3,7 +3,7 @@ import { Metadata, Viewport } from 'next';
 import clsx from 'clsx';
 import { fontSans, fontMono } from '@/config/fonts';
 import { generateSchemaMarkup, EDUCATIONAL_ORG_SCHEMA } from '@/lib/schema';
-
+import { Analytics } from "@vercel/analytics/next"
 import { Providers } from './providers';
 
 import { siteConfig } from '@/config/site';
@@ -14,7 +14,7 @@ import AIChartbot from '@/components/AIChat';
 import AdmissionModal from '@/components/AdmissionModal';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://shemford.edu'),
+  metadataBase: new URL('https://shemfordpatna.com'),
   title: {
     default: `${siteConfig.name} - Best CBSE School in Patna`,
     template: `%s - ${siteConfig.name}`,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${siteConfig.name} - Best CBSE School in Patna`,
     description: siteConfig.description,
-    url: 'https://shemford.edu',
+    url: 'https://shemfordpatna.com',
     siteName: siteConfig.name,
     images: [
       {
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://shemford.edu',
+    canonical: 'https://shemfordpatna.com',
     languages: {
-      'en-IN': 'https://shemford.edu',
+      'en-IN': 'https://shemfordpatna.com',
     },
   },
 };
@@ -117,6 +117,7 @@ export default function RootLayout({
             <AdmissionModal />
           </div>
         </Providers>
+        <Analytics/>
       </body>
     </html>
   );

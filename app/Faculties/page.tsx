@@ -1,11 +1,21 @@
 import Faculties from "./Faculties";
 
-
 export default async function Page() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/faculties`, {
-    cache: "no-store", // always fresh
-  });
-  const faculties = await res.json();
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  
+  try {
+    const res = await fetch(`${baseUrl}/api/faculties`, {
+      cache: "no-store",
+    });
 
-  return <Faculties initialFaculties={faculties} />;
+    if (!res.ok) {
+      throw new Error(`API error: ${res.status}`);
+    }
+
+    const faculties = await res.json();
+    return <Faculties initialFaculties={faculties} />;
+  } catch (error) {
+    console.error("Failed to fetch faculties:", error);
+    return <Faculties initialFaculties={[]} />;
+  }
 }
