@@ -69,9 +69,11 @@ export default function Home() {
                 Apply Now
               </Button>
             </Link>
-            <Button size="lg" variant="bordered" className="border-white text-white hover:bg-white hover:text-blue-600">
-              Learn More
-            </Button>
+            <Link href="/admission">
+              <Button size="lg" variant="bordered" className="border-white text-white hover:bg-white hover:text-blue-600">
+                Learn More
+              </Button>
+            </Link>
           </div>
         </div>
 
