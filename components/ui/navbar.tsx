@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -54,38 +55,107 @@ const navLinks: NavItem[] = [
   },
 ];
 
-function renderNavItem(item: NavItem) {
+function renderNavItem(
+  item: NavItem,
+  activeMenu: string | null,
+  setActiveMenu: (value: string | null) => void,
+  activeSubmenu: string | null,
+  setActiveSubmenu: (value: string | null) => void,
+  menuLeaveTimer: React.MutableRefObject<number | null>,
+  submenuLeaveTimer: React.MutableRefObject<number | null>,
+) {
+  const isRightAligned = item.label === 'Campus' || item.label === 'Connect';
+
   if (item.items) {
     return (
-      <li key={item.label} className="group relative">
+      <li
+        key={item.label}
+        className="relative"
+        onMouseEnter={() => {
+          if (menuLeaveTimer.current) {
+            window.clearTimeout(menuLeaveTimer.current);
+            menuLeaveTimer.current = null;
+          }
+          setActiveMenu(item.label);
+        }}
+        onMouseLeave={() => {
+          if (menuLeaveTimer.current) {
+            window.clearTimeout(menuLeaveTimer.current);
+          }
+          menuLeaveTimer.current = window.setTimeout(() => {
+            setActiveMenu(null);
+            setActiveSubmenu(null);
+            menuLeaveTimer.current = null;
+          }, 2000);
+        }}
+      >
         <button
           type="button"
           className="inline-flex items-center gap-2 rounded-3xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/70"
+          aria-expanded={activeMenu === item.label}
+          aria-haspopup="menu"
         >
           {item.label}
           <span className="text-xs">▾</span>
         </button>
 
-        <div className="absolute left-0 top-full z-50 mt-3 min-w-[20rem] rounded-[28px] border border-slate-200/80 bg-white p-4 shadow-2xl opacity-0 pointer-events-none transition duration-200 group-hover:opacity-100 group-hover:pointer-events-auto">
+        <div
+          className={`absolute top-full z-50 mt-3 min-w-[20rem] rounded-[28px] border border-slate-700/60 bg-orange-700 p-4 shadow-2xl backdrop-blur-xl transition duration-200 ${
+            isRightAligned ? 'right-0' : 'left-0'
+          } ${
+            activeMenu === item.label
+              ? 'opacity-100 visible translate-y-0'
+              : 'opacity-0 invisible -translate-y-2'
+          }`}
+        >
           <ul className="space-y-2">
             {item.items.map((child) => (
-              <li key={child.label} className="group relative">
+              <li
+                key={child.label}
+                className="relative"
+                onMouseEnter={() => {
+                  if (submenuLeaveTimer.current) {
+                    window.clearTimeout(submenuLeaveTimer.current);
+                    submenuLeaveTimer.current = null;
+                  }
+                  setActiveSubmenu(child.label);
+                }}
+                onMouseLeave={() => {
+                  if (submenuLeaveTimer.current) {
+                    window.clearTimeout(submenuLeaveTimer.current);
+                  }
+                  submenuLeaveTimer.current = window.setTimeout(() => {
+                    setActiveSubmenu(null);
+                    submenuLeaveTimer.current = null;
+                  }, 2000);
+                }}
+              >
                 {child.items ? (
                   <>
                     <button
                       type="button"
-                      className="w-full flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-left text-sm font-medium text-slate-900 transition hover:bg-slate-100"
+                      className="w-full flex items-center justify-between rounded-2xl bg-orange-600 px-4 py-3 text-left text-sm font-medium text-white transition hover:bg-orange-400"
+                      aria-expanded={activeSubmenu === child.label}
+                      aria-haspopup="menu"
                     >
                       <span>{child.label}</span>
                       <span className="text-xs">▸</span>
                     </button>
-                    <div className="absolute left-full top-0 ml-3 min-w-[18rem] rounded-[28px] border border-slate-200/80 bg-white p-4 shadow-2xl opacity-0 pointer-events-none transition duration-200 group-hover:opacity-100 group-hover:pointer-events-auto">
+                    <div
+                      className={`absolute top-0 z-50 min-w-[18rem] rounded-[28px] border border-orange-600 bg-orange-600 p-4 shadow-2xl backdrop-blur-xl transition duration-200 ${
+                        isRightAligned ? 'right-full mr-3' : 'left-full ml-3'
+                      } ${
+                        activeSubmenu === child.label
+                          ? 'opacity-100 visible translate-x-0'
+                          : 'opacity-0 invisible -translate-x-2'
+                      }`}
+                    >
                       <ul className="space-y-2">
                         {child.items.map((nested) => (
                           <li key={nested.label}>
                             <Link
                               href={nested.href || '#'}
-                              className="block rounded-2xl px-4 py-3 text-sm text-slate-900 transition hover:bg-slate-100"
+                              className="block rounded-2xl px-4 py-3 text-sm text-white transition hover:bg-orange-400"
                             >
                               {nested.label}
                             </Link>
@@ -97,7 +167,7 @@ function renderNavItem(item: NavItem) {
                 ) : (
                   <Link
                     href={child.href || '#'}
-                    className="block rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-900 transition hover:bg-slate-100"
+                    className="block rounded-2xl bg-orange-600 px-4 py-3 text-sm text-white transition hover:bg-orange-400"
                   >
                     {child.label}
                   </Link>
@@ -123,9 +193,14 @@ function renderNavItem(item: NavItem) {
 }
 
 export default function Navbar() {
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const menuLeaveTimer = useRef<number | null>(null);
+  const submenuLeaveTimer = useRef<number | null>(null);
+
   return (
-    <header className="w-full z-50 sticky top-0">
-      <div className="bg-slate-950 text-slate-300 text-xs px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between flex-wrap gap-2 border-b border-white/10 shadow-[0_1px_20px_rgba(0,0,0,0.2)]">
+    <header className="w-full z-50 sticky top-0"> 
+      <div className="bg-orange-600 text-slate-300 text-xs px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between flex-wrap gap-2 border-b border-white/10 shadow-[0_1px_20px_rgba(0,0,0,0.2)]">
         <div className="flex flex-wrap items-center gap-4 text-slate-200">
           <a
             href="mailto:info@shemford.edu.in"
@@ -133,7 +208,7 @@ export default function Navbar() {
           >
             ✉ info@shemford.edu.in
           </a>
-          <span className="h-3 w-px bg-slate-700" />
+          <span className="h-3 w-px bg-orange-700" />
           <a
             href="tel:+919999900000"
             className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors"
@@ -144,7 +219,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4 text-xs uppercase tracking-[0.18em] text-slate-300">
           {socialLinks.map((s, i) => (
             <span key={s.label} className="flex items-center gap-4">
-              {i !== 0 && <span className="h-3 w-px bg-slate-700" />}
+              {i !== 0 && <span className="h-3 w-px bg-orange-700" />}
               <a
                 href={s.href}
                 target="_blank"
@@ -177,7 +252,17 @@ export default function Navbar() {
           </Link>
 
           <ul className="flex flex-wrap items-center gap-2">
-            {navLinks.map((item) => renderNavItem(item))}
+            {navLinks.map((item) =>
+              renderNavItem(
+                item,
+                activeMenu,
+                setActiveMenu,
+                activeSubmenu,
+                setActiveSubmenu,
+                menuLeaveTimer,
+                submenuLeaveTimer,
+              ),
+            )}
           </ul>
         </div>
       </nav>

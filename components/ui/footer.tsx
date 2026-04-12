@@ -7,7 +7,7 @@ import { siteConfig } from '@/config/site';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-r from-orange-600 to-yellow-400 text-white pt-10 pb-8 mt-6">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Map Section */}
         <div className="w-full h-44 md:h-full overflow-hidden rounded-3xl shadow-lg ring-1 ring-white/20">
           <iframe
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Copyright & Socials */}
-      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 py-5 mt-8 border-t border-white/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 py-5 mt-8 border-t border-white/20">
         <p className="text-center md:text-left text-sm text-white/95">
           &copy; {new Date().getFullYear()} SHEMFORD Futuristic School Patna. All Rights Reserved.
         </p>
