@@ -6,61 +6,61 @@ import { siteConfig } from '@/config/site';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gradient-to-r from-orange-600 to-yellow-400 text-white pt-8 mt-10">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <footer className="bg-gradient-to-r from-orange-600 to-yellow-400 text-white pt-10 pb-8 mt-6">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Map Section */}
-        <div className="w-full h-40 md:h-full">
+        <div className="w-full h-44 md:h-full overflow-hidden rounded-3xl shadow-lg ring-1 ring-white/20">
           <iframe
-            className="w-full h-full rounded-md"
+            className="w-full h-full rounded-3xl"
             src="https://maps.google.com/maps?width=600&height=400&hl=en&q=SHEMFORD%20Futuristic%20School%20Patna&t=&z=13&ie=UTF8&iwloc=B&output=embed"
             loading="lazy"
-          ></iframe>
+          />
         </div>
 
         {/* Address Section */}
-        <div className="md:border-r md:border-white pr-4">
-          <h3 className="text-lg font-semibold mb-2">Our Address</h3>
+        <div className="md:pr-4">
+          <h3 className="text-lg font-semibold mb-3">Our Address</h3>
           <p>SHEMFORD Futuristic School Patna</p>
           <p>Jaganpura Road, Udaini, Patna, Bihar 804453</p>
           <p>India</p>
         </div>
 
         {/* Links Section */}
-        <div className="md:border-r md:border-white pr-4">
-          <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
+        <div className="md:pr-4">
+          <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2">
-            <li><Link href="/" className="hover:underline">Home</Link></li>
-            <li><Link href="/about" className="hover:underline">About Us</Link></li>
-            <li><Link href="/admissions" className="hover:underline">Admissions</Link></li>
-            <li><Link href="/academics" className="hover:underline">Academics</Link></li>
-            <li><Link href="/contact" className="hover:underline">Contact</Link></li>
+            <li><Link href="/" className="hover:text-slate-100 transition">Home</Link></li>
+            <li><Link href="/about" className="hover:text-slate-100 transition">About Us</Link></li>
+            <li><Link href="/admissions" className="hover:text-slate-100 transition">Admissions</Link></li>
+            <li><Link href="/academics" className="hover:text-slate-100 transition">Academics</Link></li>
+            <li><Link href="/contact" className="hover:text-slate-100 transition">Contact</Link></li>
           </ul>
         </div>
 
         {/* Contact Info Section */}
         <div>
-          <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
+          <h3 className="text-lg font-semibold mb-3">Contact Us</h3>
           <p>Email: info@shemfordpatna.com</p>
           <p>Phone: +91 9431201060</p>
-          <p>For Admissions: admissions@shemfordpatna.com</p>
+          <p>Admissions: admissions@shemfordpatna.com</p>
         </div>
       </div>
 
       {/* Copyright & Socials */}
-      <div className="flex flex-col md:flex-row justify-between items-center py-4 mt-6 border-t border-white">
-        <p className="text-center md:text-left w-full md:w-auto mb-2 md:mb-0">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 py-5 mt-8 border-t border-white/20">
+        <p className="text-center md:text-left text-sm text-white/95">
           &copy; {new Date().getFullYear()} SHEMFORD Futuristic School Patna. All Rights Reserved.
         </p>
 
         <div className="flex items-center gap-4">
           <Link aria-label="Facebook" href={siteConfig.links.facebook}>
-            <FacebookIcon className="text-white hover:text-gray-200" />
+            <FacebookIcon className="text-white hover:text-slate-100" />
           </Link>
           <Link aria-label="Instagram" href={siteConfig.links.instagram}>
-            <InstagramIcon className="text-white hover:text-gray-200" />
+            <InstagramIcon className="text-white hover:text-slate-100" />
           </Link>
           <Link aria-label="Twitter" href={siteConfig.links.twitter}>
-            <TwitterIcon className="text-white hover:text-gray-200" />
+            <TwitterIcon className="text-white hover:text-slate-100" />
           </Link>
           <ThemeSwitch />
         </div>

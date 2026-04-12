@@ -13,6 +13,7 @@
 
 body {
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 .no-visible-scrollbar::-webkit-scrollbar {

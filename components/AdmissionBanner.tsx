@@ -15,7 +15,7 @@ export default function AdmissionBanner() {
             <div className="flex items-center gap-3">
               <span className="text-2xl">🎓</span>
               <div>
-                <p className="text-white font-bold text-lg">ADMISSIONS NOW OPEN!</p>
+                <p className="text-white font-bold text-lg">ADMISSIONS NOW OPEN!!</p>
                 <p className="text-orange-100 text-sm">Secure your seat at Shemford Futuristic School</p>
               </div>
             </div>

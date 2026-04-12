@@ -51,14 +51,19 @@ export default function Home() {
   ];
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-2 md:py-10">
-      <div className="inline-block text-center justify-center w-full">
+    <>
+      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden">
+        <Carousel
+          images={images}
+          className="w-full h-[100vh] max-h-[100vh]"
+          videoUrl="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+        />
+      </div>
+      <section className="w-full flex flex-col justify-center gap-4 py-0 overflow-hidden">
         {/* Holiday Ribbon */}
         {!loading && <HolidayRibbon holidays={holidays} />}
 
-        {/* Banner Carousel */}
-        <Carousel images={images} className="rounded-md h-fit w-full" />
-
+        <div className="w-full max-w-7xl mx-auto px-4">
         {/* CTA Section for Admissions */}
         <div className="w-full my-8 bg-gradient-to-r from-orange-300 to-orange-600 text-white rounded-lg p-8">
           <h2 className="text-3xl font-bold mb-3">Admissions Open Now!</h2>
@@ -132,5 +137,6 @@ export default function Home() {
         </div>
       </div>
     </section>
+    </>
   );
 }

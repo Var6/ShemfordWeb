@@ -66,8 +66,8 @@ export default function AdmissionModal() {
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full">
+      <div className="fixed inset-0 z-[9999] flex items-end justify-end p-4">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-h-90 max-w-sm w-full">
           {/* Header */}
           <div className="bg-gradient-to-r from-[#FF705B] to-[#FFB457] p-6 flex justify-between items-center rounded-t-2xl">
             <div>
@@ -83,11 +83,11 @@ export default function AdmissionModal() {
           </div>
 
           {/* Content */}
-          <div className="p-6">
+          <div className="p-3">
             {!submitted ? (
               <>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-                  Complete a quick form and our admissions team will reach out within 24 hours with comprehensive information about our programs and facilities.
+                  Let's connect! Over call
                 </p>
 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
@@ -102,34 +102,24 @@ export default function AdmissionModal() {
                   <input
                     type="email"
                     name="user_email"
-                    placeholder="Email Address"
+                    placeholder="Child's Name"
                     required
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF705B] text-sm"
                   />
-
-                  <input
-                    type="tel"
-                    name="user_phone"
-                    placeholder="Contact Number"
-                    required
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF705B] text-sm"
-                  />
-
-                  <input
+                   <input
                     type="text"
                     name="student_class"
                     placeholder="Child's Age / Desired Class"
                     required
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF705B] text-sm"
                   />
-
-                  <textarea
-                    name="message"
-                    placeholder="Any questions or special requirements?"
-                    rows={3}
+                  <input
+                    type="tel"
+                    name="user_phone"
+                    placeholder="Contact Number"
+                    required
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF705B] text-sm"
-                  />
-
+                  />              
                   <button
                     type="submit"
                     disabled={loading}

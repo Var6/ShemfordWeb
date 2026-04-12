@@ -54,16 +54,20 @@ const HolidayRibbon: React.FC<HolidayRibbonProps> = ({ holidays }) => {
   if (!upcomingHoliday) return null;
 
   return (
-    <div className="bg-yellow-200 text-black p-3 text-center font-semibold rounded-md mb-2">
-      Upcoming Holiday:{" "}
-      {upcomingHoliday.title}{" "}
-      {upcomingHoliday.date
-        ? `on ${new Date(upcomingHoliday.date).toLocaleDateString()}`
-        : upcomingHoliday.start && upcomingHoliday.end
-        ? `from ${new Date(upcomingHoliday.start).toLocaleDateString()} to ${new Date(
-            upcomingHoliday.end
-          ).toLocaleDateString()}`
-        : ""}
+    <div className="mx-auto w-full max-w-7xl rounded-[26px] border border-orange-200/80 bg-gradient-to-r from-orange-100 via-yellow-50 to-white px-4 py-3 text-center text-sm font-semibold text-slate-900 shadow-lg shadow-orange-200/20 ring-1 ring-orange-200/40 mb-4">
+      <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-sm">
+        🎉 Holiday Alert
+      </span>
+      <span className="ml-3">
+        {upcomingHoliday.title}{" "}
+        {upcomingHoliday.date
+          ? `on ${new Date(upcomingHoliday.date).toLocaleDateString()}`
+          : upcomingHoliday.start && upcomingHoliday.end
+          ? `from ${new Date(upcomingHoliday.start).toLocaleDateString()} to ${new Date(
+              upcomingHoliday.end
+            ).toLocaleDateString()}`
+          : ""}
+      </span>
     </div>
   );
 };
