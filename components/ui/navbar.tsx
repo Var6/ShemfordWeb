@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 interface NavItem {
   label: string;
@@ -11,10 +13,10 @@ interface NavItem {
 }
 
 const socialLinks = [
-  { label: "Facebook", href: "https://facebook.com/shemford" },
-  { label: "Instagram", href: "https://instagram.com/shemford" },
-  { label: "YouTube", href: "https://youtube.com/@shemford" },
-  { label: "Twitter", href: "https://twitter.com/shemford" },
+  { label: "Facebook", href: siteConfig.links.facebook, Icon: Facebook },
+  { label: "Instagram", href: siteConfig.links.instagram, Icon: Instagram },
+  { label: "YouTube", href: siteConfig.links.youtube, Icon: Youtube },
+  { label: "Twitter", href: siteConfig.links.twitter, Icon: Twitter },
 ];
 
 const navLinks: NavItem[] = [
@@ -34,7 +36,6 @@ const navLinks: NavItem[] = [
     label: "Campus",
     items: [
       { label: "Overview", href: "/Campus" },
-      { label: "Shemford Hub", href: "/Shemford" },
       {
         label: "Student Life",
         items: [
@@ -203,32 +204,38 @@ export default function Navbar() {
       <div className="bg-orange-600 text-slate-300 text-xs px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between flex-wrap gap-2 border-b border-white/10 shadow-[0_1px_20px_rgba(0,0,0,0.2)]">
         <div className="flex flex-wrap items-center gap-4 text-slate-200">
           <a
-            href="mailto:info@shemford.edu.in"
+            href="mailto:info@shemfordpatna.com"
             className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors"
           >
-            ✉ info@shemford.edu.in
+            ✉ info@shemfordpatna.com
           </a>
           <span className="h-3 w-px bg-orange-700" />
           <a
-            href="tel:+919999900000"
+            href="tel:+919431201060"
             className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors"
           >
-            ☎ +91 99999 00000
+            ☎ +91 94312 1060
+          </a>
+          <span className="h-3 w-px bg-orange-700" />
+          <a
+            href="mailto:admissions@shemfordpatna.com"
+            className="flex items-center gap-1.5 hover:text-yellow-300 transition-colors"
+          >
+            ✉ admissions@shemfordpatna.com
           </a>
         </div>
-        <div className="flex items-center gap-4 text-xs uppercase tracking-[0.18em] text-slate-300">
+        <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-slate-300">
           {socialLinks.map((s, i) => (
-            <span key={s.label} className="flex items-center gap-4">
-              {i !== 0 && <span className="h-3 w-px bg-orange-700" />}
-              <a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-yellow-300 transition-colors"
-              >
-                {s.label}
-              </a>
-            </span>
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition hover:bg-white/20 hover:text-yellow-300"
+            >
+              <s.Icon className="h-4 w-4" />
+            </a>
           ))}
         </div>
       </div>
