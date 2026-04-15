@@ -29,15 +29,16 @@ const Whyshemford = () => {
         </div>
       </div>
       {/* division is here */}
-      <div>
+      <div className='w-full '>
         <div className="flex flex-col w-full md:flex-row items-center justify-between">
           <div className="flex flex-col space-y-4 w-full md:w-1/2">
+      
             <ContainerScroll
               titleComponent={
                 <>
                   <h1 className="text-3xl text-orange-600 sm:text-l md:text-xl  lg:text-3xl font-semibold ">
                     Why Shemford Futuristic School
-                    <br />
+          
                   </h1>
                 </>
               }

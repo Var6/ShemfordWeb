@@ -7,6 +7,7 @@ import Facilities from "@/components/ui/facilities";
 import Feedback from "@/components/ui/feedback";
 import Welcometo from "@/components/ui/welcometo";
 import Whyshemford from "@/components/ui/whyshemford";
+import BackgroundShapes from "@/components/BackgroundShapes";
 import { Divider } from "@heroui/divider";
 import HolidayRibbon from "@/components/notificationribbon";
 import { Button } from "@heroui/button";
@@ -52,7 +53,9 @@ export default function Home() {
 
   return (
     <>
+      <BackgroundShapes />
       <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden">
+        <BackgroundShapes overlay />
         <Carousel
           images={images}
           className="w-full h-[100vh] max-h-[100vh]"
@@ -63,7 +66,7 @@ export default function Home() {
         {/* Holiday Ribbon */}
         {!loading && <HolidayRibbon holidays={holidays} />}
 
-        <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="w-full px-4">
         {/* CTA Section for Admissions */}
         <div className="w-full my-8 bg-gradient-to-r from-orange-300 to-orange-600 text-white rounded-lg p-8">
           <h2 className="text-3xl font-bold mb-3">Admissions Open Now!</h2>
@@ -121,7 +124,7 @@ export default function Home() {
         <Divider orientation="horizontal" className="my-1" />
         <Whyshemford />
         <Divider orientation="horizontal" className="my-1" />
-        <Feedback />
+        {/* <Feedback /> */}
 
         {/* Final CTA */}
         <div className="w-full mt-12 py-8 text-center">

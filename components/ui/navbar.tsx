@@ -37,7 +37,7 @@ const navLinks: NavItem[] = [
     items: [
       { label: "Overview", href: "/Campus" },
       {
-        label: "Student Life",
+        label: "Student Life", 
         items: [
           { label: "Events", href: "/Events" },
           { label: "Achievements", href: "/Achivement" },
@@ -250,7 +250,7 @@ export default function Navbar() {
               alt="Shemford logo"
               width={52}
               height={52}
-              className="rounded-2xl border border-white/25 bg-white/10 p-1"
+              className=""
             />
             <div className="leading-tight">
               <p className="text-white font-bold text-xl tracking-tight">Shemford</p>

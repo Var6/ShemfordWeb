@@ -16,14 +16,14 @@ const Facilities = () => {
   ];
 
   return (
+    <div >
+          <div className="text-3xl text-orange-600 pt-3 sm:text-l md:text-xl  lg:text-3xl font-semibold text-center ">Facilities</div>
     <div className="flex flex-col w-full md:flex-row items-center justify-between gap-8 p-6">
-      <div className="flex flex-col space-y-4 w-full md:w-1/2">
-        <Carousel images={images} />
+      <div className="flex flex-col space-y-4 w-full md:w-1/2 ">
+        <Carousel images={images} className={cn(`w-full `)} />
       </div>
       {/* Right Side: Image */}
-      <div className="w-full md:w-1/2">
-        <span className="text-xl bold ">Facilities</span>
-        <br />
+      <div className="w-full md:w-1/2 ">
         <div className="mb-12">
           To make learning interesting, engaging and motivating for our
           children, we offer the following facilities at our school.
@@ -34,6 +34,7 @@ const Facilities = () => {
          </Link> 
         </div>
       </div>
+       </div>
     </div>
   );
 };
