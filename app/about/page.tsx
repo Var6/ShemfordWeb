@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { title } from '@/components/primitives';
 import { Timeline } from '@/components/ui/timeline';
-import { Target, Users, Award, Lightbulb } from 'lucide-react';
+import { Target, Users, Award, Lightbulb, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'About Shemford Futuristic School - Our Story & Mission',
@@ -16,62 +16,154 @@ export const metadata: Metadata = {
   },
 };
 
+const coreValues = [
+  {
+    icon: <Target className="w-8 h-8 text-blue-500" />,
+    title: 'Vision',
+    desc: 'To be the most trusted destination for forward-thinking education in Bihar — producing graduates who are academically brilliant and deeply humane.',
+    border: 'border-blue-200 dark:border-blue-700',
+    iconBg: 'bg-blue-50 dark:bg-blue-900/20',
+  },
+  {
+    icon: <Lightbulb className="w-8 h-8 text-yellow-500" />,
+    title: 'Innovation',
+    desc: 'We integrate smart classrooms, AI-assisted learning, and the ShemEduMAX™ framework to make every lesson relevant to the world students will inherit.',
+    border: 'border-yellow-200 dark:border-yellow-700',
+    iconBg: 'bg-yellow-50 dark:bg-yellow-900/20',
+  },
+  {
+    icon: <Users className="w-8 h-8 text-green-500" />,
+    title: 'Community',
+    desc: 'Education is a shared endeavour. We cultivate a culture of mutual respect, active parent partnerships, and collaborative growth among students and staff.',
+    border: 'border-green-200 dark:border-green-700',
+    iconBg: 'bg-green-50 dark:bg-green-900/20',
+  },
+  {
+    icon: <Award className="w-8 h-8 text-orange-500" />,
+    title: 'Excellence',
+    desc: 'We hold every child to the highest standard — not to create pressure, but to communicate our deep belief in their unlimited potential.',
+    border: 'border-orange-200 dark:border-orange-700',
+    iconBg: 'bg-orange-50 dark:bg-orange-900/20',
+  },
+];
+
+const achievements = [
+  {
+    title: 'Academic Excellence',
+    items: [
+      'Consistent 95%+ pass rate in CBSE Board Examinations',
+      'Distinguished performers in JEE Foundation & NEET preparation',
+      'State and national Olympiad medal winners every year',
+      'CBSE affiliated with exemplary compliance record',
+    ],
+  },
+  {
+    title: 'Infrastructure & Facilities',
+    items: [
+      'Smart classrooms with interactive boards in every section',
+      'Fully equipped Physics, Chemistry, Biology & Computer labs',
+      'Curated library with 1,000+ titles across 45+ subjects',
+      'Modern auditorium, sports complex, and activity rooms',
+    ],
+  },
+  {
+    title: 'Sports & Co-curricular',
+    items: [
+      'State-level podium finishes across multiple sports disciplines',
+      'Active representation in inter-school and district competitions',
+      'Annual cultural festival and student-produced performances',
+      'Thriving student clubs in robotics, debate, arts, and more',
+    ],
+  },
+  {
+    title: 'Student Development',
+    items: [
+      'Holistic growth model blending IQ, EQ, and SQ development',
+      'Dedicated counselling and mentorship programme',
+      'Student-led leadership councils from Class VI onwards',
+      'Regular structured parent–teacher collaboration sessions',
+    ],
+  },
+];
+
+const whyChoose = [
+  {
+    title: 'Expert, Empathetic Faculty',
+    desc: 'Our educators are not only subject-matter specialists but also mentors trained in child psychology and modern pedagogy.',
+  },
+  {
+    title: 'Future-Ready Technology',
+    desc: 'From coding labs to AI-integrated classrooms, students gain the digital fluency that every modern career demands.',
+  },
+  {
+    title: 'Safe, Nurturing Campus',
+    desc: 'CCTV-monitored, RO-purified, clean and secure — a campus where parents feel peace of mind and children feel at home.',
+  },
+  {
+    title: 'Accessible Excellence',
+    desc: 'World-class education at a transparent, reasonable fee structure, backed by merit-based scholarships for deserving families.',
+  },
+];
+
 export default function About() {
   const data = [
     {
-      title: "2025 - Present",
+      title: '2025 – Present',
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Our school continues to focus on holistic education, blending academics,
-            sports, arts, and technology. This year we introduced smart classrooms,
-            hosted multiple inter-school competitions, and achieved 100% results in
-            CBSE Board Examinations.
+          <p className="mb-8 text-sm font-normal text-neutral-700 md:text-base dark:text-neutral-200 leading-relaxed">
+            Shemford enters a new era of excellence — smart classrooms rolled
+            out across all sections, a School Integrated Programme for JEE and
+            NEET introduced, and 100% results achieved in CBSE Board
+            Examinations. Our students now compete and win at state and national
+            levels in academics, sports, and the arts.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <img src="/assets/1.jpg" alt="Annual Day" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/2.jpg" alt="Smart Classroom" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/3.jpg" alt="Science Exhibition" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/4.jpg" alt="Sports Day" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/5.jpg" alt="Teachers Felicitation" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
+            {['1','2','3','4','5'].map((n) => (
+              <img key={n} src={`/assets/${n}.jpg`} alt={`School activity ${n}`}
+                className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
+            ))}
           </div>
         </div>
       ),
     },
     {
-      title: "2018 - 2024",
+      title: '2018 – 2024',
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            This period marked rapid growth – we expanded our infrastructure with
-            new science labs, computer labs, and a library. Our students excelled
-            in academics, Olympiads, and sports at district and state levels.
+          <p className="mb-8 text-sm font-normal text-neutral-700 md:text-base dark:text-neutral-200 leading-relaxed">
+            Six transformative years of rapid growth. New science laboratories,
+            an expanded computer wing, and a fully stocked library were added.
+            Our students claimed district and state honours in Olympiads,
+            athletics, and cultural competitions, establishing Shemford as a
+            name synonymous with genuine achievement.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <img src="/assets/6.jpg" alt="Library" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/7.jpeg" alt="Computer Lab" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/8.jpg" alt="Science Lab" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/9.jpeg" alt="Students Achievements" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/10.jpeg" alt="Sports Winners" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
+            {['6','7','8','9','10'].map((n, i) => (
+              <img key={n} src={`/assets/${n}.${i === 1 || i >= 3 ? 'jpeg' : 'jpg'}`}
+                alt={`Growth milestone ${n}`}
+                className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
+            ))}
           </div>
         </div>
       ),
     },
     {
-      title: "2012 - Foundation Year",
+      title: '2012 – Foundation Year',
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            The school was founded with a vision to provide quality education and
-            shape responsible citizens. We started with a small batch of students,
-            passionate teachers, and a dream to make learning joyful.
+          <p className="mb-8 text-sm font-normal text-neutral-700 md:text-base dark:text-neutral-200 leading-relaxed">
+            Shemford Futuristic School was founded on a single, unwavering
+            conviction: that every child, regardless of background, deserves
+            an education that unlocks their full potential. We began with a
+            small cohort, a passionate founding faculty, and the bold dream of
+            making learning joyful, purposeful, and transformative.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <img src="/assets/11.jpeg" alt="School Inauguration" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/12.jpeg" alt="First Batch" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/13.jpeg" alt="Founders" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/14.jpeg" alt="First Classroom" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
-            <img src="/assets/15.jpeg" alt="Opening Ceremony" className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
+            {['11','12','13','14','15'].map((n) => (
+              <img key={n} src={`/assets/${n}.jpeg`} alt={`Founding year ${n}`}
+                className="h-20 w-full rounded-lg object-cover shadow-md md:h-44 lg:h-60" />
+            ))}
           </div>
         </div>
       ),
@@ -81,166 +173,108 @@ export default function About() {
   return (
     <div className="py-10">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Hero Section */}
-        <div className="flex justify-center items-center mb-12">
-          <div className="text-center">
-            <h1 className={`${title()} gradient-text`}>About Shemford Futuristic School</h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mt-4">
-              Building the leaders of tomorrow through quality education in Patna, Bihar
-            </p>
-          </div>
-        </div>
 
-        {/* Core Values Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-            <div className="text-center gap-3">
-              <div className="flex justify-center">
-                <Target className="w-8 h-8 text-blue-500" />
-              </div>
-              <h3 className="font-semibold text-lg">Vision</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                To provide quality, futuristic education that empowers students to achieve excellence
-              </p>
-            </div>
-          </div>
-
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-            <div className="text-center gap-3">
-              <div className="flex justify-center">
-                <Lightbulb className="w-8 h-8 text-yellow-500" />
-              </div>
-              <h3 className="font-semibold text-lg">Innovation</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Integrating technology and modern pedagogies for effective learning outcomes
-              </p>
-            </div>
-          </div>
-
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-            <div className="text-center gap-3">
-              <div className="flex justify-center">
-                <Users className="w-8 h-8 text-green-500" />
-              </div>
-              <h3 className="font-semibold text-lg">Community</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Fostering an inclusive culture of respect, collaboration, and mutual growth
-              </p>
-            </div>
-          </div>
-
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-            <div className="text-center gap-3">
-              <div className="flex justify-center">
-                <Award className="w-8 h-8 text-red-500" />
-              </div>
-              <h3 className="font-semibold text-lg">Excellence</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Committed to academic excellence and holistic development of every student
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Mission Section */}
-        <div className="mb-12 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-            At Shemford Futuristic School in Jaganpur, Patna, Bihar, our mission is to create an excellent 
-            educational environment that nurtures young minds to become responsible citizens, critical thinkers, 
-            and future leaders. We are committed to providing an inclusive, progressive, and challenging education 
-            that develops academic excellence, character, creativity, and emotional intelligence. Through our 
-            dedicated faculty, modern infrastructure, and innovative teaching methodologies, we strive to transform 
-            education and inspire students to achieve their highest potential.
+        {/* Hero */}
+        <div className="text-center mb-14">
+          <p className="text-sm font-semibold uppercase tracking-widest text-orange-500 mb-3">
+            Jaganpur, Patna, Bihar — Est. 2012
+          </p>
+          <h1 className={`${title()} gradient-text`}>
+            About Shemford Futuristic School
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+            For over a decade, we have been shaping curious minds, compassionate
+            hearts, and capable citizens — one student at a time.
           </p>
         </div>
 
-        {/* Timeline Section */}
-        <div className="relative w-full overflow-clip mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Journey</h2>
+        {/* Core Values — 3D hover lift */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+          {coreValues.map((v, i) => (
+            <div
+              key={i}
+              className={`border-2 ${v.border} rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm
+                hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-default group`}
+              style={{ perspective: '800px' }}
+            >
+              <div className={`w-14 h-14 ${v.iconBg} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                {v.icon}
+              </div>
+              <h3 className="font-bold text-lg text-center mb-2">{v.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 text-center leading-relaxed">
+                {v.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mission */}
+        <div className="mb-14 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-2xl p-10 border border-orange-100 dark:border-orange-900/30">
+          <h2 className="text-3xl font-bold mb-5">Our Mission</h2>
+          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+            At Shemford Futuristic School, our mission is to create an
+            environment where intellectual rigour and human kindness coexist.
+            We are committed to a progressive, inclusive, and challenging
+            education that develops academic excellence, moral character,
+            creative confidence, and emotional intelligence. Through dedicated
+            faculty, modern infrastructure, and the innovative ShemEduMAX™
+            system, we transform education — inspiring every student to reach
+            their highest potential and contribute meaningfully to society.
+          </p>
+        </div>
+
+        {/* Timeline */}
+        <div className="relative w-full overflow-clip mb-14">
+          <h2 className="text-3xl font-bold text-center mb-10">Our Journey</h2>
           <Timeline data={data} />
         </div>
 
-        {/* Achievements Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Achievements</h2>
+        {/* Achievements */}
+        <div className="mb-14">
+          <h2 className="text-3xl font-bold text-center mb-10">Our Achievements</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-              <h3 className="font-semibold text-lg mb-3">Academic Excellence</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li>✓ Consistent 95%+ pass rate in CBSE Board Exams</li>
-                <li>✓ Regular meritorious performances in JEE, NEET</li>
-                <li>✓ Strong performance in Olympiads and competitions</li>
-                <li>✓ CBSE Affiliation with excellent track record</li>
-              </ul>
-            </div>
-
-            <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-              <h3 className="font-semibold text-lg mb-3">Infrastructure & Facilities</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li>✓ Smart classrooms with interactive boards</li>
-                <li>✓ Well-equipped science labs and computer labs</li>
-                <li>✓ Spacious library with digital resources</li>
-                <li>✓ Modern sports facilities and auditorium</li>
-              </ul>
-            </div>
-
-            <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-              <h3 className="font-semibold text-lg mb-3">Sports & Co-curricular</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li>✓ State-level achievements in various sports</li>
-                <li>✓ Active participation in inter-school competitions</li>
-                <li>✓ Regular cultural programs and annual day</li>
-                <li>✓ Student clubs and activity-based learning</li>
-              </ul>
-            </div>
-
-            <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
-              <h3 className="font-semibold text-lg mb-3">Student Development</h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li>✓ Holistic development approach</li>
-                <li>✓ Counseling and mentoring support</li>
-                <li>✓ Leadership opportunities and responsibilities</li>
-                  <li>✓ Regular parent-teacher interactions</li>
+            {achievements.map((ach, i) => (
+              <div
+                key={i}
+                className="border-2 border-orange-100 dark:border-orange-900/30 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              >
+                <h3 className="font-bold text-lg mb-4 text-orange-600 dark:text-orange-400">
+                  {ach.title}
+                </h3>
+                <ul className="space-y-2">
+                  {ach.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Why Choose Us */}
-        <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10 rounded-lg p-8">
-          <h2 className="text-3xl font-bold text-center mb-6">Why Choose Shemford?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-start gap-3">
-              <span className="text-2xl font-bold text-blue-500">✓</span>
-              <div>
-                <h4 className="font-semibold mb-1">Experienced Faculty</h4>
-                <p className="text-gray-600 dark:text-gray-400">Highly qualified and dedicated teachers with proven teaching methodologies</p>
+        <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-10 border border-orange-100 dark:border-orange-900/30">
+          <h2 className="text-3xl font-bold text-center mb-10">Why Choose Shemford?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {whyChoose.map((w, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center flex-shrink-0 shadow">
+                  <CheckCircle className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold mb-1 text-gray-900 dark:text-white">{w.title}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{w.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-2xl font-bold text-blue-500">✓</span>
-              <div>
-                <h4 className="font-semibold mb-1">Modern Technology</h4>
-                <p className="text-gray-600 dark:text-gray-400">Integration of latest educational technology for enhanced learning</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-2xl font-bold text-blue-500">✓</span>
-              <div>
-                <h4 className="font-semibold mb-1">Safe & Secure Campus</h4>
-                <p className="text-gray-600 dark:text-gray-400">Secure campus with modern facilities ensuring student safety and well-being</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-2xl font-bold text-blue-500">✓</span>
-              <div>
-                <h4 className="font-semibold mb-1">Affordable Excellence</h4>
-                <p className="text-gray-600 dark:text-gray-400">Quality education at reasonable fee structure with scholarship opportunities</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+
       </div>
     </div>
   );

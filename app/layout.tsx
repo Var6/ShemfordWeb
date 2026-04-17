@@ -12,6 +12,7 @@ import  Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
 import AIChartbot from '@/components/AIChat';
 import AdmissionModal from '@/components/AdmissionModal';
+import BackgroundShapes from '@/components/BackgroundShapes';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shemfordpatna.com'),
@@ -108,6 +109,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <div className="relative flex min-h-screen flex-col">
+            <BackgroundShapes />
             <Navbar />
             <main className="mx-auto w-full max-w-[1600px] min-h-screen flex-grow px-0 pt-0 pb-4">
               {children}

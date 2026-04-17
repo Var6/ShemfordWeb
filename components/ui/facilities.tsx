@@ -11,35 +11,38 @@ const Facilities = () => {
     '/assets/banner3.jpg',
     '/assets/banner4.jpg',
     '/assets/banner5.jpg',
-   
-    // Add more image URLs here
   ];
 
   return (
-    <div >
-          <div className="text-3xl text-orange-600 pt-3 sm:text-l md:text-xl  lg:text-3xl font-semibold text-center ">Facilities</div>
-    <div className="flex flex-col w-full md:flex-row items-center justify-between gap-8 p-6">
-      <div className="flex flex-col space-y-4 w-full md:w-1/2 ">
-        <Carousel images={images} className={cn(`w-full `)} />
+    <div>
+      <div className="text-3xl text-orange-600 pt-3 sm:text-xl md:text-2xl lg:text-3xl font-semibold text-center">
+        World-Class Facilities
       </div>
-      {/* Right Side: Image */}
-      <div className="w-full md:w-1/2 ">
-        <div className="mb-12">
-          To make learning interesting, engaging and motivating for our
-          children, we offer the following facilities at our school.
+      <div className="flex flex-col w-full md:flex-row items-center justify-between gap-8 p-6">
+        <div className="flex flex-col space-y-4 w-full md:w-1/2">
+          <Carousel images={images} className={cn('w-full')} />
         </div>
-        <div className="flex items-center justify-center">
-         <Link href="/Campus">
-         <CardStack items={CARDS} />
-         </Link> 
+        {/* Right Side */}
+        <div className="w-full md:w-1/2">
+          <p className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Learning flourishes in the right environment. At Shemford, every
+            space — from labs to playgrounds — is thoughtfully designed to
+            ignite curiosity, foster collaboration, and unlock every child's
+            potential.
+          </p>
+          <div className="flex items-center justify-center">
+            <Link href="/Campus">
+              <CardStack items={CARDS} />
+            </Link>
+          </div>
         </div>
       </div>
-       </div>
     </div>
   );
 };
 
 export default Facilities;
+
 export const Highlight = ({
   children,
   className,
@@ -63,66 +66,65 @@ const CARDS = [
   {
     id: 0,
     name: 'Library',
-    designation: `School's Library`,
+    designation: "Knowledge Hub",
     content: (
       <p>
-        A Well Equipped Library,with <Highlight> 1000+ Books.</Highlight>
-        covering More then <Highlight>45 Subjects and Categories</Highlight>
+        A thoughtfully curated library with{' '}
+        <Highlight>1,000+ books</Highlight> spanning{' '}
+        <Highlight>45+ subjects and categories</Highlight> — from classic
+        literature to cutting-edge science.
       </p>
     ),
   },
   {
     id: 1,
-    name: 'Computer Lab',
-    designation: 'One of Many Labs',
+    name: 'Computer & Science Labs',
+    designation: 'Innovation Centre',
     content: (
       <p>
-        More then <Highlight>4 types of Labs with</Highlight>
-        <Highlight>45+ Student&apos;Capacity</Highlight> each.
-        <br /> Computer Lab consisting
-        <Highlight>35+ Advance Computers</Highlight>and Projectors
+        Four fully equipped laboratories with{' '}
+        <Highlight>45+ student capacity</Highlight> each. Our computer lab
+        features <Highlight>35+ high-performance workstations</Highlight> with
+        high-speed internet and interactive projectors.
       </p>
     ),
   },
   {
     id: 2,
-    name: 'Play Ground',
-    designation: 'Sports',
+    name: 'Sports Grounds',
+    designation: 'Athletics & Fitness',
     content: (
       <p>
-        3 Types of PlayGround with
-        <Highlight>
-          {' '}
-          BasketBall Court, Footbal Court and Cricket Field
-        </Highlight>{' '}
-        Special Play area for
-        <Highlight>K.G. Students</Highlight>
+        Three dedicated play areas including a{' '}
+        <Highlight>Basketball Court, Football Ground, and Cricket Field</Highlight>{' '}
+        — plus a dedicated{' '}
+        <Highlight>play zone for Kindergarten students</Highlight>.
       </p>
     ),
   },
   {
     id: 3,
-    name: 'Kinder Garden',
-    designation: 'Nursary',
+    name: 'Kindergarten Wing',
+    designation: 'Early Childhood',
     content: (
       <p>
-        A Second home for Kids,
-        <Highlight> Activity Rooms and Play Areas</Highlight>Customisezed Toys
-        for
-        <Highlight>Kinder Garden </Highlight> Students
+        A warm, nurturing second home for our youngest learners, complete with{' '}
+        <Highlight>sensory activity rooms</Highlight> and{' '}
+        <Highlight>age-appropriate play equipment</Highlight> designed to
+        spark wonder from day one.
       </p>
     ),
   },
   {
     id: 4,
-    name: 'Activity Room',
-    designation: 'Clubs and Activity',
+    name: 'Activity & Smart Rooms',
+    designation: 'Clubs & Co-curricular',
     content: (
       <p>
-        A safe enviroment for activity and GamePlay
-        <Highlight> Activity Rooms and Play Areas with Smart Boards</Highlight>
-        Indoor Activies and games like
-        <Highlight>Chess and TableTennis </Highlight>
+        Dedicated spaces equipped with{' '}
+        <Highlight>interactive smart boards</Highlight> for clubs, workshops,
+        and indoor activities including{' '}
+        <Highlight>Chess, Table Tennis, and creative arts</Highlight>.
       </p>
     ),
   },
