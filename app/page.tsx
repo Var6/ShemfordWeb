@@ -110,11 +110,11 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Carousel — clean, no overlay */}
-      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden">
+      {/* Hero Carousel — full-viewport, clean */}
+      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden h-screen">
         <Carousel
           images={images}
-          className="w-full h-[100vh] max-h-[100vh]"
+          className="w-full h-full"
           videoUrl="video1.mp4"
         />
       </div>

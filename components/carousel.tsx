@@ -52,27 +52,28 @@ const Carousel: React.FC<CarouselProps> = ({ images, className, videoUrl }) => {
   return (
     <div ref={containerRef} className={cn('relative w-full overflow-hidden', className)}>
       <div
-        className="flex transition-transform duration-500 ease-in-out h-full"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentSlide * 100}%)`, height: '100%' }}
       >
         {slides.map((slide, index) => {
           const isVideoSlide = index === videoSlideIndex;
 
           return (
-            <div key={index} className="w-full flex-shrink-0 h-full">
+            <div key={index} className="relative w-full flex-shrink-0 overflow-hidden" style={{ height: '100%' }}>
               {isVideoSlide ? (
                 <video
                   ref={videoRef}
                   src={slide as string}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                   autoPlay
+                  muted
                   playsInline
                 />
               ) : (
                 <img
                   src={slide as string}
                   alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               )}
             </div>
