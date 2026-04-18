@@ -7,6 +7,7 @@ export default function ShemfordPage() {
 
   const sections = [
     { id: "achievements", title: "Achievements", icon: "🏆", path: "/Shemford/achievements", color: "bg-yellow-500" },
+    { id: "toppers", title: "Toppers", icon: "🏅", path: "/Shemford/toppers", color: "bg-amber-500" },
     { id: "announcements", title: "Announcements", icon: "📢", path: "/Shemford/announcements", color: "bg-blue-500" },
     { id: "calender", title: "Calendar", icon: "📅", path: "/Shemford/calender", color: "bg-green-500" },
     { id: "events", title: "Events", icon: "🎉", path: "/Shemford/events", color: "bg-purple-500" },
@@ -108,6 +109,11 @@ export default function ShemfordPage() {
               <Link href="/Shemford/achievements">
                 <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg transition-colors duration-200 text-sm font-medium">
                   Add Achievement
+                </button>
+              </Link>
+              <Link href="/Shemford/toppers">
+                <button className="w-full bg-amber-500 hover:bg-amber-600 text-white p-3 rounded-lg transition-colors duration-200 text-sm font-medium">
+                  Manage Toppers
                 </button>
               </Link>
               <Link href="/Shemford/announcements">

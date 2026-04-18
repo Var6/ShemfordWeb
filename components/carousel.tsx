@@ -1,6 +1,6 @@
 // src/components/Carousel.tsx
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 interface CarouselProps {
@@ -11,44 +11,61 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({ images, className, videoUrl }) => {
   const slides = videoUrl ? [...images, videoUrl] : images;
+  const videoSlideIndex = videoUrl ? images.length : -1;
   const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // Advance to next slide; called by timer (images) or video ended event
+  const advance = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  // Image slides: 3s auto-advance. Video slide: wait for 'ended'.
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 3000);
+    if (currentSlide === videoSlideIndex) {
+      // Scroll the carousel into comfortable view
+      containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.scrollBy({ top: 80, behavior: 'smooth' });
 
-    return () => clearInterval(timer);
-  }, [slides.length]);
+      // Restart video and wait for it to finish
+      const video = videoRef.current;
+      if (video) {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+        const onEnded = () => advance();
+        video.addEventListener('ended', onEnded, { once: true });
+        return () => video.removeEventListener('ended', onEnded);
+      }
+      return;
+    }
 
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  };
+    const timer = setTimeout(advance, 3000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSlide]);
 
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? slides.length - 1 : prevSlide - 1,
-    );
-  };
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () =>
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
 
   return (
-    <div className={cn('relative w-full overflow-hidden', className)}>
+    <div ref={containerRef} className={cn('relative w-full overflow-hidden', className)}>
       <div
         className="flex transition-transform duration-500 ease-in-out h-full"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {slides.map((slide, index) => {
-          const isVideoSlide = videoUrl && index === images.length;
+          const isVideoSlide = index === videoSlideIndex;
 
           return (
             <div key={index} className="w-full flex-shrink-0 h-full">
               {isVideoSlide ? (
                 <video
+                  ref={videoRef}
                   src={slide as string}
                   className="w-full h-full object-cover"
-                  muted
                   autoPlay
-                  loop
                   playsInline
                 />
               ) : (

@@ -115,7 +115,7 @@ export default function Home() {
         <Carousel
           images={images}
           className="w-full h-[100vh] max-h-[100vh]"
-          videoUrl="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+          videoUrl="video1.mp4"
         />
       </div>
 

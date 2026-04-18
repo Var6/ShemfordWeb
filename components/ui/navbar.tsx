@@ -37,11 +37,12 @@ const navLinks: NavItem[] = [
     items: [
       { label: "Overview", href: "/Campus" },
       {
-        label: "Student Life", 
+        label: "Student Life",
         items: [
           { label: "Events", href: "/Events" },
           { label: "Achievements", href: "/Achivement" },
           { label: "Announcements", href: "/Announcement" },
+          { label: "Toppers", href: "/Toppers" },
         ],
       },
     ],

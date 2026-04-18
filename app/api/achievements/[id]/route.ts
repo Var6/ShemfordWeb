@@ -4,10 +4,10 @@ import Achievement from "@/models/Achievement";
 
 export async function PUT(request: Request, context: any) {
   await connectDB();
-  const { id } = context.params;
+  const { id } = await context.params;
 
   const data = await request.json();
-  const updatedAchievement = await Achievement.findByIdAndUpdate(id, data, {
+  const updatedAchievement = await Achievement.findByIdAndUpdate(id, { $set: data }, {
     new: true,
   });
 
@@ -20,7 +20,7 @@ export async function PUT(request: Request, context: any) {
 
 export async function DELETE(request: Request, context: any) {
   await connectDB();
-  const { id } = context.params;
+  const { id } = await context.params;
 
   const deletedAchievement = await Achievement.findByIdAndDelete(id);
 
