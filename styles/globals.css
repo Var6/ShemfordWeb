@@ -1,14 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Scrollbar ── */
 .no-visible-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 }
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Base ── */
 :root {
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Fira Code', monospace;
+  --color-brand: #ea580c;       /* orange-600  */
+  --color-navy:  #0f172a;       /* slate-900   */
 }
 
 body {
@@ -16,98 +25,28 @@ body {
   overflow-x: hidden;
 }
 
-.no-visible-scrollbar::-webkit-scrollbar {
-  display: none;
+/* ── Dark mode ── */
+html.dark,
+html.dark body {
+  background-color: #0f172a;
+  color: #f8fafc;
 }
+
+/* ── Banner utility ── */
 .banner {
   background-image: url('/assets/whyshemford.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 400px; /* Adjust height */
-}
-html.dark, body.dark {
-  background-color: #a72d2d !important;
-}
-/* Ensure background applies correctly */
-html.dark, body.dark {
-  background-color: #121212 !important;
-  color: white !important;
+  height: 400px;
 }
 
-.homepage-bg {
-  perspective: 1200px;
-  pointer-events: none;
-}
-
-.shape {
-  position: absolute;
-  border-radius: 40%;
-  opacity: 0.72;
-  filter: drop-shadow(0 40px 90px rgba(249, 115, 22, 0.36));
-  transform-style: preserve-3d;
-  animation: floatY 12s ease-in-out infinite alternate;
-  mix-blend-mode: screen;
-}
-
-.shape::before,
-.shape::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: inherit;
-  opacity: 0.55;
-  transform: translateZ(-24px) rotateX(72deg);
-}
-
-.shape-1 {
-  width: 390px;
-  height: 390px;
-  top: 6%;
-  left: 8%;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 190, 79, 0.95), rgba(239, 115, 22, 0.35) 55%, transparent 75%);
-  animation-duration: 17s;
-}
-
-.shape-2 {
-  width: 280px;
-  height: 280px;
-  top: 22%;
-  right: 8%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 147, 30, 0.92), rgba(249, 115, 22, 0.22) 45%, transparent 80%);
-  border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%;
-  animation-duration: 19s;
-}
-
-.shape-3 {
-  width: 320px;
-  height: 360px;
-  top: 42%;
-  left: 12%;
-  background: radial-gradient(circle at 10% 15%, rgba(255, 142, 0, 0.9), rgba(249, 115, 22, 0.2) 50%, transparent 82%);
-  border-radius: 50% 40% 55% 45% / 45% 55% 40% 60%;
-  animation-duration: 15s;
-}
-
-.shape-4 {
-  width: 240px;
-  height: 240px;
-  bottom: 8%;
-  right: 18%;
-  background: radial-gradient(circle at 40% 40%, rgba(255, 163, 58, 0.9), rgba(249, 115, 22, 0.18) 40%, transparent 68%);
-  border-radius: 48% 52% 42% 58% / 52% 48% 58% 42%;
-  animation-duration: 14s;
-}
-
-@keyframes floatY {
-  0% {
-    transform: translateY(0px) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translateY(-24px) rotate(2deg) scale(1.02);
-  }
-  100% {
-    transform: translateY(8px) rotate(-1deg) scale(0.98);
-  }
+/* ── Section heading accent line ── */
+.section-accent {
+  display: block;
+  width: 3rem;
+  height: 4px;
+  background: var(--color-brand);
+  border-radius: 9999px;
+  margin-top: 1rem;
 }

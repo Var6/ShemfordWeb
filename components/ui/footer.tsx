@@ -1,72 +1,185 @@
-import React from 'react';
-import Link from 'next/link';
-import { ThemeSwitch } from '../theme-switch';
-import { FacebookIcon, InstagramIcon, TwitterIcon } from '../icons';
-import { siteConfig } from '@/config/site';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
-const Footer: React.FC = () => {
+const quickLinks = [
+  { label: "Home",        href: "/"           },
+  { label: "About Us",   href: "/about"      },
+  { label: "Admissions", href: "/admission"  },
+  { label: "Campus",     href: "/Campus"     },
+  { label: "Events",     href: "/Events"     },
+  { label: "Contact Us", href: "/contact"    },
+];
+
+const academicLinks = [
+  { label: "CBSE Disclosure",  href: "/CBSE"        },
+  { label: "Academic Calendar",href: "/Calender"    },
+  { label: "Our Faculties",    href: "/Faculties"   },
+  { label: "Facilities",       href: "/Facilities"  },
+  { label: "Achievements",     href: "/Achivement"  },
+  { label: "Announcements",    href: "/Announcement"},
+];
+
+const socialLinks = [
+  { label: "Facebook",  href: siteConfig.links.facebook,  Icon: Facebook  },
+  { label: "Instagram", href: siteConfig.links.instagram, Icon: Instagram },
+  { label: "YouTube",   href: siteConfig.links.youtube,   Icon: Youtube   },
+  { label: "Twitter",   href: siteConfig.links.twitter,   Icon: Twitter   },
+];
+
+export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-orange-600 to-yellow-400 text-white pt-10 pb-8 mt-6">
-      <div className="max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* Map Section */}
-        <div className="w-full h-44 md:h-full overflow-hidden rounded-3xl shadow-lg ring-1 ring-white/20">
-          <iframe
-            className="w-full h-full rounded-3xl"
-            src="https://maps.google.com/maps?width=600&height=400&hl=en&q=SHEMFORD%20Futuristic%20School%20Patna&t=&z=13&ie=UTF8&iwloc=B&output=embed"
-            loading="lazy"
-          />
-        </div>
+    <footer className="bg-gray-950 text-gray-400">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
-        {/* Address Section */}
-        <div className="md:pr-4">
-          <h3 className="text-lg font-semibold mb-3">Our Address</h3>
-          <p>SHEMFORD Futuristic School Patna</p>
-          <p>Jaganpura Road, Udaini, Patna, Bihar 804453</p>
-          <p>India</p>
-        </div>
+          {/* ── School info ── */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="flex items-center gap-3 mb-5">
+              <Image src="/icon.png" alt="Shemford" width={44} height={44} />
+              <div>
+                <p className="font-bold text-white text-lg leading-tight">Shemford</p>
+                <p className="text-orange-500 text-xs font-semibold uppercase tracking-widest">
+                  Futuristic School
+                </p>
+              </div>
+            </Link>
 
-        {/* Links Section */}
-        <div className="md:pr-4">
-          <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2">
-            <li><Link href="/" className="hover:text-slate-100 transition">Home</Link></li>
-            <li><Link href="/about" className="hover:text-slate-100 transition">About Us</Link></li>
-            <li><Link href="/admissions" className="hover:text-slate-100 transition">Admissions</Link></li>
-            <li><Link href="/academics" className="hover:text-slate-100 transition">Academics</Link></li>
-            <li><Link href="/contact" className="hover:text-slate-100 transition">Contact</Link></li>
-          </ul>
-        </div>
+            <p className="text-sm leading-relaxed mb-6 max-w-sm">
+              Premier CBSE school in Jaganpur, Patna, Bihar — nurturing curious
+              minds and building confident, capable citizens since 2012.
+            </p>
 
-        {/* Contact Info Section */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Contact Us</h3>
-          <p>Email: info@shemfordpatna.com</p>
-          <p>Phone: +91 9431201060</p>
-          <p>Admissions: admissions@shemfordpatna.com</p>
+            <div className="space-y-2.5 mb-6">
+              <div className="flex items-start gap-2 text-sm">
+                <MapPin className="h-4 w-4 text-orange-500 mt-0.5 shrink-0" />
+                <span>Jaganpura Road, Udaini, Patna, Bihar 804453</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Phone className="h-4 w-4 text-orange-500 shrink-0" />
+                <a href="tel:+919431201060" className="hover:text-orange-400 transition-colors">
+                  +91 94312 01060
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Mail className="h-4 w-4 text-orange-500 shrink-0" />
+                <a href="mailto:info@shemfordpatna.com" className="hover:text-orange-400 transition-colors">
+                  info@shemfordpatna.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Mail className="h-4 w-4 text-orange-500 shrink-0" />
+                <a href="mailto:admissions@shemfordpatna.com" className="hover:text-orange-400 transition-colors">
+                  admissions@shemfordpatna.com
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-800
+                    hover:bg-orange-600 text-gray-400 hover:text-white transition-colors"
+                >
+                  <s.Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Quick Links ── */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
+              Quick Links
+            </h3>
+            <ul className="space-y-2.5">
+              {quickLinks.map((l) => (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    className="flex items-center gap-2 text-sm hover:text-orange-400 transition-colors"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0" />
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Academics ── */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
+              Academics
+            </h3>
+            <ul className="space-y-2.5">
+              {academicLinks.map((l) => (
+                <li key={l.label}>
+                  <Link
+                    href={l.href}
+                    className="flex items-center gap-2 text-sm hover:text-orange-400 transition-colors"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-600 shrink-0" />
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Map ── */}
+          <div>
+            <h3 className="text-white font-semibold mb-5 text-sm uppercase tracking-wider">
+              Find Us
+            </h3>
+            <div className="rounded-xl overflow-hidden h-44">
+              <iframe
+                className="w-full h-full"
+                src="https://maps.google.com/maps?width=600&height=400&hl=en&q=SHEMFORD%20Futuristic%20School%20Patna&t=&z=13&ie=UTF8&iwloc=B&output=embed"
+                loading="lazy"
+                title="Shemford Futuristic School location"
+              />
+            </div>
+            <a
+              href="https://maps.google.com/?q=SHEMFORD+Futuristic+School+Patna"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-3 text-sm text-orange-400
+                hover:text-orange-300 transition-colors"
+            >
+              <MapPin className="h-3.5 w-3.5" />
+              Get Directions
+            </a>
+          </div>
+
         </div>
       </div>
 
-      {/* Copyright & Socials */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 py-5 mt-8 border-t border-white/20">
-        <p className="text-center md:text-left text-sm text-white/95">
-          &copy; {new Date().getFullYear()} SHEMFORD Futuristic School Patna. All Rights Reserved.
-        </p>
-
-        <div className="flex items-center gap-4">
-          <Link aria-label="Facebook" href={siteConfig.links.facebook}>
-            <FacebookIcon className="text-white hover:text-slate-100" />
-          </Link>
-          <Link aria-label="Instagram" href={siteConfig.links.instagram}>
-            <InstagramIcon className="text-white hover:text-slate-100" />
-          </Link>
-          <Link aria-label="Twitter" href={siteConfig.links.twitter}>
-            <TwitterIcon className="text-white hover:text-slate-100" />
-          </Link>
-          <ThemeSwitch />
+      {/* ── Bottom bar ── */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row
+          items-center justify-between gap-3 text-xs text-gray-500">
+          <p>© {new Date().getFullYear()} SHEMFORD Futuristic School, Patna. All rights reserved.</p>
+          <div className="flex items-center gap-5">
+            <Link href="/CBSE/Disclouser" className="hover:text-orange-400 transition-colors">
+              CBSE Disclosure
+            </Link>
+            <Link href="/admission" className="hover:text-orange-400 transition-colors">
+              Admissions
+            </Link>
+            <Link href="/contact" className="hover:text-orange-400 transition-colors">
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

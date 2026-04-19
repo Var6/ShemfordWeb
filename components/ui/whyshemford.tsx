@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import React from 'react';
-import { ContainerScroll } from '@/components/scrollAnimation';
+import Image from "next/image";
+import React from "react";
+import { ContainerScroll } from "@/components/scrollAnimation";
 
 const pillars = [
   {
@@ -31,25 +31,31 @@ const pillars = [
 
 const Whyshemford = () => {
   return (
-    <div className="flex flex-col items-center justify-between gap-8 p-6">
+    <div className="flex flex-col gap-16">
 
-      {/* Top: ShemEduMAX section */}
-      <div className="flex flex-col w-full md:flex-row items-center justify-between gap-8">
-        <div className="flex flex-col space-y-5 w-full md:w-1/2">
-          <span className="text-sm font-semibold uppercase tracking-widest text-orange-400">
-            Best CBSE School in Patna
-          </span>
+      {/* ── ShemEduMAX section ── */}
+      <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 
-          <div className="text-3xl font-bold text-orange-500">ShemEduMAX™</div>
+        {/* Text */}
+        <div className="flex flex-col gap-6 w-full md:w-1/2">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600">
+              Best CBSE School in Patna
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">
+              ShemEduMAX™
+            </h2>
+            <span className="section-accent" />
+          </div>
 
-          <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-            Designed by award-winning educationists,{' '}
-            <span className="font-semibold text-orange-500">ShemEduMAX™</span>{' '}
-            is our proprietary learning system — the result of years of
-            rigorous research and real-world classroom experience. It breathes
-            life and purpose into every lesson.
+          <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+            Designed by award-winning educationists,{" "}
+            <span className="font-semibold text-orange-600">ShemEduMAX™</span>{" "}
+            is our proprietary learning system — the result of years of rigorous
+            research and real-world classroom experience. It breathes life and
+            purpose into every lesson.
           </p>
-          <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
             ShemEduMAX™ equips students with the knowledge, skills, and
             emotional resilience to navigate the complex demands of modern
             society — not merely as performers, but as thoughtful, responsible
@@ -57,60 +63,56 @@ const Whyshemford = () => {
           </p>
         </div>
 
+        {/* Image */}
         <div className="w-full md:w-1/2 flex justify-center">
           <Image
             src="/Whyus.png"
             width={500}
             height={500}
             alt="ShemEduMAX framework"
-            className="rounded-2xl shadow-lg"
+            className="rounded-2xl shadow-lg w-full max-w-md"
           />
         </div>
       </div>
 
-      {/* Bottom: 3D scroll card + pillars */}
-      <div className="w-full">
-        <div className="flex flex-col w-full md:flex-row items-center justify-between gap-8">
+      {/* ── 3D scroll card + pillars ── */}
+      <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
 
-          {/* ContainerScroll — 3D tilt effect */}
-          <div className="flex flex-col space-y-4 w-full md:w-1/2">
-            <ContainerScroll
-              titleComponent={
-                <h2 className="text-2xl md:text-3xl font-semibold text-orange-600 text-center">
-                  Why Choose Shemford Futuristic School?
-                </h2>
-              }
-            >
-              <Image
-                src="/assets/whyshemford.jpg"
-                alt="Shemford campus life"
-                height={720}
-                width={1400}
-                className="mx-auto rounded-2xl object-cover h-full object-left-top"
-                draggable={false}
-              />
-            </ContainerScroll>
-          </div>
-
-          {/* Pillars list */}
-          <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
-            {pillars.map((p, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-3 group"
-              >
-                <div className="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0 group-hover:scale-150 transition-transform" />
-                <div>
-                  <p className="font-semibold text-gray-800 dark:text-gray-100 bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent">
-                    {p.title}
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{p.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
+        {/* ContainerScroll */}
+        <div className="w-full md:w-1/2">
+          <ContainerScroll
+            titleComponent={
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white text-center">
+                Why Choose{" "}
+                <span className="text-orange-600">Shemford</span>{" "}
+                Futuristic School?
+              </h2>
+            }
+          >
+            <Image
+              src="/assets/whyshemford.jpg"
+              alt="Shemford campus life"
+              height={720}
+              width={1400}
+              className="mx-auto rounded-2xl object-cover h-full object-left-top"
+              draggable={false}
+            />
+          </ContainerScroll>
         </div>
+
+        {/* Pillars */}
+        <div className="w-full md:w-1/2 grid grid-cols-1 gap-5">
+          {pillars.map((p, i) => (
+            <div key={i} className="flex items-start gap-3 group">
+              <div className="mt-1.5 w-2 h-2 rounded-full bg-orange-500 shrink-0 group-hover:scale-150 transition-transform" />
+              <div>
+                <p className="font-semibold text-gray-800 dark:text-gray-100">{p.title}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );

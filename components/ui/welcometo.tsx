@@ -1,34 +1,36 @@
-import Image from 'next/image';
-import React from 'react';
-import { TypewriterEffectSmooth } from '../typewritterEffect';
-import AchievementsSection from './AchivementBar';
-import Link from 'next/link';
+import Image from "next/image";
+import React from "react";
+import AchievementsSection from "./AchivementBar";
+import Link from "next/link";
 
 const Welcometo = () => {
-  const words = [
-    { text: 'Shemford' },
-    { text: 'Futuristic' },
-    { text: 'School' },
-    { text: 'Patna', className: 'text-orange-500 dark:text-orange-500' },
-  ];
-
   return (
-    <div className="flex flex-col w-full md:flex-row items-center justify-between gap-10 p-6 py-10">
-      {/* Left Side: Text */}
-      <div className="flex flex-col space-y-5 w-full md:w-1/2">
-        <TypewriterEffectSmooth words={words} />
+    <div className="flex flex-col w-full md:flex-row items-center gap-12 lg:gap-16">
 
-        <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          At Shemford Futuristic School, we believe that the purpose of education
-          extends far beyond examinations — it is the deliberate cultivation of
-          character, curiosity, and capability. Rooted in the CBSE framework and
-          enriched by the proprietary{' '}
-          <span className="font-semibold text-orange-500">ShemEduMAX™</span>{' '}
+      {/* ── Left: Text ── */}
+      <div className="flex flex-col gap-6 w-full md:w-1/2">
+        <div>
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600">
+            Welcome to
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2 leading-tight">
+            Shemford Futuristic School,{" "}
+            <span className="text-orange-600">Patna</span>
+          </h2>
+          <span className="section-accent" />
+        </div>
+
+        <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          At Shemford Futuristic School, we believe that the purpose of
+          education extends far beyond examinations — it is the deliberate
+          cultivation of character, curiosity, and capability. Rooted in the
+          CBSE framework and enriched by the proprietary{" "}
+          <span className="font-semibold text-orange-600">ShemEduMAX™</span>{" "}
           system, every child who walks through our doors is prepared not just
           for a board result, but for life.
         </p>
 
-        <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+        <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">
           We have integrated a School Integrated Programme featuring
           pre-foundation and foundation tracks for IIT-JEE and NEET from the
           very first years of secondary schooling. Alongside rigorous academics,
@@ -39,21 +41,25 @@ const Welcometo = () => {
 
         <AchievementsSection />
 
-        <Link href="/about">
-          <button className="mt-2 px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold shadow hover:shadow-xl hover:bg-orange-600 transition-all w-fit">
+        <div>
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700
+              text-white font-semibold rounded-lg shadow-sm transition-colors text-sm"
+          >
             Discover Our Story →
-          </button>
-        </Link>
+          </Link>
+        </div>
       </div>
 
-      {/* Right Side: Image */}
+      {/* ── Right: Image ── */}
       <div className="w-full md:w-1/2">
         <Image
-          width={600}
-          height={500}
+          width={640}
+          height={520}
           src="/assets/MainBG.jpg"
           alt="Shemford Futuristic School campus"
-          className="w-full h-auto object-cover rounded-2xl shadow-xl"
+          className="w-full h-auto object-cover rounded-2xl shadow-lg"
         />
       </div>
     </div>
