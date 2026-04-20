@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Carousel from "@/components/carousel";
 import Facilities from "@/components/ui/facilities";
 import Welcometo from "@/components/ui/welcometo";
@@ -8,7 +8,7 @@ import Whyshemford from "@/components/ui/whyshemford";
 import HolidayRibbon from "@/components/notificationribbon";
 import { Button } from "@heroui/button";
 import Link from "next/link";
-import { CheckCircle, Users, Medal, Building2, BookOpen } from "lucide-react";
+import { CheckCircle, Users, Medal, Building2, BookOpen, Bell, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface Holiday {
@@ -17,6 +17,16 @@ interface Holiday {
   start?: string;
   end?: string;
   reopen?: string;
+}
+
+interface Notice {
+  _id?: string;
+  title: string;
+  description?: string;
+  category?: string;
+  priority?: "high" | "medium" | "low";
+  date?: string;
+  createdAt?: string;
 }
 
 const educationalQuotes = [
@@ -40,25 +50,25 @@ const educationalQuotes = [
 
 const statCards = [
   {
-    icon: <Building2 className="w-7 h-7 text-orange-400" />,
+    icon: <Building2 className="w-7 h-7 text-white/80" />,
     value: "15+",
     label: "Modern Facilities",
     desc: "Labs, libraries & smart classrooms",
   },
   {
-    icon: <Users className="w-7 h-7 text-orange-400" />,
+    icon: <Users className="w-7 h-7 text-white/80" />,
     value: "500+",
     label: "Active Students",
     desc: "Pre-Primary to Class XII",
   },
   {
-    icon: <Medal className="w-7 h-7 text-orange-400" />,
+    icon: <Medal className="w-7 h-7 text-white/80" />,
     value: "95%+",
     label: "Board Results",
     desc: "Consistent CBSE excellence",
   },
   {
-    icon: <CheckCircle className="w-7 h-7 text-orange-400" />,
+    icon: <CheckCircle className="w-7 h-7 text-white/80" />,
     value: "CBSE",
     label: "Affiliated",
     desc: "Nationally recognised curriculum",
@@ -73,10 +83,122 @@ const images: string[] = [
   "/assets/banner5.jpg",
 ];
 
+/* ── Scrolling Notice Board ── */
+function NoticeBoard({ notices }: { notices: Notice[] }) {
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el || notices.length < 4) return;
+    let frame: number;
+    let pos = 0;
+    const speed = 0.6; // px per frame
+
+    const tick = () => {
+      pos += speed;
+      if (pos >= el.scrollHeight / 2) pos = 0;
+      el.scrollTop = pos;
+      frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+
+    const pause  = () => cancelAnimationFrame(frame);
+    const resume = () => { frame = requestAnimationFrame(tick); };
+    el.addEventListener("mouseenter", pause);
+    el.addEventListener("mouseleave", resume);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      el.removeEventListener("mouseenter", pause);
+      el.removeEventListener("mouseleave", resume);
+    };
+  }, [notices]);
+
+  const priorityDot = (p?: string) => {
+    if (p === "high") return "bg-red-500";
+    if (p === "low")  return "bg-green-500";
+    return "bg-amber-400";
+  };
+
+  /* duplicate list so scroll loops seamlessly */
+  const items = notices.length >= 4 ? [...notices, ...notices] : notices;
+
+  return (
+    <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2
+      bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+
+          {/* Label */}
+          <div className="flex-shrink-0 flex flex-col justify-center items-center md:items-start gap-2 md:w-44">
+            <div className="flex items-center gap-2">
+              <Bell className="w-5 h-5 text-white animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
+                Notice Board
+              </span>
+            </div>
+            <p className="text-2xl font-bold text-white leading-tight hidden md:block">
+              Latest<br />Notices
+            </p>
+            <Link href="/Announcement">
+              <span className="inline-flex items-center gap-1 text-xs text-blue-200 hover:text-white transition-colors mt-1">
+                View all <ExternalLink className="w-3 h-3" />
+              </span>
+            </Link>
+          </div>
+
+          {/* Scrolling list */}
+          <div className="flex-1 relative">
+            {/* top/bottom fade */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-6 z-10
+              bg-gradient-to-b from-blue-600 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 z-10
+              bg-gradient-to-t from-indigo-600 to-transparent" />
+
+            <ul
+              ref={listRef}
+              className="overflow-hidden h-40 space-y-1 pr-2"
+              style={{ scrollbarWidth: "none" }}
+            >
+              {items.map((n, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 py-2 border-b border-white/10 last:border-0"
+                >
+                  <span className={`mt-1.5 w-2 h-2 rounded-full flex-shrink-0 ${priorityDot(n.priority)}`} />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-white leading-snug truncate">
+                      {n.title}
+                    </p>
+                    {n.description && (
+                      <p className="text-xs text-blue-200 mt-0.5 line-clamp-1">
+                        {n.description}
+                      </p>
+                    )}
+                  </div>
+                  {n.category && (
+                    <span className="ml-auto flex-shrink-0 text-[10px] font-semibold uppercase
+                      tracking-wide bg-white/15 text-white px-2 py-0.5 rounded-full">
+                      {n.category}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [holidays, setHolidays]     = useState<Holiday[]>([]);
   const [loading, setLoading]       = useState(true);
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [notices, setNotices]       = useState<Notice[]>([]);
 
   useEffect(() => {
     fetch("/api/calendar")
@@ -84,6 +206,13 @@ export default function Home() {
       .then(setHolidays)
       .catch(() => {})
       .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/announcements")
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((data) => setNotices(Array.isArray(data) ? data : data.announcements ?? []))
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -100,19 +229,25 @@ export default function Home() {
     <>
       {/* ── Hero Carousel ── */}
       <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden h-screen">
-        <Carousel images={images} className="w-full h-full" videoUrl="https://res.cloudinary.com/doef42j0e/video/upload/q_auto,f_auto/shemford_hero" videoFirst />
+        <Carousel
+          images={images}
+          className="w-full h-full"
+          videoUrl="https://res.cloudinary.com/doef42j0e/video/upload/q_auto,f_auto/shemford_hero"
+          videoFirst
+        />
       </div>
 
-      {/* ── Stats strip — dark full-width band ── */}
-      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 bg-gray-950">
+      {/* ── Stats strip — deep orange-red gradient ── */}
+      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2
+        bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-800">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/20">
             {statCards.map((s, i) => (
               <div key={i} className="flex flex-col items-center text-center px-6 py-8 gap-2">
                 {s.icon}
                 <span className="text-3xl font-bold text-white">{s.value}</span>
-                <span className="text-sm font-semibold text-gray-200">{s.label}</span>
-                <span className="text-xs text-gray-500">{s.desc}</span>
+                <span className="text-sm font-semibold text-white/90">{s.label}</span>
+                <span className="text-xs text-white/60">{s.desc}</span>
               </div>
             ))}
           </div>
@@ -138,7 +273,14 @@ export default function Home() {
             <Facilities />
           </div>
 
-          <div className="h-px bg-gray-100 dark:bg-gray-800" />
+        </div>
+      </section>
+
+      {/* ── Notice Board (full-width, between Facilities & Why) ── */}
+      {notices.length > 0 && <NoticeBoard notices={notices} />}
+
+      <section className="w-full overflow-hidden">
+        <div className="w-full px-4 sm:px-6">
 
           {/* Why Shemford */}
           <div className="py-16 md:py-20">
@@ -201,14 +343,15 @@ export default function Home() {
 
           {/* ── Admissions CTA ── */}
           <div className="py-16 md:py-20">
-            <div className="rounded-2xl bg-gray-950 px-8 md:px-16 py-14 text-center">
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-500">
+            <div className="rounded-2xl bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700
+              px-8 md:px-16 py-14 text-center shadow-xl">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 Academic Year 2025–26
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">
                 Admissions Now Open
               </h2>
-              <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+              <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
                 Secure your child's place at Patna's most forward-thinking CBSE school.
                 Limited seats available — apply early.
               </p>
@@ -216,7 +359,7 @@ export default function Home() {
                 <Link href="/contact">
                   <Button
                     size="lg"
-                    className="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 shadow-md transition-colors"
+                    className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 shadow-md transition-colors"
                   >
                     Apply Now
                   </Button>
@@ -225,7 +368,7 @@ export default function Home() {
                   <Button
                     size="lg"
                     variant="bordered"
-                    className="border-gray-600 text-gray-300 hover:border-orange-500 hover:text-orange-400 transition-colors"
+                    className="border-white/50 text-white hover:border-white hover:bg-white/10 transition-colors"
                   >
                     Admission Guide
                   </Button>
