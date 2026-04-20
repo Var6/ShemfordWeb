@@ -100,7 +100,7 @@ export default function Home() {
     <>
       {/* ── Hero Carousel ── */}
       <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-hidden h-screen">
-        <Carousel images={images} className="w-full h-full" videoUrl="video1.mp4" />
+        <Carousel images={images} className="w-full h-full" videoUrl="https://res.cloudinary.com/doef42j0e/video/upload/q_auto,f_auto/shemford_hero" videoFirst />
       </div>
 
       {/* ── Stats strip — dark full-width band ── */}

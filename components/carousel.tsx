@@ -7,11 +7,16 @@ interface CarouselProps {
   images: string[];
   className?: string;
   videoUrl?: string;
+  videoFirst?: boolean;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, className, videoUrl }) => {
-  const slides = videoUrl ? [...images, videoUrl] : images;
-  const videoSlideIndex = videoUrl ? images.length : -1;
+const Carousel: React.FC<CarouselProps> = ({ images, className, videoUrl, videoFirst = false }) => {
+  const slides = videoUrl
+    ? videoFirst
+      ? [videoUrl, ...images]
+      : [...images, videoUrl]
+    : images;
+  const videoSlideIndex = videoUrl ? (videoFirst ? 0 : images.length) : -1;
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
