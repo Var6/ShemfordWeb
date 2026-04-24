@@ -236,43 +236,52 @@ const BlogPage: React.FC = () => {
   }, [selectedBlog]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-4">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
+
+      {/* ── Hero ── */}
+      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
+            rounded-2xl mb-5 border border-white/20">
             <BookOpen className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            Educational Insights
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Discover expert perspectives on early childhood development and education
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
+            Shemford Journal
           </p>
-     
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Educational Insights</h1>
+          <p className="text-orange-100 text-lg max-w-xl mx-auto">
+            Discover expert perspectives on early childhood development and education.
+          </p>
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="sr-only">Journal content</div>
 
         {/* Search and Filter */}
         <div className="flex flex-col md:flex-row gap-4 mb-12">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-orange-200 dark:border-orange-800
+                bg-white dark:bg-gray-900 text-gray-900 dark:text-white
+                focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
-          <div className="flex gap-2 overflow-x-auto">
+          <div className="flex gap-2 flex-wrap">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-3 rounded-xl whitespace-nowrap font-medium transition-all duration-200 ${
+                className={`px-4 py-2.5 rounded-xl whitespace-nowrap text-sm font-semibold
+                  transition-all duration-200 border-2 ${
                   selectedCategory === category
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                    ? 'bg-orange-600 border-orange-600 text-white shadow-md'
+                    : 'bg-white dark:bg-gray-900 border-orange-100 dark:border-orange-900/40 text-gray-700 dark:text-gray-300 hover:border-orange-300 hover:bg-orange-50'
                 }`}
               >
                 {category}
@@ -285,7 +294,7 @@ const BlogPage: React.FC = () => {
         {featuredBlogs.length > 0 && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <BookOpen className="w-6 h-6 text-blue-600 mr-2" />
+              <BookOpen className="w-6 h-6 text-orange-600 mr-2" />
               Featured Articles
             </h2>
             <div className="grid gap-8 md:grid-cols-2">
@@ -329,7 +338,7 @@ const BlogPage: React.FC = () => {
                   {/* Content */}
                   <div className="p-6">
                     <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
-                      <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full font-medium">
+                      <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200 rounded-full font-medium">
                         {blog.category}
                       </span>
                       <div className="flex items-center">
@@ -342,7 +351,7 @@ const BlogPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                       {blog.title}
                     </h3>
 
@@ -417,7 +426,7 @@ const BlogPage: React.FC = () => {
                       <span>{blog.readTime}</span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-orange-600 transition-colors">
                       {blog.title}
                     </h3>
 
@@ -538,6 +547,7 @@ const BlogPage: React.FC = () => {
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

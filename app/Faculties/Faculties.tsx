@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
-import { GraduationCap, X, Star } from "lucide-react";
+import { GraduationCap, X, Star, Search } from "lucide-react";
 
 type Faculty = {
   _id: string;
@@ -19,18 +19,20 @@ type Faculty = {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
+const getExperienceYears = (experience: string): number => {
+  const match = experience?.match(/(\d+)/);
+  return match ? parseInt(match[1]) : 0;
+};
+
 export default function Faculties({ initialFaculties }: { initialFaculties: Faculty[] }) {
   const { data: faculties = [], isLoading } = useSWR<Faculty[]>(
     "/api/faculties",
     fetcher,
-    {
-      fallbackData: initialFaculties,
-      revalidateOnFocus: false,
-    }
+    { fallbackData: initialFaculties, revalidateOnFocus: false }
   );
 
   const [selectedFaculty, setSelectedFaculty] = useState<Faculty | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm]           = useState("");
   const [selectedSubject, setSelectedSubject] = useState("All");
 
   const subjects: string[] = [
@@ -42,162 +44,166 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
     const matchesSearch =
       faculty.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       faculty.subject.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesSubject =
-      selectedSubject === "All" || faculty.subject === selectedSubject;
+    const matchesSubject = selectedSubject === "All" || faculty.subject === selectedSubject;
     return matchesSearch && matchesSubject;
   });
 
-  const getSubjectColor = (subject: string) => {
-    const colors: { [key: string]: string } = {
-      English: "from-blue-500 to-cyan-600",
-      "Social Science": "from-purple-500 to-indigo-600",
-      Mathematics: "from-green-500 to-emerald-600",
-      Science: "from-orange-500 to-red-600",
-      Physics: "from-teal-500 to-green-600",
-      Hindi: "from-pink-500 to-rose-600",
-      Computer: "from-indigo-500 to-blue-600",
-      Sanskrit: "from-amber-500 to-yellow-600",
-      EVS: "from-emerald-500 to-teal-600",
-      "Pre Primary": "from-rose-500 to-pink-600",
-      Sports: "from-red-500 to-orange-600",
-    };
-    for (const [key, color] of Object.entries(colors)) {
-      if (subject.toLowerCase().includes(key.toLowerCase())) {
-        return color;
-      }
-    }
-    return "from-gray-500 to-slate-600";
-  };
-
-  const getExperienceYears = (experience: string): number => {
-    const match = experience?.match(/(\d+)/);
-    return match ? parseInt(match[1]) : 0;
-  };
-
   return (
-    <div className="min-h-screen py-16 px-6">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold">Our Faculties</h1>
-        <p className="text-lg text-gray-600">
-          Meet our team of {faculties.length} dedicated educators
-        </p>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-950">
 
-      {/* Search & Filter */}
-      <div className="max-w-4xl mx-auto mb-12 flex flex-col md:flex-row gap-4">
-        <input
-          type="text"
-          placeholder="Search faculty by name or subject..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-xl"
-        />
-        <select
-          value={selectedSubject}
-          onChange={(e) => setSelectedSubject(e.target.value)}
-          className="px-6 py-2 border rounded-xl"
-        >
-          {subjects.map((subject: string) => (
-            <option key={subject} value={subject}>
-              {subject}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Faculty Grid */}
-      {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={i}
-              className="bg-gray-200 animate-pulse rounded-3xl h-64"
-            />
-          ))}
+      {/* ── Hero ── */}
+      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
+            rounded-2xl mb-5 border border-white/20">
+            <GraduationCap className="w-8 h-8 text-white" />
+          </div>
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
+            Shemford Futuristic School
+          </p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Faculty</h1>
+          <p className="text-orange-100 text-lg max-w-xl mx-auto">
+            Meet our team of {faculties.length} dedicated educators committed to
+            nurturing every child's potential.
+          </p>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {filteredFaculties.map((faculty: Faculty) => {
-            const subjectGradient = getSubjectColor(faculty.subject);
-            const experienceYears = getExperienceYears(faculty.experience);
+      </div>
 
-            return (
-              <div
-                key={faculty._id}
-                className="group relative bg-white rounded-3xl shadow-xl border overflow-hidden cursor-pointer transition-all hover:scale-105"
-                onClick={() => setSelectedFaculty(faculty)}
-              >
-                <div className="relative p-6 flex flex-col items-center text-center space-y-4">
-                  {/* Profile */}
-                  <div className="relative w-24 h-24 rounded-full overflow-hidden">
-                    {faculty.profileUrl ? (
-                      <Image
-                        src={faculty.profileUrl}
-                        alt={faculty.name}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <GraduationCap className="w-12 h-12 text-gray-500 mx-auto" />
-                    )}
-                  </div>
-                  <h3 className="text-xl font-bold">{faculty.name}</h3>
-                  <p className="text-sm text-gray-600">{faculty.subject}</p>
-                  <div
-                    className={`inline-flex px-3 py-1 bg-gradient-to-r ${subjectGradient} text-white text-xs font-semibold rounded-full`}
-                  >
-                    {faculty.subject}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    {Array.from({
-                      length: Math.min(
-                        5,
-                        Math.max(1, Math.ceil(experienceYears / 6))
-                      ),
-                    }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-yellow-500 fill-current"
-                      />
-                    ))}
-                    <span className="text-sm">{experienceYears}yrs</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        {/* ── Search & Filter ── */}
+        <div className="bg-orange-50 dark:bg-orange-900/10 border border-orange-100
+          dark:border-orange-900/30 rounded-2xl p-5 mb-10 flex flex-col md:flex-row gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-orange-400" />
+            <input
+              type="text"
+              placeholder="Search by name or subject…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 border border-orange-200 dark:border-orange-800
+                rounded-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white
+                placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+            />
+          </div>
+          <select
+            value={selectedSubject}
+            onChange={(e) => setSelectedSubject(e.target.value)}
+            className="px-4 py-3 border border-orange-200 dark:border-orange-800 rounded-xl
+              bg-white dark:bg-gray-900 text-gray-900 dark:text-white
+              focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+          >
+            {subjects.map((subject: string) => (
+              <option key={subject} value={subject}>{subject}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* ── Faculty Grid ── */}
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="bg-orange-50 dark:bg-orange-900/10 animate-pulse rounded-2xl h-64" />
+            ))}
+          </div>
+        ) : filteredFaculties.length === 0 ? (
+          <div className="text-center py-20 bg-orange-50 dark:bg-orange-900/10 rounded-2xl
+            border border-orange-100 dark:border-orange-900/30">
+            <GraduationCap className="mx-auto w-12 h-12 text-orange-300 mb-4" />
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No faculty found</h3>
+            <p className="text-gray-500">Try a different name or subject.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredFaculties.map((faculty: Faculty) => {
+              const experienceYears = getExperienceYears(faculty.experience);
+              return (
+                <div
+                  key={faculty._id}
+                  onClick={() => setSelectedFaculty(faculty)}
+                  className="group bg-white dark:bg-gray-900 border-2 border-orange-100
+                    dark:border-orange-900/30 rounded-2xl shadow-sm hover:shadow-xl
+                    hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+                >
+                  <div className="p-6 flex flex-col items-center text-center gap-3">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden ring-4 ring-orange-100 dark:ring-orange-900/40">
+                      {faculty.profileUrl ? (
+                        <Image src={faculty.profileUrl} alt={faculty.name} fill className="object-cover" />
+                      ) : (
+                        <div className="w-full h-full bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center">
+                          <GraduationCap className="w-10 h-10 text-orange-400" />
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900 dark:text-white group-hover:text-orange-600
+                        transition-colors leading-tight">{faculty.name}</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{faculty.subject}</p>
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full
+                      bg-orange-100 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300
+                      border border-orange-200 dark:border-orange-800">
+                      {faculty.subject}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.min(5, Math.max(1, Math.ceil(experienceYears / 6))) }).map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-current" />
+                      ))}
+                      <span className="text-xs text-gray-500 ml-1">{experienceYears} yrs</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+        )}
+      </div>
 
-      {/* Modal */}
+      {/* ── Modal ── */}
       {selectedFaculty && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-6 z-50">
-          <div className="relative bg-white p-8 rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <button
-              onClick={() => setSelectedFaculty(null)}
-              className="absolute top-6 right-6 p-2 bg-gray-100 rounded-full"
-            >
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-2xl w-full
+            max-h-[90vh] overflow-hidden border border-orange-100 dark:border-orange-900/40">
 
-            <div className="text-center space-y-4">
-              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden relative">
+            {/* Header bar */}
+            <div className="bg-gradient-to-r from-orange-600 to-amber-500 p-6 flex items-center gap-5">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white/30 flex-shrink-0">
                 {selectedFaculty.profileUrl ? (
-                  <Image
-                    src={selectedFaculty.profileUrl}
-                    alt={selectedFaculty.name}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={selectedFaculty.profileUrl} alt={selectedFaculty.name} fill className="object-cover" />
                 ) : (
-                  <GraduationCap className="w-16 h-16 text-gray-500 mx-auto" />
+                  <div className="w-full h-full bg-white/20 flex items-center justify-center">
+                    <GraduationCap className="w-10 h-10 text-white" />
+                  </div>
                 )}
               </div>
-              <h2 className="text-3xl font-bold">{selectedFaculty.name}</h2>
-              <p className="text-lg">{selectedFaculty.subject}</p>
-              <p className="text-gray-700">{selectedFaculty.bio}</p>
-              <p className="italic">"{selectedFaculty.message}"</p>
+              <div className="text-white flex-1 min-w-0">
+                <h2 className="text-xl font-bold leading-tight">{selectedFaculty.name}</h2>
+                <p className="text-orange-100 text-sm mt-0.5">{selectedFaculty.subject}</p>
+              </div>
+              <button
+                onClick={() => setSelectedFaculty(null)}
+                className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors flex-shrink-0"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-9rem)] space-y-4">
+              {selectedFaculty.bio && (
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{selectedFaculty.bio}</p>
+              )}
+              {selectedFaculty.message && (
+                <blockquote className="border-l-4 border-orange-400 pl-4 italic text-gray-600
+                  dark:text-gray-400 text-sm">
+                  "{selectedFaculty.message}"
+                </blockquote>
+              )}
+              {selectedFaculty.experience && (
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <Star className="w-4 h-4 text-amber-400" />
+                  <span>Experience: {selectedFaculty.experience}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

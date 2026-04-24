@@ -193,40 +193,44 @@ export default function AchievementsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero — no top padding so it sits flush under navbar ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 pb-16 pt-10 px-6">
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-4xl mx-auto text-center text-white">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur border border-white/20 rounded-full text-sm font-medium mb-5">
-            <Sparkles className="w-4 h-4 text-amber-400" />
+      <section className="w-full bg-gradient-to-r from-orange-600 to-amber-500 pb-16 pt-20 px-4">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
+            rounded-2xl mb-5 border border-white/20">
+            <Sparkles className="w-8 h-8 text-white" />
+          </div>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20
+            rounded-full text-sm font-medium mb-4">
+            <Sparkles className="w-4 h-4 text-amber-300" />
             Excellence &amp; Recognition
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-5 leading-tight">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-400">Achievements</span>
-          </h1>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Our Achievements</h1>
+          <p className="text-lg text-orange-100 max-w-2xl mx-auto leading-relaxed">
             Celebrating the milestones, honors, and recognitions that reflect our commitment
             to academic excellence and holistic development.
           </p>
-
           {!loading && achievements.length > 0 && (
-            <div className="mt-10 flex flex-wrap justify-center gap-10">
-              <div><div className="text-4xl font-bold text-amber-300">{achievements.length}+</div><div className="text-blue-200 text-sm mt-1">Achievements</div></div>
-              <div className="w-px bg-white/20 hidden md:block" />
-              <div><div className="text-4xl font-bold text-amber-300">250+</div><div className="text-blue-200 text-sm mt-1">Partner Schools</div></div>
-              <div className="w-px bg-white/20 hidden md:block" />
-              <div><div className="text-4xl font-bold text-amber-300">15+</div><div className="text-blue-200 text-sm mt-1">Years of Excellence</div></div>
+            <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">
+              {[
+                { val: `${achievements.length}+`, label: "Achievements" },
+                { val: "250+", label: "Partner Schools" },
+                { val: "15+", label: "Years of Excellence" },
+              ].map((s, i) => (
+                <div key={i}>
+                  <div className="text-3xl font-bold text-amber-300">{s.val}</div>
+                  <div className="text-orange-100 text-sm mt-1">{s.label}</div>
+                </div>
+              ))}
             </div>
           )}
         </div>
       </section>
 
       {/* ── Cards ── */}
-      <section className="max-w-7xl mx-auto px-6 py-14">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1,2,3].map((i) => <SkeletonCard key={i} />)}
@@ -258,7 +262,7 @@ export default function AchievementsPage() {
 
                   {/* content */}
                   <div className="flex flex-col flex-1 p-6">
-                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                       {ach.title}
                     </h2>
                     <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 flex-1">
@@ -311,7 +315,7 @@ export default function AchievementsPage() {
                   {selected.title}
                 </h2>
               </div>
-              <p className="text-indigo-600 dark:text-indigo-400 font-semibold text-base mb-3">
+              <p className="text-orange-600 dark:text-orange-400 font-semibold text-base mb-3">
                 {selected.description}
               </p>
               <div className="w-12 h-1 rounded-full mb-4" style={{ background: getGradientCSS(selected, selectedIdx) }} />

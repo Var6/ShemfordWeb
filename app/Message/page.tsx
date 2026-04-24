@@ -58,7 +58,7 @@ export default function Message() {
       title: 'Chairperson',
       value: 'Chairperson',
       content: (
-        <div className="flex flex-row w-full md:flex-col items-center justify-between gap-5 overflow-hidden relative rounded-2xl p-10 text-white bg-gradient-to-tr from-purple-700 to-violet-100 text-justify shadow-xl ">
+        <div className="flex flex-row w-full md:flex-col items-center justify-between gap-5 overflow-hidden relative rounded-2xl p-10 text-white bg-gradient-to-tr from-orange-700 to-amber-400 text-justify shadow-xl ">
           <span className="text-3xl text-primary">
             Chairperson&apos;s Message
           </span>
@@ -100,7 +100,7 @@ export default function Message() {
       title: 'Our Mission',
       value: 'Our Mission',
       content: (
-        <div className="flex flex-row w-full md:flex-col items-center justify-between gap-5 overflow-hidden relative rounded-2xl p-10 text-white bg-gradient-to-tr from-red-600 to-violet-100 text-justify shadow-xl ">
+        <div className="flex flex-row w-full md:flex-col items-center justify-between gap-5 overflow-hidden relative rounded-2xl p-10 text-white bg-gradient-to-tr from-orange-600 to-amber-400 text-justify shadow-xl ">
           <span className="text-3xl text-primary">Our Mission</span>
           <div className="flex flex-col w-full md:flex-row items-center justify-between gap-5">
             <span className="text-xl">
@@ -156,7 +156,7 @@ export default function Message() {
       title: 'Our Vision',
       value: 'Our Vision',
       content: (
-        <div className="flex flex-col w-full items-center gap-5 overflow-hidden relative rounded-2xl p-6 text-white bg-gradient-to-tr from-blue-700 to-blue-200 text-justify shadow-xl">
+        <div className="flex flex-col w-full items-center gap-5 overflow-hidden relative rounded-2xl p-6 text-white bg-gradient-to-tr from-orange-700 to-amber-400 text-justify shadow-xl">
           {/* Centered Title */}
           <h2 className="text-3xl text-primary text-center">Our Vision</h2>
           
@@ -195,9 +195,11 @@ export default function Message() {
   ];
 
   return (
-    <div>
-      <div className="h-full md:h-[40rem] [perspective:1000px] relative b flex flex-col mx-auto w-full  items-start justify-start mb-40">
-        <Tabs tabs={tabs} />
+    <div className="min-h-screen bg-white dark:bg-gray-950 px-4 py-10">
+      <div className="max-w-5xl mx-auto">
+        <div className="h-full md:h-[40rem] [perspective:1000px] relative flex flex-col w-full items-start justify-start mb-40">
+          <Tabs tabs={tabs} />
+        </div>
       </div>
     </div>
   );

@@ -16,13 +16,12 @@ type Topper = {
   message: string;
 };
 
-const RANK_STYLES: Record<number, { ring: string; badge: string; glow: string; label: string; emoji: string }> = {
-  1: { ring: "ring-4 ring-amber-400",   badge: "bg-gradient-to-br from-amber-400 to-yellow-500",   glow: "shadow-amber-200",  label: "1st", emoji: "🥇" },
-  2: { ring: "ring-4 ring-slate-400",   badge: "bg-gradient-to-br from-slate-400 to-gray-500",     glow: "shadow-slate-200",  label: "2nd", emoji: "🥈" },
-  3: { ring: "ring-4 ring-orange-500",  badge: "bg-gradient-to-br from-orange-400 to-amber-600",   glow: "shadow-orange-200", label: "3rd", emoji: "🥉" },
+const RANK_STYLES: Record<number, { ring: string; badge: string; glow: string; label: string }> = {
+  1: { ring: "ring-4 ring-amber-400",  badge: "bg-gradient-to-br from-amber-400 to-yellow-500",  glow: "shadow-amber-100",  label: "1st" },
+  2: { ring: "ring-4 ring-slate-400",  badge: "bg-gradient-to-br from-slate-400 to-gray-500",    glow: "shadow-slate-100",  label: "2nd" },
+  3: { ring: "ring-4 ring-orange-400", badge: "bg-gradient-to-br from-orange-400 to-amber-600",  glow: "shadow-orange-100", label: "3rd" },
 };
-
-const defaultRank = { ring: "ring-2 ring-blue-300", badge: "bg-gradient-to-br from-blue-400 to-indigo-600", glow: "shadow-blue-100", label: "Top", emoji: "🎖️" };
+const defaultRank = { ring: "ring-2 ring-orange-300", badge: "bg-gradient-to-br from-orange-400 to-amber-500", glow: "shadow-orange-50", label: "Top" };
 
 function SkeletonCard() {
   return (
@@ -40,37 +39,27 @@ function TopperCard({ t }: { t: Topper }) {
   const isCBSE = t.category === "CBSE Board";
 
   return (
-    <div className={`relative bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col items-center text-center ${rs.glow}`}>
-      {/* Category badge */}
-      <span className={`absolute top-4 right-4 text-[10px] font-bold px-2 py-0.5 rounded-full text-white ${isCBSE ? "bg-purple-600" : "bg-emerald-600"}`}>
+    <div className={`relative bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-md hover:shadow-xl
+      transition-all duration-300 hover:-translate-y-1 flex flex-col items-center text-center ${rs.glow}`}>
+      <span className={`absolute top-4 right-4 text-[10px] font-bold px-2 py-0.5 rounded-full text-white ${
+        isCBSE ? "bg-orange-600" : "bg-amber-500"
+      }`}>
         {isCBSE ? "CBSE Board" : "Class Topper"}
       </span>
-
-      {/* Rank medal */}
       <div className={`absolute top-4 left-4 w-7 h-7 rounded-full ${rs.badge} flex items-center justify-center text-white text-xs font-black shadow`}>
         {rs.label}
       </div>
-
-      {/* Photo */}
       <div className={`relative w-24 h-28 rounded-2xl overflow-hidden mb-4 ${rs.ring} shadow-lg`}>
         <img src={t.photo} alt={t.name} className="w-full h-full object-cover object-top" />
       </div>
-
-      {/* Name */}
       <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight mb-1">{t.name}</h3>
-
-      {/* Class */}
       <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
         Class {t.class}{t.section ? ` – ${t.section}` : ""}
         {t.subject !== "Overall" && <> · {t.subject}</>}
       </p>
-
-      {/* Score */}
       <div className={`px-4 py-1.5 rounded-xl text-sm font-bold text-white ${rs.badge} shadow`}>
         {t.percentage}
       </div>
-
-      {/* Message */}
       {t.message && (
         <p className="mt-3 text-xs text-gray-400 dark:text-gray-500 italic line-clamp-2">"{t.message}"</p>
       )}
@@ -104,10 +93,8 @@ export default function ToppersPage() {
     return true;
   });
 
-  // Group CBSE toppers by class (10 / 12), class toppers by class
   const cbse = filtered.filter(t => t.category === "CBSE Board");
   const classToppers = filtered.filter(t => t.category === "Class Topper");
-
   const cbse10 = cbse.filter(t => t.class === "10").sort((a, b) => a.rank - b.rank);
   const cbse12 = cbse.filter(t => t.class === "12").sort((a, b) => a.rank - b.rank);
   const classByGrade = classes.filter(c => c !== "All").reduce<Record<string, Topper[]>>((acc, c) => {
@@ -116,106 +103,113 @@ export default function ToppersPage() {
     return acc;
   }, {});
 
-  const showAll = tab === "All" || !["Class Topper", "CBSE Board"].includes(tab);
-
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 pt-10 pb-16 px-6">
-        <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-purple-400/10 blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-4xl mx-auto text-center text-white">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur border border-white/20 rounded-full text-sm font-medium mb-5">
-            <Star className="w-4 h-4 text-amber-400" />
+      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
+            rounded-2xl mb-5 border border-white/20">
+            <Trophy className="w-8 h-8 text-white" />
+          </div>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20
+            rounded-full text-sm font-medium mb-4">
+            <Star className="w-4 h-4 text-amber-300" />
             Hall of Fame
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-400">Toppers</span>
-          </h1>
-          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Our Toppers</h1>
+          <p className="text-orange-100 text-lg max-w-2xl mx-auto">
             Celebrating the brilliance of our students — from class champions to CBSE board toppers who made Shemford proud.
           </p>
-
           {!loading && toppers.length > 0 && (
-            <div className="mt-10 flex flex-wrap justify-center gap-10">
-              <div><div className="text-4xl font-bold text-amber-300">{toppers.length}+</div><div className="text-blue-200 text-sm mt-1">Toppers</div></div>
-              <div className="w-px bg-white/20 hidden md:block" />
-              <div><div className="text-4xl font-bold text-amber-300">{toppers.filter(t => t.category === "CBSE Board").length}</div><div className="text-blue-200 text-sm mt-1">CBSE Board Toppers</div></div>
-              <div className="w-px bg-white/20 hidden md:block" />
-              <div><div className="text-4xl font-bold text-amber-300">{new Set(toppers.map(t => t.year)).size}</div><div className="text-blue-200 text-sm mt-1">Academic Years</div></div>
+            <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">
+              {[
+                { val: `${toppers.length}+`, label: "Toppers" },
+                { val: toppers.filter(t => t.category === "CBSE Board").length, label: "CBSE Board Toppers" },
+                { val: new Set(toppers.map(t => t.year)).size, label: "Academic Years" },
+              ].map((s, i) => (
+                <div key={i}>
+                  <div className="text-3xl font-bold text-amber-300">{s.val}</div>
+                  <div className="text-orange-100 text-sm mt-1">{s.label}</div>
+                </div>
+              ))}
             </div>
           )}
         </div>
-      </section>
+      </div>
 
       {/* ── Filters ── */}
-      <section className="max-w-7xl mx-auto px-6 pt-10 pb-4">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm p-4 flex flex-wrap gap-3 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4">
+        <div className="bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
+          rounded-2xl shadow-sm p-4 flex flex-wrap gap-3 items-center">
 
-          {/* Category tabs */}
-          <div className="flex rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+          <div className="flex rounded-xl overflow-hidden border-2 border-orange-100 dark:border-orange-900/40">
             {(["All", "Class Topper", "CBSE Board"] as const).map(t => (
               <button key={t} onClick={() => setTab(t)}
-                className={`px-4 py-2 text-sm font-medium transition ${tab === t ? 'bg-indigo-600 text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'}`}>
+                className={`px-4 py-2 text-sm font-semibold transition-colors ${
+                  tab === t ? 'bg-orange-600 text-white' : 'text-gray-600 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-900/10'
+                }`}>
                 {t === "All" ? "All Toppers" : t === "CBSE Board" ? "CBSE Board" : "Class Toppers"}
               </button>
             ))}
           </div>
 
-          {/* Year */}
           <select value={year} onChange={e => setYear(e.target.value)}
-            className="border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 text-sm dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            className="border-2 border-orange-100 dark:border-orange-900/40 rounded-xl px-3 py-2 text-sm
+              bg-white dark:bg-gray-900 text-gray-900 dark:text-white
+              focus:outline-none focus:ring-2 focus:ring-orange-500">
             {years.map(y => <option key={y} value={y}>{y === "All" ? "All Years" : y}</option>)}
           </select>
 
-          {/* Class filter (only for class toppers) */}
           {tab !== "CBSE Board" && (
             <select value={selectedClass} onChange={e => setSelectedClass(e.target.value)}
-              className="border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 text-sm dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              className="border-2 border-orange-100 dark:border-orange-900/40 rounded-xl px-3 py-2 text-sm
+                bg-white dark:bg-gray-900 text-gray-900 dark:text-white
+                focus:outline-none focus:ring-2 focus:ring-orange-500">
               {classes.map(c => <option key={c} value={c}>{c === "All" ? "All Classes" : `Class ${c}`}</option>)}
             </select>
           )}
 
-          {/* Search */}
-          <div className="ml-auto flex items-center gap-2 border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 bg-gray-50 dark:bg-gray-700">
-            <Search className="w-4 h-4 text-gray-400" />
+          <div className="ml-auto flex items-center gap-2 border-2 border-orange-100 dark:border-orange-900/40
+            rounded-xl px-3 py-2 bg-orange-50 dark:bg-orange-900/10">
+            <Search className="w-4 h-4 text-orange-400" />
             <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name…"
               className="bg-transparent text-sm text-gray-700 dark:text-white outline-none w-36 placeholder-gray-400" />
           </div>
         </div>
-      </section>
+      </div>
 
       {/* ── Content ── */}
-      <section className="max-w-7xl mx-auto px-6 py-8 space-y-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
             {Array.from({ length: 10 }).map((_, i) => <SkeletonCard key={i} />)}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-24">
-            <Trophy className="w-14 h-14 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
+          <div className="text-center py-24 bg-orange-50 dark:bg-orange-900/10 rounded-2xl
+            border border-orange-100 dark:border-orange-900/30">
+            <Trophy className="w-14 h-14 text-orange-300 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-400 dark:text-gray-500">No toppers found</h3>
             <p className="text-gray-400 mt-1 text-sm">Try changing the filters</p>
           </div>
         ) : (
           <>
-            {/* CBSE Board section */}
             {(tab === "All" || tab === "CBSE Board") && (cbse10.length > 0 || cbse12.length > 0) && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-xl bg-purple-600">
+                  <div className="p-2 rounded-xl bg-orange-600">
                     <BookOpen className="w-5 h-5 text-white" />
                   </div>
-                  <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">CBSE Board Toppers</h2>
-                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">CBSE Board Toppers</h2>
+                  <div className="flex-1 h-px bg-orange-100 dark:bg-orange-900/30" />
                 </div>
 
                 {cbse10.length > 0 && (
                   <div className="mb-8">
                     <h3 className="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4 flex items-center gap-2">
-                      <span className="w-7 h-7 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 flex items-center justify-center text-sm font-black">10</span>
+                      <span className="w-7 h-7 rounded-full bg-orange-100 dark:bg-orange-900/30
+                        text-orange-700 dark:text-orange-300 flex items-center justify-center text-sm font-black">10</span>
                       Class X – Secondary Board
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
@@ -227,7 +221,8 @@ export default function ToppersPage() {
                 {cbse12.length > 0 && (
                   <div>
                     <h3 className="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4 flex items-center gap-2">
-                      <span className="w-7 h-7 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 flex items-center justify-center text-sm font-black">12</span>
+                      <span className="w-7 h-7 rounded-full bg-orange-100 dark:bg-orange-900/30
+                        text-orange-700 dark:text-orange-300 flex items-center justify-center text-sm font-black">12</span>
                       Class XII – Senior Secondary Board
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
@@ -238,22 +233,21 @@ export default function ToppersPage() {
               </div>
             )}
 
-            {/* Class Toppers section */}
             {(tab === "All" || tab === "Class Topper") && Object.keys(classByGrade).length > 0 && (
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-xl bg-emerald-600">
+                  <div className="p-2 rounded-xl bg-amber-500">
                     <GraduationCap className="w-5 h-5 text-white" />
                   </div>
-                  <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">Class Toppers</h2>
-                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Class Toppers</h2>
+                  <div className="flex-1 h-px bg-orange-100 dark:bg-orange-900/30" />
                 </div>
-
                 <div className="space-y-10">
                   {Object.entries(classByGrade).map(([cls, list]) => (
                     <div key={cls}>
                       <h3 className="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4 flex items-center gap-2">
-                        <span className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-sm font-black">{cls}</span>
+                        <span className="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30
+                          text-amber-700 dark:text-amber-300 flex items-center justify-center text-sm font-black">{cls}</span>
                         Class {cls}
                       </h3>
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
@@ -266,7 +260,7 @@ export default function ToppersPage() {
             )}
           </>
         )}
-      </section>
+      </div>
     </div>
   );
 }
