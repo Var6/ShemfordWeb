@@ -75,7 +75,7 @@ export default function ContactForm({
           <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
             <div className="gap-4">
               <div className="flex items-center gap-3">
-                <Phone className="w-6 h-6 text-blue-500" />
+                <Phone className="w-6 h-6 text-orange-500" />
                 <div>
                   <p className="text-sm font-semibold">Phone</p>
                   <p className="text-gray-600 dark:text-gray-400">
@@ -89,7 +89,7 @@ export default function ContactForm({
           <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
             <div className="gap-4">
               <div className="flex items-center gap-3">
-                <Mail className="w-6 h-6 text-green-500" />
+                <Mail className="w-6 h-6 text-orange-500" />
                 <div>
                   <p className="text-sm font-semibold">Email</p>
                   <p className="text-gray-600 dark:text-gray-400">
@@ -103,7 +103,7 @@ export default function ContactForm({
           <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
             <div className="gap-4">
               <div className="flex items-center gap-3">
-                <MapPin className="w-6 h-6 text-red-500" />
+                <MapPin className="w-6 h-6 text-orange-500" />
                 <div>
                   <p className="text-sm font-semibold">Location</p>
                   <p className="text-gray-600 dark:text-gray-400">
@@ -190,7 +190,7 @@ export default function ContactForm({
                   placeholder="Tell us more about your inquiry..."
                   rows={5}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
 
@@ -198,7 +198,7 @@ export default function ContactForm({
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 md:flex-initial bg-gradient-to-r from-[#5EA2EF] to-[#0072F5] text-white font-semibold hover:from-[#5EA2EF] hover:to-[#0062E5] disabled:opacity-60"
+                  className="flex-1 md:flex-initial bg-orange-600 hover:bg-orange-700 text-white font-semibold disabled:opacity-60 transition-colors"
                   size="lg"
                 >
                   {loading ? "Sending..." : "Send Message"}
@@ -206,7 +206,7 @@ export default function ContactForm({
                 <Button
                   type="button"
                   onClick={handlePhoneCall}
-                  className="flex-1 md:flex-initial bg-gradient-to-r from-[#FF705B] to-[#FFB457] text-white font-semibold hover:from-[#FF705B] hover:to-[#FFA540]"
+                  className="flex-1 md:flex-initial bg-amber-500 hover:bg-amber-600 text-white font-semibold transition-colors"
                   size="lg"
                 >
                   📞 Call Now
@@ -224,7 +224,7 @@ export default function ContactForm({
         </div>
 
         {/* Additional Info */}
-        <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/10 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className="mt-12 p-6 bg-orange-50 dark:bg-orange-900/10 rounded-lg border border-orange-200 dark:border-orange-800">
           <h3 className="text-lg font-semibold mb-2">Response Time</h3>
           <p className="text-gray-700 dark:text-gray-300">
             We typically respond to inquiries within 24 business hours. For
