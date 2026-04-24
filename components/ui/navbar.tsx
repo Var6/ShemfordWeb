@@ -54,9 +54,10 @@ const navLinks: NavItem[] = [
   {
     label: "Connect",
     items: [
-      { label: "Message",    href: "/Message" },
-      { label: "Journal",    href: "/Journal" },
-      { label: "Contact Us", href: "/contact" },
+      { label: "Message",    href: "/Message"     },
+      { label: "Journal",    href: "/Journal"     },
+      { label: "Contact Us", href: "/contact"     },
+      { label: "Grievances", href: "/grievances"  },
     ],
   },
 ];
