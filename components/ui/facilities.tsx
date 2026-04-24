@@ -21,9 +21,6 @@ const Facilities = () => {
         <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600">
           Infrastructure
         </span>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">
-          World-Class Facilities
-        </h2>
         <span className="section-accent" />
       </div>
 
