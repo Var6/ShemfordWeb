@@ -1,8 +1,12 @@
-import React from "react";
-import Carousel from "../carousel";
-import { CardStack } from "../cardStack";
-import { cn } from "@/lib/utils";
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  BookOpen, Monitor, Trophy, Baby, Zap, FlaskConical,
+  ArrowRight, ChevronLeft, ChevronRight,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 const facilityImages: string[] = [
   "/assets/banner1.jpg",
@@ -12,131 +16,239 @@ const facilityImages: string[] = [
   "/assets/banner5.jpg",
 ];
 
-const Facilities = () => {
-  return (
-    <div className="flex flex-col w-full gap-12">
+const FACILITIES = [
+  {
+    icon: <BookOpen className="w-6 h-6" />,
+    color: "bg-amber-500",
+    lightBg: "bg-amber-50 dark:bg-amber-900/20",
+    border: "border-amber-200 dark:border-amber-800",
+    title: "Library",
+    subtitle: "Knowledge Hub",
+    desc: "A curated collection spanning 45+ subjects — from classic literature to cutting-edge science.",
+    stat: "1,000+ Books",
+  },
+  {
+    icon: <Monitor className="w-6 h-6" />,
+    color: "bg-blue-500",
+    lightBg: "bg-blue-50 dark:bg-blue-900/20",
+    border: "border-blue-200 dark:border-blue-800",
+    title: "Computer Lab",
+    subtitle: "Innovation Centre",
+    desc: "High-performance workstations with high-speed internet and interactive projectors.",
+    stat: "35+ Workstations",
+  },
+  {
+    icon: <FlaskConical className="w-6 h-6" />,
+    color: "bg-green-500",
+    lightBg: "bg-green-50 dark:bg-green-900/20",
+    border: "border-green-200 dark:border-green-800",
+    title: "Science Labs",
+    subtitle: "Physics · Chemistry · Biology",
+    desc: "Fully equipped labs with real apparatus — because experiments beat textbook diagrams every time.",
+    stat: "4 Dedicated Labs",
+  },
+  {
+    icon: <Trophy className="w-6 h-6" />,
+    color: "bg-orange-500",
+    lightBg: "bg-orange-50 dark:bg-orange-900/20",
+    border: "border-orange-200 dark:border-orange-800",
+    title: "Sports Grounds",
+    subtitle: "Athletics & Fitness",
+    desc: "Basketball, Football, and Cricket — plus a dedicated outdoor play zone for younger students.",
+    stat: "3 Play Areas",
+  },
+  {
+    icon: <Baby className="w-6 h-6" />,
+    color: "bg-pink-500",
+    lightBg: "bg-pink-50 dark:bg-pink-900/20",
+    border: "border-pink-200 dark:border-pink-800",
+    title: "Kindergarten Wing",
+    subtitle: "Early Childhood",
+    desc: "Warm, safe, and stimulating — sensory rooms and age-appropriate play designed to spark wonder.",
+    stat: "Dedicated Wing",
+  },
+  {
+    icon: <Zap className="w-6 h-6" />,
+    color: "bg-violet-500",
+    lightBg: "bg-violet-50 dark:bg-violet-900/20",
+    border: "border-violet-200 dark:border-violet-800",
+    title: "Smart Classrooms",
+    subtitle: "Clubs & Co-curricular",
+    desc: "Interactive smart boards, Chess, Table Tennis, and activity rooms for every interest.",
+    stat: "Smart Boards",
+  },
+];
 
-      {/* ── Section heading ── */}
+/* ── Slim manual carousel ── */
+function FacilityCarousel() {
+  const [idx, setIdx] = useState(0);
+  const total = facilityImages.length;
+  const prev = () => setIdx((i) => (i === 0 ? total - 1 : i - 1));
+  const next = () => setIdx((i) => (i + 1) % total);
+
+  useEffect(() => {
+    const t = setInterval(next, 4000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl group">
+      {facilityImages.map((src, i) => (
+        <img
+          key={i}
+          src={src}
+          alt={`Facility ${i + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            i === idx ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+      {/* Controls */}
+      <button
+        onClick={prev}
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full
+          bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center
+          shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full
+          bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center
+          shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {facilityImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === idx ? "w-5 bg-white" : "w-1.5 bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.08, duration: 0.45 },
+  }),
+};
+
+const Facilities = () => (
+  <div className="flex flex-col w-full gap-14">
+
+    {/* ── Header ── */}
+    <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
         <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600">
           Infrastructure
         </span>
-        <span className="section-accent" />
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">
+          World-Class Facilities
+        </h2>
+        <p className="text-gray-500 dark:text-gray-400 mt-2 max-w-lg">
+          Every space at Shemford is designed with one purpose — to help each
+          child discover, explore, and excel.
+        </p>
       </div>
+      <Link
+        href="/Campus"
+        className="inline-flex items-center gap-2 text-sm font-semibold text-orange-600
+          hover:text-orange-700 transition-colors whitespace-nowrap group"
+      >
+        Explore Campus
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </Link>
+    </div>
 
-      {/* ── Content ── */}
-      <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
-
-        {/* Carousel */}
-        <div className="w-full md:w-1/2">
-          <Carousel images={facilityImages} className={cn("w-full rounded-2xl overflow-hidden shadow-lg")} />
-        </div>
-
-        {/* Card stack */}
-        <div className="w-full md:w-1/2 flex flex-col gap-5">
-          <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-            Learning flourishes in the right environment. At Shemford, every
-            space — from labs to playgrounds — is thoughtfully designed to
-            ignite curiosity, foster collaboration, and unlock every child's
-            potential.
-          </p>
-
-          <div className="flex items-center justify-center">
-            <Link href="/Campus">
-              <CardStack items={CARDS} />
-            </Link>
+    {/* ── Feature cards grid ── */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {FACILITIES.map((f, i) => (
+        <motion.div
+          key={i}
+          custom={i}
+          variants={cardVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          className={`${f.lightBg} border-2 ${f.border} rounded-2xl p-6 flex flex-col gap-4 cursor-default`}
+        >
+          {/* Icon + stat row */}
+          <div className="flex items-start justify-between">
+            <div className={`${f.color} text-white w-11 h-11 rounded-xl flex items-center justify-center shadow-sm`}>
+              {f.icon}
+            </div>
+            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 bg-white dark:bg-gray-800
+              border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1">
+              {f.stat}
+            </span>
           </div>
-        </div>
+
+          {/* Text */}
+          <div>
+            <p className="font-bold text-gray-900 dark:text-white">{f.title}</p>
+            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 mb-2">{f.subtitle}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{f.desc}</p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* ── Carousel ── */}
+    <div className="flex flex-col lg:flex-row gap-10 items-center">
+      <div className="w-full lg:w-3/5">
+        <FacilityCarousel />
+      </div>
+      <div className="w-full lg:w-2/5 flex flex-col gap-6">
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-snug">
+          A Campus Built for <span className="text-orange-600">Curiosity</span>
+        </h3>
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+          From the moment a child steps onto our campus, every corner is an
+          invitation to learn. Our infrastructure is regularly upgraded so
+          students always work with the best tools available.
+        </p>
+        <ul className="space-y-2">
+          {[
+            "Smart boards in every classroom",
+            "Purified drinking water throughout",
+            "CCTV-monitored, fully secured campus",
+            "Separate wings for primary & secondary",
+          ].map((item, i) => (
+            <li key={i} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
+              {item}
+            </li>
+          ))}
+        </ul>
+        <Link
+          href="/Campus"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700
+            text-white font-semibold rounded-xl shadow-sm transition-colors text-sm w-fit"
+        >
+          View Full Campus <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
     </div>
-  );
-};
 
-export default Facilities;
-
-export const Highlight = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <span
-    className={cn(
-      "font-semibold bg-orange-100 text-orange-700 dark:bg-orange-700/20 dark:text-orange-400 px-1 py-0.5 rounded",
-      className,
-    )}
-  >
-    {children}
-  </span>
+  </div>
 );
 
-const CARDS = [
-  {
-    id: 0,
-    name: "Library",
-    designation: "Knowledge Hub",
-    content: (
-      <p>
-        A thoughtfully curated library with{" "}
-        <Highlight>1,000+ books</Highlight> spanning{" "}
-        <Highlight>45+ subjects and categories</Highlight> — from classic
-        literature to cutting-edge science.
-      </p>
-    ),
-  },
-  {
-    id: 1,
-    name: "Computer & Science Labs",
-    designation: "Innovation Centre",
-    content: (
-      <p>
-        Four fully equipped laboratories with{" "}
-        <Highlight>45+ student capacity</Highlight> each. Our computer lab
-        features <Highlight>35+ high-performance workstations</Highlight> with
-        high-speed internet and interactive projectors.
-      </p>
-    ),
-  },
-  {
-    id: 2,
-    name: "Sports Grounds",
-    designation: "Athletics & Fitness",
-    content: (
-      <p>
-        Three dedicated play areas including a{" "}
-        <Highlight>
-          Basketball Court, Football Ground, and Cricket Field
-        </Highlight>{" "}
-        — plus a dedicated{" "}
-        <Highlight>play zone for Kindergarten students</Highlight>.
-      </p>
-    ),
-  },
-  {
-    id: 3,
-    name: "Kindergarten Wing",
-    designation: "Early Childhood",
-    content: (
-      <p>
-        A warm, nurturing second home for our youngest learners, complete with{" "}
-        <Highlight>sensory activity rooms</Highlight> and{" "}
-        <Highlight>age-appropriate play equipment</Highlight> designed to spark
-        wonder from day one.
-      </p>
-    ),
-  },
-  {
-    id: 4,
-    name: "Activity & Smart Rooms",
-    designation: "Clubs & Co-curricular",
-    content: (
-      <p>
-        Dedicated spaces equipped with{" "}
-        <Highlight>interactive smart boards</Highlight> for clubs, workshops,
-        and indoor activities including{" "}
-        <Highlight>Chess, Table Tennis, and creative arts</Highlight>.
-      </p>
-    ),
-  },
-];
+export default Facilities;
