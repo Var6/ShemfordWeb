@@ -548,7 +548,6 @@ const BlogPage: React.FC = () => {
           </div>
         )}
       </div>
-      </div>
     </div>
   );
 };
