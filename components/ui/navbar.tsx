@@ -32,7 +32,7 @@ const navLinks: NavItem[] = [
       { label: "CBSE Disclosure", href: "/CBSE"       },
       { label: "Calendar",        href: "/Calender"   },
       { label: "Admission",       href: "/admission"  },
-      { label: "Facilities",      href: "/Facilities" },
+      { label: "Faculties",        href: "/Faculties"  },
       { label: "Faculties",       href: "/Faculties"  },
     ],
   },
