@@ -18,31 +18,31 @@ export const metadata: Metadata = {
 
 const coreValues = [
   {
-    icon: <Target className="w-8 h-8 text-blue-500" />,
+    icon: <Target className="w-8 h-8 text-orange-600" />,
     title: 'Vision',
     desc: 'To be the most trusted destination for forward-thinking education in Bihar — producing graduates who are academically brilliant and deeply humane.',
-    border: 'border-blue-200 dark:border-blue-700',
-    iconBg: 'bg-blue-50 dark:bg-blue-900/20',
+    border: 'border-orange-200 dark:border-orange-900/40',
+    iconBg: 'bg-orange-50 dark:bg-orange-900/20',
   },
   {
-    icon: <Lightbulb className="w-8 h-8 text-yellow-500" />,
+    icon: <Lightbulb className="w-8 h-8 text-amber-500" />,
     title: 'Innovation',
     desc: 'We integrate smart classrooms, AI-assisted learning, and the ShemEduMAX™ framework to make every lesson relevant to the world students will inherit.',
-    border: 'border-yellow-200 dark:border-yellow-700',
-    iconBg: 'bg-yellow-50 dark:bg-yellow-900/20',
+    border: 'border-amber-200 dark:border-amber-900/40',
+    iconBg: 'bg-amber-50 dark:bg-amber-900/20',
   },
   {
-    icon: <Users className="w-8 h-8 text-green-500" />,
+    icon: <Users className="w-8 h-8 text-orange-500" />,
     title: 'Community',
     desc: 'Education is a shared endeavour. We cultivate a culture of mutual respect, active parent partnerships, and collaborative growth among students and staff.',
-    border: 'border-green-200 dark:border-green-700',
-    iconBg: 'bg-green-50 dark:bg-green-900/20',
+    border: 'border-orange-200 dark:border-orange-900/40',
+    iconBg: 'bg-orange-50 dark:bg-orange-900/20',
   },
   {
-    icon: <Award className="w-8 h-8 text-orange-500" />,
+    icon: <Award className="w-8 h-8 text-orange-600" />,
     title: 'Excellence',
     desc: 'We hold every child to the highest standard — not to create pressure, but to communicate our deep belief in their unlimited potential.',
-    border: 'border-orange-200 dark:border-orange-700',
+    border: 'border-orange-200 dark:border-orange-900/40',
     iconBg: 'bg-orange-50 dark:bg-orange-900/20',
   },
 ];
@@ -171,22 +171,24 @@ export default function About() {
   ];
 
   return (
-    <div className="py-10">
-      <div className="max-w-6xl mx-auto px-4">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
 
-        {/* Hero */}
-        <div className="text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-orange-500 mb-3">
+      {/* Hero */}
+      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
             Jaganpur, Patna, Bihar — Est. 2012
           </p>
-          <h1 className={`${title()} gradient-text`}>
-            About Shemford Futuristic School
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">About Shemford Futuristic School</h1>
+          <p className="text-orange-100 text-lg max-w-2xl mx-auto leading-relaxed">
             For over a decade, we have been shaping curious minds, compassionate
             hearts, and capable citizens — one student at a time.
           </p>
         </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
 
         {/* Core Values — 3D hover lift */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
@@ -244,7 +246,7 @@ export default function About() {
                 <ul className="space-y-2">
                   {ach.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
