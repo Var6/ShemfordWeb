@@ -10,6 +10,7 @@ import { Button } from "@heroui/button";
 import Link from "next/link";
 import { CheckCircle, Users, Medal, Building2, BookOpen, Bell, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
+import { CardSpotlight } from "@/components/ui/card-spotlight";
 
 interface Holiday {
   title: string;
@@ -50,25 +51,25 @@ const educationalQuotes = [
 
 const statCards = [
   {
-    icon: <Building2 className="w-7 h-7 text-white/80" />,
+    icon: <Building2 className="w-6 h-6" />,
     value: "15+",
     label: "Modern Facilities",
     desc: "Labs, libraries & smart classrooms",
   },
   {
-    icon: <Users className="w-7 h-7 text-white/80" />,
+    icon: <Users className="w-6 h-6" />,
     value: "500+",
     label: "Active Students",
     desc: "Pre-Primary to Class XII",
   },
   {
-    icon: <Medal className="w-7 h-7 text-white/80" />,
+    icon: <Medal className="w-6 h-6" />,
     value: "95%+",
     label: "Board Results",
     desc: "Consistent CBSE excellence",
   },
   {
-    icon: <CheckCircle className="w-7 h-7 text-white/80" />,
+    icon: <CheckCircle className="w-6 h-6" />,
     value: "CBSE",
     label: "Affiliated",
     desc: "Nationally recognised curriculum",
@@ -126,7 +127,7 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
 
   return (
     <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2
-      bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600">
+      bg-gradient-to-r from-orange-600 to-amber-500">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col md:flex-row gap-6 md:gap-10">
 
@@ -134,7 +135,7 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
           <div className="flex-shrink-0 flex flex-col justify-center items-center md:items-start gap-2 md:w-44">
             <div className="flex items-center gap-2">
               <Bell className="w-5 h-5 text-white animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-100">
                 Notice Board
               </span>
             </div>
@@ -142,7 +143,7 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
               Latest<br />Notices
             </p>
             <Link href="/Announcement">
-              <span className="inline-flex items-center gap-1 text-xs text-blue-200 hover:text-white transition-colors mt-1">
+              <span className="inline-flex items-center gap-1 text-xs text-orange-100 hover:text-white transition-colors mt-1">
                 View all <ExternalLink className="w-3 h-3" />
               </span>
             </Link>
@@ -152,9 +153,9 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
           <div className="flex-1 relative">
             {/* top/bottom fade */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-6 z-10
-              bg-gradient-to-b from-blue-600 to-transparent" />
+              bg-gradient-to-b from-orange-600 to-transparent" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 z-10
-              bg-gradient-to-t from-indigo-600 to-transparent" />
+              bg-gradient-to-t from-amber-500 to-transparent" />
 
             <ul
               ref={listRef}
@@ -172,7 +173,7 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
                       {n.title}
                     </p>
                     {n.description && (
-                      <p className="text-xs text-blue-200 mt-0.5 line-clamp-1">
+                      <p className="text-xs text-orange-100 mt-0.5 line-clamp-1">
                         {n.description}
                       </p>
                     )}
@@ -237,18 +238,26 @@ export default function Home() {
         />
       </div>
 
-      {/* ── Stats strip — deep orange-red gradient ── */}
-      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2
-        bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/20">
+      {/* ── Stats — Aceternity spotlight cards ── */}
+      <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2 bg-white dark:bg-gray-950 border-b border-orange-100 dark:border-orange-900/30">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {statCards.map((s, i) => (
-              <div key={i} className="flex flex-col items-center text-center px-6 py-8 gap-2">
-                {s.icon}
-                <span className="text-3xl font-bold text-white">{s.value}</span>
-                <span className="text-sm font-semibold text-white/90">{s.label}</span>
-                <span className="text-xs text-white/60">{s.desc}</span>
-              </div>
+              <CardSpotlight key={i} className="p-6 group cursor-default">
+                <div className="flex flex-col items-center text-center gap-3 relative z-10">
+                  <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/20
+                    flex items-center justify-center group-hover:bg-orange-600 transition-colors duration-300">
+                    <span className="text-orange-600 group-hover:text-white transition-colors duration-300">
+                      {s.icon}
+                    </span>
+                  </div>
+                  <span className="text-3xl font-extrabold text-orange-600 dark:text-orange-400">{s.value}</span>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">{s.label}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{s.desc}</p>
+                  </div>
+                </div>
+              </CardSpotlight>
             ))}
           </div>
         </div>
@@ -343,15 +352,15 @@ export default function Home() {
 
           {/* ── Admissions CTA ── */}
           <div className="py-16 md:py-20">
-            <div className="rounded-2xl bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700
+            <div className="rounded-2xl bg-gradient-to-r from-orange-600 to-amber-500
               px-8 md:px-16 py-14 text-center shadow-xl">
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-100">
                 Academic Year 2025–26
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">
                 Admissions Now Open
               </h2>
-              <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+              <p className="text-orange-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
                 Secure your child's place at Patna's most forward-thinking CBSE school.
                 Limited seats available — apply early.
               </p>

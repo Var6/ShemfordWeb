@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  BookOpen, Monitor, Trophy, Baby, Zap, FlaskConical,
-  ArrowRight, ChevronLeft, ChevronRight,
+  BookOpen, Monitor, Trophy, Baby, Zap, FlaskConical, ArrowRight,
+  ChevronLeft, ChevronRight,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const facilityImages: string[] = [
   "/assets/banner1.jpg",
@@ -22,6 +22,7 @@ const FACILITIES = [
     color: "bg-amber-500",
     lightBg: "bg-amber-50 dark:bg-amber-900/20",
     border: "border-amber-200 dark:border-amber-800",
+    glow: "hover:shadow-amber-100 dark:hover:shadow-amber-900/30",
     title: "Library",
     subtitle: "Knowledge Hub",
     desc: "A curated collection spanning 45+ subjects — from classic literature to cutting-edge science.",
@@ -29,9 +30,10 @@ const FACILITIES = [
   },
   {
     icon: <Monitor className="w-6 h-6" />,
-    color: "bg-blue-500",
-    lightBg: "bg-blue-50 dark:bg-blue-900/20",
-    border: "border-blue-200 dark:border-blue-800",
+    color: "bg-sky-500",
+    lightBg: "bg-sky-50 dark:bg-sky-900/20",
+    border: "border-sky-200 dark:border-sky-800",
+    glow: "hover:shadow-sky-100 dark:hover:shadow-sky-900/30",
     title: "Computer Lab",
     subtitle: "Innovation Centre",
     desc: "High-performance workstations with high-speed internet and interactive projectors.",
@@ -39,9 +41,10 @@ const FACILITIES = [
   },
   {
     icon: <FlaskConical className="w-6 h-6" />,
-    color: "bg-green-500",
-    lightBg: "bg-green-50 dark:bg-green-900/20",
-    border: "border-green-200 dark:border-green-800",
+    color: "bg-emerald-500",
+    lightBg: "bg-emerald-50 dark:bg-emerald-900/20",
+    border: "border-emerald-200 dark:border-emerald-800",
+    glow: "hover:shadow-emerald-100 dark:hover:shadow-emerald-900/30",
     title: "Science Labs",
     subtitle: "Physics · Chemistry · Biology",
     desc: "Fully equipped labs with real apparatus — because experiments beat textbook diagrams every time.",
@@ -52,6 +55,7 @@ const FACILITIES = [
     color: "bg-orange-500",
     lightBg: "bg-orange-50 dark:bg-orange-900/20",
     border: "border-orange-200 dark:border-orange-800",
+    glow: "hover:shadow-orange-100 dark:hover:shadow-orange-900/30",
     title: "Sports Grounds",
     subtitle: "Athletics & Fitness",
     desc: "Basketball, Football, and Cricket — plus a dedicated outdoor play zone for younger students.",
@@ -59,9 +63,10 @@ const FACILITIES = [
   },
   {
     icon: <Baby className="w-6 h-6" />,
-    color: "bg-pink-500",
-    lightBg: "bg-pink-50 dark:bg-pink-900/20",
-    border: "border-pink-200 dark:border-pink-800",
+    color: "bg-rose-500",
+    lightBg: "bg-rose-50 dark:bg-rose-900/20",
+    border: "border-rose-200 dark:border-rose-800",
+    glow: "hover:shadow-rose-100 dark:hover:shadow-rose-900/30",
     title: "Kindergarten Wing",
     subtitle: "Early Childhood",
     desc: "Warm, safe, and stimulating — sensory rooms and age-appropriate play designed to spark wonder.",
@@ -72,6 +77,7 @@ const FACILITIES = [
     color: "bg-violet-500",
     lightBg: "bg-violet-50 dark:bg-violet-900/20",
     border: "border-violet-200 dark:border-violet-800",
+    glow: "hover:shadow-violet-100 dark:hover:shadow-violet-900/30",
     title: "Smart Classrooms",
     subtitle: "Clubs & Co-curricular",
     desc: "Interactive smart boards, Chess, Table Tennis, and activity rooms for every interest.",
@@ -79,7 +85,7 @@ const FACILITIES = [
   },
 ];
 
-/* ── Slim manual carousel ── */
+/* ── Slim carousel ── */
 function FacilityCarousel() {
   const [idx, setIdx] = useState(0);
   const total = facilityImages.length;
@@ -103,29 +109,21 @@ function FacilityCarousel() {
           }`}
         />
       ))}
-
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-      {/* Controls */}
       <button
         onClick={prev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full
-          bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center
-          shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white
+          text-gray-800 flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <ChevronLeft className="w-4 h-4" />
       </button>
       <button
         onClick={next}
-        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full
-          bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center
-          shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white
+          text-gray-800 flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
       >
         <ChevronRight className="w-4 h-4" />
       </button>
-
-      {/* Dots */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
         {facilityImages.map((_, i) => (
           <button
@@ -140,15 +138,6 @@ function FacilityCarousel() {
     </div>
   );
 }
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, duration: 0.45 },
-  }),
-};
 
 const Facilities = () => (
   <div className="flex flex-col w-full gap-14">
@@ -177,41 +166,40 @@ const Facilities = () => (
       </Link>
     </div>
 
-    {/* ── Feature cards grid ── */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    {/* ── 3D Card grid ── */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {FACILITIES.map((f, i) => (
-        <motion.div
-          key={i}
-          custom={i}
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          whileHover={{ y: -4, transition: { duration: 0.2 } }}
-          className={`${f.lightBg} border-2 ${f.border} rounded-2xl p-6 flex flex-col gap-4 cursor-default`}
-        >
-          {/* Icon + stat row */}
-          <div className="flex items-start justify-between">
-            <div className={`${f.color} text-white w-11 h-11 rounded-xl flex items-center justify-center shadow-sm`}>
-              {f.icon}
-            </div>
-            <span className="text-xs font-bold text-gray-400 dark:text-gray-500 bg-white dark:bg-gray-800
-              border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1">
-              {f.stat}
-            </span>
-          </div>
+        <CardContainer key={i} containerClassName="w-full">
+          <CardBody className={`${f.lightBg} border-2 ${f.border} rounded-2xl p-6 flex flex-col gap-4 cursor-default w-full shadow-md ${f.glow} hover:shadow-xl transition-shadow duration-300`}>
 
-          {/* Text */}
-          <div>
-            <p className="font-bold text-gray-900 dark:text-white">{f.title}</p>
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 mb-2">{f.subtitle}</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{f.desc}</p>
-          </div>
-        </motion.div>
+            {/* Icon + stat — lifted toward viewer */}
+            <CardItem translateZ={50} className="w-full flex items-start justify-between">
+              <div className={`${f.color} text-white w-11 h-11 rounded-xl flex items-center justify-center shadow-md`}>
+                {f.icon}
+              </div>
+              <span className="text-xs font-bold text-gray-400 dark:text-gray-500 bg-white dark:bg-gray-800
+                border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1">
+                {f.stat}
+              </span>
+            </CardItem>
+
+            {/* Title — floats a bit */}
+            <CardItem translateZ={60} className="w-full">
+              <p className="font-bold text-gray-900 dark:text-white text-base">{f.title}</p>
+              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 mt-0.5">{f.subtitle}</p>
+            </CardItem>
+
+            {/* Description — base level */}
+            <CardItem translateZ={30} className="w-full">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{f.desc}</p>
+            </CardItem>
+
+          </CardBody>
+        </CardContainer>
       ))}
     </div>
 
-    {/* ── Carousel ── */}
+    {/* ── Carousel + copy ── */}
     <div className="flex flex-col lg:flex-row gap-10 items-center">
       <div className="w-full lg:w-3/5">
         <FacilityCarousel />
