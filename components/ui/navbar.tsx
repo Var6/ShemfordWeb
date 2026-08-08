@@ -5,9 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
-  Facebook, Instagram, Twitter, Youtube,
   Menu, X, ChevronDown, ChevronRight, Phone, Mail,
 } from "lucide-react";
+
+import { Facebook, Instagram, Twitter, Youtube } from "@/components/icons/social";
 import { siteConfig } from "@/config/site";
 
 interface NavItem {

@@ -33,7 +33,7 @@ export default function ContactForm({
       }
 
       // Initialize EmailJS
-      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+      emailjs.init({ publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY });
 
       // Send email with form data
       const response = await emailjs.sendForm(

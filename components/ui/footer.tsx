@@ -3,7 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+
+import { Facebook, Instagram, Twitter, Youtube } from "@/components/icons/social";
 
 import { usePageContent } from "@/lib/content/client";
 
