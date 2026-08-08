@@ -141,7 +141,7 @@ export default function EventsAdminPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-4xl mx-auto p-6">
         {/* Header */}
         <div className="text-center mb-8">
@@ -267,7 +267,7 @@ export default function EventsAdminPage() {
                     type="checkbox"
                     checked={formData.featured}
                     onChange={(e) => handleInputChange("featured", e.target.checked)}
-                    className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                    className="w-5 h-5 text-blue-600 rounded-sm focus:ring-2 focus:ring-blue-500"
                   />
                   <Star className="w-5 h-5 text-yellow-500" />
                   <span className="text-sm font-medium text-gray-700">
@@ -300,7 +300,7 @@ export default function EventsAdminPage() {
               type="button"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-3"
+              className="bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-3"
             >
               {isSubmitting ? (
                 <>

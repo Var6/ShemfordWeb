@@ -18,19 +18,19 @@ type Topper = {
 };
 
 const RANK_STYLES: Record<number, { ring: string; badge: string; glow: string; label: string }> = {
-  1: { ring: "ring-4 ring-amber-400",  badge: "bg-gradient-to-br from-amber-400 to-yellow-500",  glow: "shadow-amber-100",  label: "1st" },
-  2: { ring: "ring-4 ring-slate-400",  badge: "bg-gradient-to-br from-slate-400 to-gray-500",    glow: "shadow-slate-100",  label: "2nd" },
-  3: { ring: "ring-4 ring-orange-400", badge: "bg-gradient-to-br from-orange-400 to-amber-600",  glow: "shadow-orange-100", label: "3rd" },
+  1: { ring: "ring-4 ring-amber-400",  badge: "bg-linear-to-br from-amber-400 to-yellow-500",  glow: "shadow-amber-100",  label: "1st" },
+  2: { ring: "ring-4 ring-slate-400",  badge: "bg-linear-to-br from-slate-400 to-gray-500",    glow: "shadow-slate-100",  label: "2nd" },
+  3: { ring: "ring-4 ring-orange-400", badge: "bg-linear-to-br from-orange-400 to-amber-600",  glow: "shadow-orange-100", label: "3rd" },
 };
-const defaultRank = { ring: "ring-2 ring-orange-300", badge: "bg-gradient-to-br from-orange-400 to-amber-500", glow: "shadow-orange-50", label: "Top" };
+const defaultRank = { ring: "ring-2 ring-orange-300", badge: "bg-linear-to-br from-orange-400 to-amber-500", glow: "shadow-orange-50", label: "Top" };
 
 function SkeletonCard() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow animate-pulse">
+    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-sm animate-pulse">
       <div className="w-24 h-28 rounded-2xl bg-gray-200 dark:bg-gray-700 mx-auto mb-4" />
-      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mx-auto mb-2" />
-      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mx-auto mb-2" />
-      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-2/3 mx-auto" />
+      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-sm w-3/4 mx-auto mb-2" />
+      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded-sm w-1/2 mx-auto mb-2" />
+      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded-sm w-2/3 mx-auto" />
     </div>
   );
 }
@@ -47,7 +47,7 @@ function TopperCard({ t }: { t: Topper }) {
       }`}>
         {isCBSE ? "CBSE Board" : "Class Topper"}
       </span>
-      <div className={`absolute top-4 left-4 w-7 h-7 rounded-full ${rs.badge} flex items-center justify-center text-white text-xs font-black shadow`}>
+      <div className={`absolute top-4 left-4 w-7 h-7 rounded-full ${rs.badge} flex items-center justify-center text-white text-xs font-black shadow-sm`}>
         {rs.label}
       </div>
       <div className={`relative w-24 h-28 rounded-2xl overflow-hidden mb-4 ${rs.ring} shadow-lg`}>
@@ -58,7 +58,7 @@ function TopperCard({ t }: { t: Topper }) {
         Class {t.class}{t.section ? ` – ${t.section}` : ""}
         {t.subject !== "Overall" && <> · {t.subject}</>}
       </p>
-      <div className={`px-4 py-1.5 rounded-xl text-sm font-bold text-white ${rs.badge} shadow`}>
+      <div className={`px-4 py-1.5 rounded-xl text-sm font-bold text-white ${rs.badge} shadow-sm`}>
         {t.percentage}
       </div>
       {t.message && (
@@ -109,7 +109,7 @@ export default function ToppersPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -144,7 +144,7 @@ export default function ToppersPage() {
       {/* ── Filters ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4">
         <div className="bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
-          rounded-2xl shadow-sm p-4 flex flex-wrap gap-3 items-center">
+          rounded-2xl shadow-xs p-4 flex flex-wrap gap-3 items-center">
 
           <div className="flex rounded-xl overflow-hidden border-2 border-orange-100 dark:border-orange-900/40">
             {(["All", "Class Topper", "CBSE Board"] as const).map(t => (
@@ -160,7 +160,7 @@ export default function ToppersPage() {
           <select value={year} onChange={e => setYear(e.target.value)}
             className="border-2 border-orange-100 dark:border-orange-900/40 rounded-xl px-3 py-2 text-sm
               bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-              focus:outline-none focus:ring-2 focus:ring-orange-500">
+              focus:outline-hidden focus:ring-2 focus:ring-orange-500">
             {years.map(y => <option key={y} value={y}>{y === "All" ? "All Years" : y}</option>)}
           </select>
 
@@ -168,7 +168,7 @@ export default function ToppersPage() {
             <select value={selectedClass} onChange={e => setSelectedClass(e.target.value)}
               className="border-2 border-orange-100 dark:border-orange-900/40 rounded-xl px-3 py-2 text-sm
                 bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-                focus:outline-none focus:ring-2 focus:ring-orange-500">
+                focus:outline-hidden focus:ring-2 focus:ring-orange-500">
               {classes.map(c => <option key={c} value={c}>{c === "All" ? "All Classes" : `Class ${c}`}</option>)}
             </select>
           )}
@@ -177,7 +177,7 @@ export default function ToppersPage() {
             rounded-xl px-3 py-2 bg-orange-50 dark:bg-orange-900/10">
             <Search className="w-4 h-4 text-orange-400" />
             <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by name…"
-              className="bg-transparent text-sm text-gray-700 dark:text-white outline-none w-36 placeholder-gray-400" />
+              className="bg-transparent text-sm text-gray-700 dark:text-white outline-hidden w-36 placeholder-gray-400" />
           </div>
         </div>
       </div>

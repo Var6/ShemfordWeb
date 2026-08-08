@@ -197,7 +197,7 @@ export default function AchievementsAdminPage() {
     } catch (err) { alert("Error: " + err); } finally { setLoading(false); }
   }
 
-  const inputCls = "border border-gray-300 dark:border-gray-600 p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white";
+  const inputCls = "border border-gray-300 dark:border-gray-600 p-3 rounded-sm w-full focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white";
   const labelCls = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
 
   return (
@@ -273,7 +273,7 @@ export default function AchievementsAdminPage() {
                     <div className="flex justify-between items-start gap-4">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          {ach.gradient && <span className="inline-block w-4 h-4 rounded-full flex-shrink-0" style={{ background: ach.gradient }} />}
+                          {ach.gradient && <span className="inline-block w-4 h-4 rounded-full shrink-0" style={{ background: ach.gradient }} />}
                           <h3 className="font-bold text-lg text-gray-900 dark:text-white truncate">{ach.title}</h3>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400">{ach.description}</p>
@@ -285,7 +285,7 @@ export default function AchievementsAdminPage() {
                           </div>
                         )}
                       </div>
-                      <div className="flex gap-2 flex-shrink-0">
+                      <div className="flex gap-2 shrink-0">
                         <button onClick={() => { setEditingId(ach._id); setEditForm({ ...ach, images: ach.images || [] }); }} className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded transition" title="Edit"><Edit2 className="w-4 h-4" /></button>
                         <button onClick={() => handleDelete(ach._id)} disabled={loading} className="bg-red-500 hover:bg-red-600 disabled:bg-red-300 text-white p-2 rounded transition" title="Delete"><Trash2 className="w-4 h-4" /></button>
                       </div>

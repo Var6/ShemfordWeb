@@ -61,15 +61,15 @@ export default function AdmissionModal() {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 z-[9998]"
+        className="fixed inset-0 bg-black/50 z-9998"
         onClick={() => setIsOpen(false)}
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-[9999] flex items-end justify-end p-4">
+      <div className="fixed inset-0 z-9999 flex items-end justify-end p-4">
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-h-90 max-w-sm w-full">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#FF705B] to-[#FFB457] p-6 flex justify-between items-center rounded-t-2xl">
+          <div className="bg-linear-to-r from-[#FF705B] to-[#FFB457] p-6 flex justify-between items-center rounded-t-2xl">
             <div>
               <h2 className="text-2xl font-bold text-white">🎓 Admissions Open</h2>
               <p className="text-orange-100 text-sm">Secure Your Seat at Shemford</p>
@@ -96,7 +96,7 @@ export default function AdmissionModal() {
                     name="user_name"
                     placeholder="Parent or Guardian Name"
                     required
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#FF705B] text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-[#FF705B] text-sm"
                   />
 
                   <input
@@ -123,7 +123,7 @@ export default function AdmissionModal() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-[#FF705B] to-[#FFB457] text-white font-semibold py-2 rounded-lg hover:from-[#FF705B] hover:to-[#FFA540] disabled:opacity-60 transition"
+                    className="w-full bg-linear-to-r from-[#FF705B] to-[#FFB457] text-white font-semibold py-2 rounded-lg hover:from-[#FF705B] hover:to-[#FFA540] disabled:opacity-60 transition"
                   >
                     {loading ? "Submitting..." : "Request Admission Details"}
                   </button>

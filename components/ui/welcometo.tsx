@@ -39,7 +39,7 @@ const Welcometo = () => {
           <Link
             href={t("welcome.ctaHref") || "/about"}
             className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700
-              text-white font-semibold rounded-lg shadow-sm transition-colors text-sm"
+              text-white font-semibold rounded-lg shadow-xs transition-colors text-sm"
           >
             {t("welcome.ctaLabel")}
           </Link>

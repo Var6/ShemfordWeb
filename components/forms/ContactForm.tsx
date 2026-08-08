@@ -72,7 +72,7 @@ export default function ContactForm({
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Contact Info Cards */}
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
+          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-xs">
             <div className="gap-4">
               <div className="flex items-center gap-3">
                 <Phone className="w-6 h-6 text-orange-500" />
@@ -86,7 +86,7 @@ export default function ContactForm({
             </div>
           </div>
 
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
+          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-xs">
             <div className="gap-4">
               <div className="flex items-center gap-3">
                 <Mail className="w-6 h-6 text-orange-500" />
@@ -100,7 +100,7 @@ export default function ContactForm({
             </div>
           </div>
 
-          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-sm">
+          <div className="border rounded-lg p-6 bg-white dark:bg-gray-900 shadow-xs">
             <div className="gap-4">
               <div className="flex items-center gap-3">
                 <MapPin className="w-6 h-6 text-orange-500" />
@@ -116,7 +116,7 @@ export default function ContactForm({
         </div>
 
         {/* Form */}
-        <div className="border rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+        <div className="border rounded-lg bg-white dark:bg-gray-800 shadow-xs">
           <div className="p-8">
             {submitted && (
               <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center gap-3">

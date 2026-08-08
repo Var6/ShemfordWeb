@@ -54,9 +54,9 @@ const HolidayRibbon: React.FC<HolidayRibbonProps> = ({ holidays }) => {
   if (!upcomingHoliday) return null;
 
   return (
-    <div className="mx-auto w-full max-w-7xl rounded-[32px] border border-orange-300/90 bg-gradient-to-r from-orange-200 via-amber-100 to-white p-4 text-center shadow-2xl shadow-orange-200/20 mb-4 ring-1 ring-orange-200/40">
+    <div className="mx-auto w-full max-w-7xl rounded-[32px] border border-orange-300/90 bg-linear-to-r from-orange-200 via-amber-100 to-white p-4 text-center shadow-2xl shadow-orange-200/20 mb-4 ring-1 ring-orange-200/40">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-center md:gap-6">
-        <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold uppercase tracking-[0.3em] text-white shadow-sm">
+        <span className="inline-flex items-center gap-2 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold uppercase tracking-[0.3em] text-white shadow-xs">
           🎉 Holiday Alert
         </span>
         <p className="text-sm font-semibold text-slate-900 md:text-base">

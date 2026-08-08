@@ -44,7 +44,7 @@ export default function Error({
           onClick={reset}
           className="inline-flex items-center justify-center gap-2 px-6 py-3
             bg-orange-600 hover:bg-orange-700 text-white font-semibold
-            rounded-xl transition-colors shadow-sm text-sm"
+            rounded-xl transition-colors shadow-xs text-sm"
         >
           <RefreshCw className="w-4 h-4" />
           Try Again

@@ -65,7 +65,7 @@ export default function CalendarPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -99,7 +99,7 @@ export default function CalendarPage() {
                 onChange={e => setSearchTerm(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-xl border border-orange-200
                   dark:border-orange-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-                  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                  placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-orange-500 text-sm"
               />
             </div>
             <div className="relative">
@@ -109,7 +109,7 @@ export default function CalendarPage() {
                 onChange={e => setFilterCategory(e.target.value)}
                 className="pl-11 pr-6 py-3 rounded-xl border border-orange-200 dark:border-orange-800
                   bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-                  focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                  focus:outline-hidden focus:ring-2 focus:ring-orange-500 text-sm"
               >
                 <option value="all">All Categories</option>
                 <option value="religious">Religious</option>
@@ -150,7 +150,7 @@ export default function CalendarPage() {
                     {notice.priority && (
                       <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-1
                         bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300
-                        border border-orange-200 dark:border-orange-800 rounded-full flex-shrink-0">
+                        border border-orange-200 dark:border-orange-800 rounded-full shrink-0">
                         {notice.priority}
                       </span>
                     )}
@@ -195,7 +195,7 @@ export default function CalendarPage() {
             <button
               onClick={() => setShowUpcoming(!showUpcoming)}
               className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700
-                text-white rounded-xl text-sm font-semibold transition-colors flex-shrink-0"
+                text-white rounded-xl text-sm font-semibold transition-colors shrink-0"
             >
               {showUpcoming ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               {showUpcoming ? 'Hide' : 'Show'}
@@ -214,7 +214,7 @@ export default function CalendarPage() {
                 {filteredHolidays.map(holiday => (
                   <div
                     key={holiday._id}
-                    className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border-2
+                    className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xs border-2
                       border-orange-100 dark:border-orange-900/30 hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-center justify-between mb-4">
@@ -261,12 +261,12 @@ export default function CalendarPage() {
               {vacations.map(vacation => (
                 <div
                   key={vacation._id}
-                  className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm border-2
+                  className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xs border-2
                     border-orange-100 dark:border-orange-900/30 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4 mb-5">
                     <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/20 rounded-xl
-                      flex items-center justify-center flex-shrink-0">
+                      flex items-center justify-center shrink-0">
                       <Sun className="w-6 h-6 text-orange-600" />
                     </div>
                     <div>

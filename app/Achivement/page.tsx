@@ -47,9 +47,9 @@ function SkeletonCard() {
     <div className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg animate-pulse">
       <div className="h-56 bg-gray-200 dark:bg-gray-700" />
       <div className="p-6 space-y-3">
-        <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full" />
-        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3" />
+        <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded-sm w-3/4" />
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-sm w-full" />
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-sm w-2/3" />
         <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-xl mt-4" />
       </div>
     </div>
@@ -127,7 +127,7 @@ function ModalGallery({ photos, gradientCSS }: { photos: string[]; gradientCSS: 
   }
 
   return (
-    <div className="flex-shrink-0">
+    <div className="shrink-0">
       <div className="relative w-full h-64 bg-black overflow-hidden">
         {!loaded && <div className="absolute inset-0 bg-gray-800 animate-pulse" />}
         <img
@@ -158,7 +158,7 @@ function ModalGallery({ photos, gradientCSS }: { photos: string[]; gradientCSS: 
         <div className="flex gap-2 p-2 bg-gray-900 overflow-x-auto no-visible-scrollbar">
           {photos.map((url, i) => (
             <button key={i} onClick={() => { setLoaded(false); setIdx(i); }}
-              className={`flex-shrink-0 w-14 h-10 rounded overflow-hidden border-2 transition-all ${i === idx ? 'border-white scale-105' : 'border-transparent opacity-50 hover:opacity-100'}`}>
+              className={`shrink-0 w-14 h-10 rounded overflow-hidden border-2 transition-all ${i === idx ? 'border-white scale-105' : 'border-transparent opacity-50 hover:opacity-100'}`}>
               <img src={url} alt="" className="w-full h-full object-cover" />
             </button>
           ))}
@@ -198,7 +198,7 @@ export default function AchievementsPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero — no top padding so it sits flush under navbar ── */}
-      <section className="w-full bg-gradient-to-r from-orange-600 to-amber-500 pb-16 pt-20 px-4">
+      <section className="w-full bg-linear-to-r from-orange-600 to-amber-500 pb-16 pt-20 px-4">
         <div className="max-w-4xl mx-auto text-center text-white">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -288,14 +288,14 @@ export default function AchievementsPage() {
       {/* ── Modal ── */}
       {selected && (
         <div
-          className="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 bg-black/75 backdrop-blur-xs flex items-center justify-center p-4 z-50"
           onClick={(e) => e.target === e.currentTarget && setSelected(null)}
         >
           <div className="relative bg-white dark:bg-gray-900 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[92vh] overflow-hidden flex flex-col">
 
             <button
               onClick={() => setSelected(null)}
-              className="absolute top-3 right-3 z-30 p-2 bg-black/50 hover:bg-black/70 backdrop-blur rounded-full transition"
+              className="absolute top-3 right-3 z-30 p-2 bg-black/50 hover:bg-black/70 backdrop-blur-sm rounded-full transition"
             >
               <X className="w-5 h-5 text-white" />
             </button>
@@ -309,7 +309,7 @@ export default function AchievementsPage() {
 
             <div className="overflow-y-auto flex-1 p-8">
               <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 rounded-2xl shadow-md flex-shrink-0" style={{ background: getGradientCSS(selected, selectedIdx) }}>
+                <div className="p-3 rounded-2xl shadow-md shrink-0" style={{ background: getGradientCSS(selected, selectedIdx) }}>
                   {(() => { const I = icons[selected.icon] || Trophy; return <I className="w-6 h-6 text-white" />; })()}
                 </div>
                 <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white leading-tight">

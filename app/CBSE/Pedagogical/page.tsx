@@ -12,7 +12,7 @@ export default async function PedagogicalPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* Hero */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -35,7 +35,7 @@ export default async function PedagogicalPage() {
               key={href}
               href={href}
               className="group bg-white dark:bg-gray-900 border-2 border-orange-100
-                dark:border-orange-900/30 rounded-2xl p-8 shadow-sm hover:shadow-xl
+                dark:border-orange-900/30 rounded-2xl p-8 shadow-xs hover:shadow-xl
                 hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-4"
             >
               <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/20 rounded-2xl

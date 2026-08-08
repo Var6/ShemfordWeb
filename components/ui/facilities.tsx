@@ -98,7 +98,7 @@ function FacilityCarousel() {
   }, []);
 
   return (
-    <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl group">
+    <div className="relative w-full aspect-16/10 rounded-2xl overflow-hidden shadow-2xl group">
       {facilityImages.map((src, i) => (
         <img
           key={i}
@@ -109,7 +109,7 @@ function FacilityCarousel() {
           }`}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
       <button
         onClick={prev}
         className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white
@@ -221,7 +221,7 @@ const Facilities = () => (
             "Separate wings for primary & secondary",
           ].map((item, i) => (
             <li key={i} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
               {item}
             </li>
           ))}
@@ -229,7 +229,7 @@ const Facilities = () => (
         <Link
           href="/Campus"
           className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700
-            text-white font-semibold rounded-xl shadow-sm transition-colors text-sm w-fit"
+            text-white font-semibold rounded-xl shadow-xs transition-colors text-sm w-fit"
         >
           View Full Campus <ArrowRight className="w-4 h-4" />
         </Link>

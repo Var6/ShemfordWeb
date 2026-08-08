@@ -159,7 +159,7 @@ export default function FacultiesAdmin() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white shadow-xs border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
@@ -182,7 +182,7 @@ export default function FacultiesAdmin() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {showForm && (
-          <div className="bg-white rounded-xl shadow-sm border p-6 mb-8">
+          <div className="bg-white rounded-xl shadow-xs border p-6 mb-8">
             <h2 className="text-xl font-semibold text-gray-800 mb-6">
               {editingId ? "Edit Faculty Member" : "Add New Faculty Member"}
             </h2>
@@ -340,14 +340,14 @@ export default function FacultiesAdmin() {
           </div>
         )}
 
-        <div className="bg-white rounded-xl shadow-sm border">
+        <div className="bg-white rounded-xl shadow-xs border">
           <div className="p-6 border-b">
             <h3 className="text-lg font-semibold text-gray-800">Faculty Members ({faculties.length})</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
             {faculties.map((faculty) => (
-              <div key={faculty._id} className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div key={faculty._id} className="bg-white rounded-lg border shadow-xs hover:shadow-md transition-shadow duration-300">
                 <div className="p-6">
                   <div className="flex items-center mb-4">
                     <img

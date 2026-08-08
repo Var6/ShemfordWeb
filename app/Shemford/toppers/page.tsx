@@ -82,7 +82,7 @@ const YEARS = Array.from({ length: 5 }, (_, i) => {
   return `${y - 1}-${String(y).slice(-2)}`;
 });
 
-const inputCls = "border border-gray-300 dark:border-gray-600 p-3 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm";
+const inputCls = "border border-gray-300 dark:border-gray-600 p-3 rounded-lg w-full focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm";
 const labelCls = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
 
 const rankMedal: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
@@ -242,7 +242,7 @@ export default function ToppersAdminPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map((t) => (
                 <div key={t._id} className="flex gap-3 border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md transition bg-gray-50 dark:bg-gray-700">
-                  <img src={t.photo} alt={t.name} className="w-16 h-20 rounded-lg object-cover flex-shrink-0" />
+                  <img src={t.photo} alt={t.name} className="w-16 h-20 rounded-lg object-cover shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1 mb-0.5">
                       <span className="text-lg">{rankMedal[t.rank] || "🎖️"}</span>
@@ -267,7 +267,7 @@ export default function ToppersAdminPage() {
 
         {/* ── Edit Modal ── */}
         {editForm && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="sticky top-0 bg-white dark:bg-gray-800 px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Edit Topper</h2>

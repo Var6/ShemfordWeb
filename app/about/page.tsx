@@ -72,7 +72,7 @@ export default async function About() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* Hero */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
             {t('hero.eyebrow')}
@@ -95,7 +95,7 @@ export default async function About() {
             return (
               <div
                 key={i}
-                className={`border-2 ${accent.border} rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm
+                className={`border-2 ${accent.border} rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-xs
                   hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-default group`}
                 style={{ perspective: '800px' }}
               >
@@ -112,7 +112,7 @@ export default async function About() {
         </div>
 
         {/* Mission */}
-        <div className="mb-14 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-2xl p-10 border border-orange-100 dark:border-orange-900/30">
+        <div className="mb-14 bg-linear-to-r from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-2xl p-10 border border-orange-100 dark:border-orange-900/30">
           <h2 className="text-3xl font-bold mb-5">{t('mission.title')}</h2>
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed whitespace-pre-line">
             {t('mission.body')}
@@ -132,7 +132,7 @@ export default async function About() {
             {achievements.map((ach, i) => (
               <div
                 key={i}
-                className="border-2 border-orange-100 dark:border-orange-900/30 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="border-2 border-orange-100 dark:border-orange-900/30 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-xs hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
                 <h3 className="font-bold text-lg mb-4 text-orange-600 dark:text-orange-400">
                   {ach.title}
@@ -144,7 +144,7 @@ export default async function About() {
                     .filter(Boolean)
                     .map((item, j) => (
                       <li key={j} className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm">
-                        <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -155,15 +155,15 @@ export default async function About() {
         </div>
 
         {/* Why Choose Us */}
-        <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-10 border border-orange-100 dark:border-orange-900/30">
+        <div className="bg-linear-to-r from-orange-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-10 border border-orange-100 dark:border-orange-900/30">
           <h2 className="text-3xl font-bold text-center mb-10">{t('why.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {whyChoose.map((w, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow"
+                className="flex items-start gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 shadow-xs hover:shadow-md transition-shadow"
               >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center flex-shrink-0 shadow">
+                <div className="w-10 h-10 rounded-full bg-linear-to-br from-orange-400 to-orange-600 flex items-center justify-center shrink-0 shadow-sm">
                   <CheckCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>

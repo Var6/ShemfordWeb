@@ -18,7 +18,7 @@ export default function NotFound() {
       {/* 404 display */}
       <div className="relative mb-6">
         <p className="text-[120px] md:text-[160px] font-black leading-none
-          bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent select-none">
+          bg-linear-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent select-none">
           404
         </p>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -40,7 +40,7 @@ export default function NotFound() {
           href="/"
           className="inline-flex items-center justify-center gap-2 px-6 py-3
             bg-orange-600 hover:bg-orange-700 text-white font-semibold
-            rounded-xl transition-colors shadow-sm text-sm"
+            rounded-xl transition-colors shadow-xs text-sm"
         >
           <Home className="w-4 h-4" />
           Back to Home

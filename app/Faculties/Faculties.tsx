@@ -54,7 +54,7 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -84,7 +84,7 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-11 pr-4 py-3 border border-orange-200 dark:border-orange-800
                 rounded-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-                placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-orange-500 text-sm"
             />
           </div>
           <select
@@ -92,7 +92,7 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
             onChange={(e) => setSelectedSubject(e.target.value)}
             className="px-4 py-3 border border-orange-200 dark:border-orange-800 rounded-xl
               bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-              focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+              focus:outline-hidden focus:ring-2 focus:ring-orange-500 text-sm"
           >
             {subjects.map((subject: string) => (
               <option key={subject} value={subject}>{subject}</option>
@@ -123,7 +123,7 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
                   key={faculty._id}
                   onClick={() => setSelectedFaculty(faculty)}
                   className="group bg-white dark:bg-gray-900 border-2 border-orange-100
-                    dark:border-orange-900/30 rounded-2xl shadow-sm hover:shadow-xl
+                    dark:border-orange-900/30 rounded-2xl shadow-xs hover:shadow-xl
                     hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
                 >
                   <div className="p-6 flex flex-col items-center text-center gap-3">
@@ -162,13 +162,13 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
 
       {/* ── Modal ── */}
       {selectedFaculty && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
           <div className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-2xl w-full
             max-h-[90vh] overflow-hidden border border-orange-100 dark:border-orange-900/40">
 
             {/* Header bar */}
-            <div className="bg-gradient-to-r from-orange-600 to-amber-500 p-6 flex items-center gap-5">
-              <div className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white/30 flex-shrink-0">
+            <div className="bg-linear-to-r from-orange-600 to-amber-500 p-6 flex items-center gap-5">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden ring-4 ring-white/30 shrink-0">
                 {selectedFaculty.profileUrl ? (
                   <Image src={selectedFaculty.profileUrl} alt={selectedFaculty.name} fill className="object-cover" />
                 ) : (
@@ -183,7 +183,7 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
               </div>
               <button
                 onClick={() => setSelectedFaculty(null)}
-                className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors flex-shrink-0"
+                className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors shrink-0"
               >
                 <X className="w-5 h-5 text-white" />
               </button>

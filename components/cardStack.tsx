@@ -49,7 +49,7 @@ export const CardStack = ({
             absolute
             p-[3px]               /* border thickness */
             rounded-3xl
-            bg-gradient-to-r from-yellow-500 to-orange-700
+            bg-linear-to-r from-yellow-500 to-orange-700
             /* keep a subtle outer shadow so it isn't clipped */
             shadow-3xl shadow-black/[0.06] dark:shadow-white/[0.03]
             /* allow child to size itself (inner sets the card size) */

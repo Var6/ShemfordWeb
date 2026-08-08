@@ -11,7 +11,7 @@ export default async function PedagogicalPlans() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* Hero */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -32,10 +32,10 @@ export default async function PedagogicalPlans() {
           <div
             key={i}
             className="bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
-              rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow"
+              rounded-2xl p-8 shadow-xs hover:shadow-lg transition-shadow"
           >
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <span className="w-2 h-6 bg-orange-500 rounded-full flex-shrink-0" />
+              <span className="w-2 h-6 bg-orange-500 rounded-full shrink-0" />
               {section.title}
             </h3>
             {section.content ? (
@@ -46,7 +46,7 @@ export default async function PedagogicalPlans() {
               <ul className="space-y-2">
                 {(section.items ?? '').split('\n').map((l) => l.trim()).filter(Boolean).map((item, j) => (
                   <li key={j} className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0 mt-1.5" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0 mt-1.5" />
                     {item}
                   </li>
                 ))}

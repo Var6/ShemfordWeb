@@ -2204,7 +2204,7 @@ export const REGISTRY: Registry = {
                 "publishDate": "March 15, 2025",
                 "readTime": "8 min read",
                 "views": "1250",
-                "image": "bg-gradient-to-br from-blue-500 to-indigo-600",
+                "image": "bg-linear-to-br from-blue-500 to-indigo-600",
                 "featured": "yes",
                 "body": "Children are born ready to learn; they learn every second of their lives. Though we learn throughout our life but the first 6 years of child's life is very important for learning as brain development is on its peak during this period.\n\nIn the first 6 years of life, more than one million neural connections are formed each second and 90% child's brain develops. The quality of a child's experiences during this period makes a critical difference as their brains develop, providing either strong or weak foundations for learning.\n\n## The Foundation Years\n\nThe early years are the most important time to start building a strong foundation for your child as he strives to reach his developmental milestones. Though his learning begins at home and he learns basic skills of language, colors, eating, etc. from you and other family members but as he turn 2, now its time to send him to a good preschool because quality early childhood education can make a big difference.\n\n## The Magic of Preschool\n\nThe preschool plays a magic role in the development of child's skills. Your Child have first time come out of the entirely protected home environment to an open environment of preschool and transit from being entirely dependent on you, to being independent.\n\nThis is the time when he starts asking 'who', 'what', 'where', 'how', and 'why' all the time and looking for answer for his every small question.\n\nPreschool is an entirely new world where he will have structured and playful social environment and the place where he will find answers of most of his questions. He will form new connections with his peer group, teachers and caregivers."
               },
@@ -2216,7 +2216,7 @@ export const REGISTRY: Registry = {
                 "publishDate": "March 12, 2025",
                 "readTime": "6 min read",
                 "views": "980",
-                "image": "bg-gradient-to-br from-purple-500 to-pink-600",
+                "image": "bg-linear-to-br from-purple-500 to-pink-600",
                 "featured": "yes",
                 "body": "Cognitive skills are the core skills our brain uses to think, read, learn, remember, reason, and pay attention. Working together, they gain information and move process it into knowledge we apply in our everyday life.\n\n## Understanding Cognitive Skills\n\nCognitive skill refers to the ability of your child to think, explore and understand. Development of cognitive skill for your child is the development of knowledge, ability to solving problems, figuring out things himself and his capacity to understand the world around him.\n\n## The Power of Play\n\nPlay is most important for your cognitive development of your child and in his preschool he will learn every thing by play-way method it will enhance his ability to think, understand, communicate, remember, imagine and work out what might happen next.\n\n- • Learning to solve puzzles from simple to complex\n\n- • Understanding concepts like 'bigger' and 'taller'\n\n- • Developing sense of humor and delight in jokes\n\n- • Predicting what will happen next in stories\n\n- • Learning to negotiate with friends\n\n- • Developing concept of time"
               },
@@ -2228,7 +2228,7 @@ export const REGISTRY: Registry = {
                 "publishDate": "March 10, 2025",
                 "readTime": "10 min read",
                 "views": "1420",
-                "image": "bg-gradient-to-br from-green-500 to-teal-600",
+                "image": "bg-linear-to-br from-green-500 to-teal-600",
                 "featured": "no",
                 "body": "Socio-emotional skills are one of the most important skills children develop as they grow. Developing social skills in your child will prepare him for effective communication and cooperation with others.\n\n## Social Skills Development\n\nOnce your child reaches age three, he will be more likely to play with other children instead of playing with you. During this process, he will start realizing the fact that not everyone thinks exactly the way he does.\n\n- To identify and understand his own feelings and regulate his own behavior\n\n- To understand other's feelings\n\n- To develop empathy for others\n\n- To establish and maintain good relationships\n\n## The Role of Preschool\n\nPreschool plays a very important role in the cultivation of social and emotional skills in a child. The socio-emotional skills they learn at this stage pave the way for them to understand friendship, develop routines, and interpret various situations."
               },
@@ -2240,7 +2240,7 @@ export const REGISTRY: Registry = {
                 "publishDate": "March 8, 2025",
                 "readTime": "5 min read",
                 "views": "750",
-                "image": "bg-gradient-to-br from-orange-500 to-red-600",
+                "image": "bg-linear-to-br from-orange-500 to-red-600",
                 "featured": "no",
                 "body": "Preschool plays a major role in shaping a child's social skills. In a structured yet nurturing environment, children learn to interact with peers, share resources, and develop empathy.\n\n## Key Social Milestones\n\nThrough guided activities and free play, children develop crucial social competencies that will serve them throughout their lives."
               }

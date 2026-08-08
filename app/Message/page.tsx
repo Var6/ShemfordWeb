@@ -67,7 +67,7 @@ function TabPanel({ tab, gradient }: { tab: MessageTab; gradient: string }) {
   return (
     <div
       className={`flex flex-col w-full items-center justify-between gap-5 overflow-hidden relative
-        rounded-2xl p-6 md:p-10 text-white bg-gradient-to-tr ${gradient} text-justify shadow-xl`}
+        rounded-2xl p-6 md:p-10 text-white bg-linear-to-tr ${gradient} text-justify shadow-xl`}
     >
       <span className="text-3xl text-primary text-center">{tab.heading}</span>
       {stacked ? (
@@ -98,7 +98,7 @@ export default function Message() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 px-4 py-10">
       <div className="max-w-5xl mx-auto">
-        <div className="h-full md:h-[40rem] [perspective:1000px] relative flex flex-col w-full items-start justify-start mb-40">
+        <div className="h-full md:h-[40rem] perspective-[1000px] relative flex flex-col w-full items-start justify-start mb-40">
           {tabs.length > 0 && <Tabs tabs={tabs} />}
         </div>
       </div>

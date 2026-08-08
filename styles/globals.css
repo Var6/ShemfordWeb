@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* Keep the v3-style JS config: it carries the HeroUI plugin, `darkMode:
+   'class'`, the font-family/marquee theme extensions and the content globs
+   (including HeroUI's dist, which v4 auto-detection does not scan). */
+@config '../tailwind.config.js';
 
 /* ── Scrollbar ── */
 .no-visible-scrollbar {

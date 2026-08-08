@@ -55,7 +55,7 @@ export default async function AdmissionPage() {
     <div className="min-h-screen">
 
       {/* Hero */}
-      <div className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm font-semibold uppercase tracking-widest mb-4 opacity-80">
             {t("hero.eyebrow")}
@@ -78,7 +78,7 @@ export default async function AdmissionPage() {
           {quickInfo.map((card, i) => (
             <div
               key={i}
-              className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-l-4 border-orange-500 rounded-2xl p-7 shadow-md
+              className="bg-linear-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-l-4 border-orange-500 rounded-2xl p-7 shadow-md
                 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               style={{ perspective: "800px" }}
             >
@@ -98,7 +98,7 @@ export default async function AdmissionPage() {
           {t("classes.title")}
         </h2>
         <div className="flex justify-center mb-12">
-          <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
+          <div className="w-20 h-1 bg-linear-to-r from-orange-400 to-orange-600 rounded-full" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {classesOffered.map((item, idx) => (
@@ -108,7 +108,7 @@ export default async function AdmissionPage() {
               style={{ perspective: "800px" }}
             >
               <div className="flex items-start gap-4">
-                <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white p-3 rounded-xl flex-shrink-0 group-hover:scale-105 transition-transform">
+                <div className="bg-linear-to-br from-orange-400 to-orange-600 text-white p-3 rounded-xl shrink-0 group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 <div>
@@ -129,13 +129,13 @@ export default async function AdmissionPage() {
       </div>
 
       {/* Why Choose Shemford */}
-      <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 py-14 my-4">
+      <div className="bg-linear-to-r from-orange-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 py-14 my-4">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-3 text-gray-900 dark:text-white">
             {t("why.title")}
           </h2>
           <div className="flex justify-center mb-12">
-            <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
+            <div className="w-20 h-1 bg-linear-to-r from-orange-400 to-orange-600 rounded-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {whyChooseShemford.map((item, idx) => (
@@ -145,7 +145,7 @@ export default async function AdmissionPage() {
                 style={{ perspective: "800px" }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="text-orange-500 flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="text-orange-500 shrink-0 group-hover:scale-110 transition-transform">
                     <ContentIcon className="w-7 h-7" name={item.icon} />
                   </div>
                   <div>
@@ -169,7 +169,7 @@ export default async function AdmissionPage() {
           {t("process.title")}
         </h2>
         <div className="flex justify-center mb-12">
-          <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
+          <div className="w-20 h-1 bg-linear-to-r from-orange-400 to-orange-600 rounded-full" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {admissionProcess.map((item, idx) => (
@@ -178,7 +178,7 @@ export default async function AdmissionPage() {
                 className="bg-white dark:bg-gray-800 border-2 border-orange-100 dark:border-orange-900/40 rounded-2xl p-6 h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                 style={{ perspective: "800px" }}
               >
-                <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow group-hover:scale-110 transition-transform">
+                <div className="bg-linear-to-br from-orange-400 to-orange-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow-sm group-hover:scale-110 transition-transform">
                   {idx + 1}
                 </div>
                 <div className="text-orange-500 mb-3">
@@ -207,13 +207,13 @@ export default async function AdmissionPage() {
           {t("documents.title")}
         </h2>
         <div className="flex justify-center mb-12">
-          <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
+          <div className="w-20 h-1 bg-linear-to-r from-orange-400 to-orange-600 rounded-full" />
         </div>
         <div className="bg-white dark:bg-gray-800 border-2 border-orange-100 dark:border-orange-900/40 rounded-2xl p-8 shadow-md">
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {requiredDocuments.map((doc, index) => (
               <li key={index} className="flex items-center gap-3">
-                <div className="bg-gradient-to-br from-orange-400 to-orange-600 rounded-full p-1.5 flex-shrink-0 shadow">
+                <div className="bg-linear-to-br from-orange-400 to-orange-600 rounded-full p-1.5 shrink-0 shadow-sm">
                   <CheckCircle className="w-4 h-4 text-white" />
                 </div>
                 <span className="text-gray-700 dark:text-gray-300 font-medium text-sm">
@@ -240,7 +240,7 @@ export default async function AdmissionPage() {
           {t("faq.title")}
         </h2>
         <div className="flex justify-center mb-12">
-          <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
+          <div className="w-20 h-1 bg-linear-to-r from-orange-400 to-orange-600 rounded-full" />
         </div>
         <div className="space-y-4">
           {faqs.map((faq, i) => (
@@ -261,7 +261,7 @@ export default async function AdmissionPage() {
       </div>
 
       {/* Final CTA */}
-      <div className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4">{t("cta.title")}</h2>
           <p className="text-xl mb-10 opacity-90 font-light whitespace-pre-line">

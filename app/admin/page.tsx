@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center pb-14 w-full">
+    <div className="min-h-screen bg-linear-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center pb-14 w-full">
       <div className="absolute inset-0 bg-black opacity-50 w-fit hover:shadow-2xl"></div>
       <div className="relative z-10 w-full max-w-md">
         <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 mt-4 border border-white border-opacity-20">
@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
               <input
                 type="text"
                 placeholder="Enter your username"
-                className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur border border-white border-opacity-30 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 rounded-lg text-white placeholder-blue-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
@@ -72,7 +72,7 @@ export default function AdminLoginPage() {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur border border-white border-opacity-30 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 rounded-lg text-white placeholder-blue-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
@@ -88,7 +88,7 @@ export default function AdminLoginPage() {
             <button
               onClick={handleLogin}
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+              className="w-full bg-linear-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
             >
               {loading ? (
                 <div className="flex items-center justify-center">

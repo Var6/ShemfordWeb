@@ -95,7 +95,7 @@ export default function AIChatbot() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-gradient-to-br from-[#ebeae9] to-[#d8caac] text-white shadow-lg hover:shadow-xl transition-all flex items-center justify-center hover:scale-110"
+        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-linear-to-br from-[#ebeae9] to-[#d8caac] text-white shadow-lg hover:shadow-xl transition-all flex items-center justify-center hover:scale-110"
         aria-label="Toggle chatbot"
       >
         {isOpen ? (
@@ -109,7 +109,7 @@ export default function AIChatbot() {
       {isOpen && (
         <div className="fixed bottom-20 right-6 z-40 w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-900 rounded-lg shadow-2xl flex flex-col max-h-[70vh] border border-gray-200 dark:border-gray-700">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#e2a522] to-[#e9890b] text-white p-4 rounded-t-lg flex-shrink-0">
+          <div className="bg-linear-to-r from-[#e2a522] to-[#e9890b] text-white p-4 rounded-t-lg shrink-0">
             <h3 className="font-semibold text-lg">Shem Bot </h3>
             <p className="text-xs opacity-90">Ask anything about our school</p>
           </div>
@@ -124,18 +124,18 @@ export default function AIChatbot() {
                 }`}
               >
                 {message.role === "assistant" && (
-                  <div className="w-8 h-8 flex-shrink-0 rounded-full flex items-center justify-center bg-gradient-to-br from-[#e2a522] to-[#e9890b]">
+                  <div className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center bg-linear-to-br from-[#e2a522] to-[#e9890b]">
                     <Image src="/icon.png" alt="Shem Bot" width={28} height={28} />
                   </div>
                 )}
                 <div
                   className={`max-w-xs px-4 py-2 rounded-2xl text-sm leading-relaxed ${
                     message.role === "user"
-                      ? "bg-gradient-to-r from-[#d4a574] to-[#e5b85a] text-white rounded-br-none shadow-md"
-                      : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700"
+                      ? "bg-linear-to-r from-[#d4a574] to-[#e5b85a] text-white rounded-br-none shadow-md"
+                      : "bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-none shadow-xs border border-gray-200 dark:border-gray-700"
                   }`}
                 >
-                  <p className="whitespace-pre-wrap break-words">{message.content}</p>
+                  <p className="whitespace-pre-wrap wrap-break-word">{message.content}</p>
                   <p
                     className={`text-xs mt-1 ${
                       message.role === "user"
@@ -153,10 +153,10 @@ export default function AIChatbot() {
             ))}
             {loading && (
               <div className="flex items-center gap-2 justify-start">
-                <div className="w-8 h-8 flex-shrink-0 rounded-full flex items-center justify-center bg-gradient-to-br from-[#e2a522] to-[#e9890b]">
+                <div className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center bg-linear-to-br from-[#e2a522] to-[#e9890b]">
                   <Image src="/icon.png" alt="Shem Bot" width={28} height={28} />
                 </div>
-                <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-2xl rounded-bl-none shadow-sm border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 px-4 py-2 rounded-2xl rounded-bl-none shadow-xs border border-gray-200 dark:border-gray-700">
                   <Loader className="w-4 h-4 animate-spin text-[#e9890b]" />
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function AIChatbot() {
           {/* Input */}
           <form
             onSubmit={handleSendMessage}
-            className="p-3 border-t border-gray-200 dark:border-gray-700 flex gap-2 flex-shrink-0 bg-gray-50 dark:bg-gray-800"
+            className="p-3 border-t border-gray-200 dark:border-gray-700 flex gap-2 shrink-0 bg-gray-50 dark:bg-gray-800"
           >
             <Input
               value={input}
@@ -181,7 +181,7 @@ export default function AIChatbot() {
               isIconOnly
               type="submit"
               disabled={loading || !input.trim()}
-              className="bg-gradient-to-r from-[#e69f1c] to-[#e4b314] hover:from-[#e0a911] hover:to-[#ee8f13] text-white flex-shrink-0"
+              className="bg-linear-to-r from-[#e69f1c] to-[#e4b314] hover:from-[#e0a911] hover:to-[#ee8f13] text-white shrink-0"
               size="sm"
             >
               <Send className="w-4 h-4" />

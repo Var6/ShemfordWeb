@@ -25,10 +25,10 @@ export default function ShemfordPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 mt-24">
-      <div className="bg-white shadow-sm border-b sticky top-0 z-10">
+      <div className="bg-white shadow-xs border-b sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Shemford Admin Panel
             </h1>
             <div className="flex items-center space-x-4">
@@ -46,7 +46,7 @@ export default function ShemfordPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {quickStats.map((stat, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-sm border p-6 hover:shadow-md transition-shadow duration-300">
+            <div key={index} className="bg-white rounded-xl shadow-xs border p-6 hover:shadow-md transition-shadow duration-300">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
@@ -63,7 +63,7 @@ export default function ShemfordPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {sections.map((section) => (
             <Link key={section.id} href={section.path}>
-              <div className="bg-white rounded-xl shadow-sm border hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="bg-white rounded-xl shadow-xs border hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className={`w-12 h-12 ${section.color} rounded-lg flex items-center justify-center text-white text-xl`}>
@@ -82,7 +82,7 @@ export default function ShemfordPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl shadow-sm border p-6">
+          <div className="bg-white rounded-xl shadow-xs border p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Recent Activities</h3>
             <div className="space-y-3">
               <div className="flex items-center p-3 bg-gray-50 rounded-lg">
@@ -104,7 +104,7 @@ export default function ShemfordPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border p-6">
+          <div className="bg-white rounded-xl shadow-xs border p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
             <div className="grid grid-cols-2 gap-3">
               <Link href="/Shemford/achievements">
@@ -136,7 +136,7 @@ export default function ShemfordPage() {
           </div>
         </div>
 
-        <div className="mt-8 bg-white rounded-xl shadow-sm border p-6">
+        <div className="mt-8 bg-white rounded-xl shadow-xs border p-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">System Overview</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">

@@ -115,7 +115,7 @@ export default async function RootLayout({
           <ContentProvider value={content}>
             <div className="relative flex min-h-screen flex-col">
               <Navbar />
-              <main className="w-full min-h-screen flex-grow pb-4">
+              <main className="w-full min-h-screen grow pb-4">
                 {children}
               </main>
               <Footer />

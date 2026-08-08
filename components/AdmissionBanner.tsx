@@ -10,7 +10,7 @@ export default function AdmissionBanner() {
   return (
     <div>
       {isOpen && (
-        <div className="w-full bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 py-3 px-4 animate-pulse border-b-4 border-orange-600">
+        <div className="w-full bg-linear-to-r from-orange-500 via-orange-400 to-yellow-500 py-3 px-4 animate-pulse border-b-4 border-orange-600">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-2xl">🎓</span>

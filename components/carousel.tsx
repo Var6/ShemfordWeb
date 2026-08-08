@@ -64,7 +64,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, className, videoUrl, videoF
           const isVideoSlide = index === videoSlideIndex;
 
           return (
-            <div key={index} className="relative w-full flex-shrink-0 overflow-hidden" style={{ height: '100%' }}>
+            <div key={index} className="relative w-full shrink-0 overflow-hidden" style={{ height: '100%' }}>
               {isVideoSlide ? (
                 <video
                   ref={videoRef}

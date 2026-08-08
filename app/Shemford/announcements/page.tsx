@@ -109,17 +109,17 @@ export default function AnnouncementsAdmin() {
   });
 
   return (
-    <div className="min-h-screen mt-9 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen mt-9 bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-xl border-b border-white/20 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-linear-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
                 <Bell className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                   Announcements Admin
                 </h1>
                 <p className="text-sm text-gray-500">Manage your organization's announcements</p>
@@ -127,7 +127,7 @@ export default function AnnouncementsAdmin() {
             </div>
             <button
               onClick={() => setShowForm(!showForm)}
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2"
+              className="bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2"
             >
               <Plus className="w-5 h-5" />
               <span>New Announcement</span>
@@ -140,7 +140,7 @@ export default function AnnouncementsAdmin() {
         {/* Create Form */}
         <div className={`transition-all duration-500 ease-in-out transform origin-top ${showForm ? 'opacity-100 scale-y-100 mb-8' : 'opacity-0 scale-y-0 h-0 overflow-hidden'}`}>
           <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-white flex items-center space-x-2">
                 <Plus className="w-5 h-5" />
                 <span>Create New Announcement</span>
@@ -261,7 +261,7 @@ export default function AnnouncementsAdmin() {
                     />
                     <label
                       htmlFor="file-upload"
-                      className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors"
+                      className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-xs text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer transition-colors"
                     >
                       Choose Files
                     </label>
@@ -295,7 +295,7 @@ export default function AnnouncementsAdmin() {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 disabled:scale-100 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center space-x-2"
+                  className="flex-1 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 disabled:scale-100 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
                     <>

@@ -124,7 +124,7 @@ const BlogPage: React.FC = () => {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -186,7 +186,7 @@ const BlogPage: React.FC = () => {
               {featuredBlogs.map((blog, index) => (
                 <article
                   key={blog.id}
-                  className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700 overflow-hidden cursor-pointer"
+                  className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xs hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700 overflow-hidden cursor-pointer"
                   style={{ animationDelay: `${index * 150}ms` }}
                   onClick={() => openModal(blog.id)}
                 >
@@ -194,7 +194,7 @@ const BlogPage: React.FC = () => {
                   <div className={`${blog.image} h-56 relative`}>
                     <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs font-medium bg-white bg-opacity-20 backdrop-blur-sm text-white rounded-full border border-white border-opacity-30">
+                      <span className="px-3 py-1 text-xs font-medium bg-white bg-opacity-20 backdrop-blur-xs text-white rounded-full border border-white border-opacity-30">
                         Featured
                       </span>
                     </div>
@@ -204,7 +204,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleLike(blog.id);
                         }}
-                        className="p-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-2 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
                       >
                         <Heart className={`w-4 h-4 ${likedBlogs.includes(blog.id) ? 'text-red-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -213,7 +213,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleBookmark(blog.id);
                         }}
-                        className="p-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-2 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
                       >
                         <Bookmark className={`w-4 h-4 ${bookmarkedBlogs.includes(blog.id) ? 'text-yellow-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -246,7 +246,7 @@ const BlogPage: React.FC = () => {
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mr-3">
+                        <div className="w-10 h-10 bg-linear-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mr-3">
                           <User className="w-5 h-5 text-white" />
                         </div>
                         <div>
@@ -275,7 +275,7 @@ const BlogPage: React.FC = () => {
               {regularBlogs.map((blog, index) => (
                 <article
                   key={blog.id}
-                  className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700 overflow-hidden cursor-pointer"
+                  className="bg-white dark:bg-gray-800 rounded-xl shadow-xs hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700 overflow-hidden cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                   onClick={() => openModal(blog.id)}
                 >
@@ -287,7 +287,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleLike(blog.id);
                         }}
-                        className="p-1.5 bg-white bg-opacity-20 backdrop-blur-sm rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-1.5 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
                       >
                         <Heart className={`w-4 h-4 ${likedBlogs.includes(blog.id) ? 'text-red-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -296,7 +296,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleBookmark(blog.id);
                         }}
-                        className="p-1.5 bg-white bg-opacity-20 backdrop-blur-sm rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-1.5 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
                       >
                         <Bookmark className={`w-4 h-4 ${bookmarkedBlogs.includes(blog.id) ? 'text-yellow-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -321,7 +321,7 @@ const BlogPage: React.FC = () => {
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mr-2">
+                        <div className="w-8 h-8 bg-linear-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center mr-2">
                           <User className="w-4 h-4 text-white" />
                         </div>
                         <span className="text-sm font-medium text-gray-900 dark:text-white">{blog.writer}</span>
@@ -355,20 +355,20 @@ const BlogPage: React.FC = () => {
 
         {/* Blog Modal */}
         {selectedBlog && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-xs">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               {/* Modal Header */}
               <div className={`${selectedBlog.image} h-64 relative rounded-t-2xl`}>
                 <div className="absolute inset-0 bg-black bg-opacity-50 rounded-t-2xl"></div>
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 p-2 bg-white bg-opacity-20 backdrop-blur-sm rounded-full hover:bg-opacity-30 transition-all"
+                  className="absolute top-4 right-4 p-2 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
                 >
                   <X className="w-5 h-5 text-white" />
                 </button>
                 <div className="absolute bottom-6 left-6 text-white">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 text-sm font-medium bg-white bg-opacity-20 backdrop-blur-sm rounded-full border border-white border-opacity-30">
+                    <span className="px-3 py-1 text-sm font-medium bg-white bg-opacity-20 backdrop-blur-xs rounded-full border border-white border-opacity-30">
                       {selectedBlog.category}
                     </span>
                     <div className="flex items-center text-sm">
@@ -382,7 +382,7 @@ const BlogPage: React.FC = () => {
                   </div>
                   <h1 className="text-3xl font-bold mb-2">{selectedBlog.title}</h1>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-white bg-opacity-20 backdrop-blur-sm rounded-full flex items-center justify-center mr-3">
+                    <div className="w-10 h-10 bg-white bg-opacity-20 backdrop-blur-xs rounded-full flex items-center justify-center mr-3">
                       <User className="w-5 h-5 text-white" />
                     </div>
                     <div>

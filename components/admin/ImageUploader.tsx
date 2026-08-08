@@ -110,7 +110,7 @@ export function ImageUploader({
         </button>
       )}
       <input
-        className="w-full text-xs px-2 py-1.5 border border-gray-200 dark:border-gray-600 rounded dark:bg-gray-700 dark:text-gray-200"
+        className="w-full text-xs px-2 py-1.5 border border-gray-200 dark:border-gray-600 rounded-sm dark:bg-gray-700 dark:text-gray-200"
         placeholder="…or paste an image URL"
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -193,7 +193,7 @@ export function MultiImageUploader({
               </button>
               <div className="absolute bottom-1 left-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
                 <button
-                  className="bg-black/60 text-white rounded px-1.5 text-xs"
+                  className="bg-black/60 text-white rounded-sm px-1.5 text-xs"
                   title="Move left"
                   type="button"
                   onClick={() => move(i, i - 1)}
@@ -201,7 +201,7 @@ export function MultiImageUploader({
                   ←
                 </button>
                 <button
-                  className="bg-black/60 text-white rounded px-1.5 text-xs"
+                  className="bg-black/60 text-white rounded-sm px-1.5 text-xs"
                   title="Move right"
                   type="button"
                   onClick={() => move(i, i + 1)}

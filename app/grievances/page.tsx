@@ -58,7 +58,7 @@ export default function GrievancesPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex justify-center mb-5">
             <div className="w-16 h-16 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center">
@@ -84,7 +84,7 @@ export default function GrievancesPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cards.map((c, i) => (
             <div key={i} className="bg-orange-50 dark:bg-orange-900/10 border-l-4 border-orange-400
-              dark:border-orange-600 rounded-2xl p-6 shadow-sm">
+              dark:border-orange-600 rounded-2xl p-6 shadow-xs">
               <div className="mb-3">
                 <ContentIcon className="w-6 h-6 text-orange-600" name={c.icon} />
               </div>
@@ -115,7 +115,7 @@ export default function GrievancesPage() {
           {submitted && (
             <div className="mb-8 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200
               dark:border-green-800 rounded-xl flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+              <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
               <div>
                 <p className="font-semibold text-green-800 dark:text-green-300">
                   Grievance submitted successfully.
@@ -131,7 +131,7 @@ export default function GrievancesPage() {
           {error && (
             <div className="mb-8 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200
               dark:border-red-800 rounded-xl flex items-center gap-3">
-              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+              <AlertCircle className="w-5 h-5 text-red-600 shrink-0" />
               <p className="text-red-700 dark:text-red-300 text-sm">{error}</p>
             </div>
           )}
@@ -156,7 +156,7 @@ export default function GrievancesPage() {
                   required
                   className="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl
                     bg-white dark:bg-gray-900 text-gray-900 dark:text-white
-                    focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                    focus:outline-hidden focus:ring-2 focus:ring-orange-500 text-sm"
                 >
                   <option value="">Select…</option>
                   {relationships.map((r) => (
@@ -230,7 +230,7 @@ export default function GrievancesPage() {
       </div>
 
       {/* ── Contact info strip ── */}
-      <div className="bg-gradient-to-r from-orange-600 to-amber-500 py-10 px-4">
+      <div className="bg-linear-to-r from-orange-600 to-amber-500 py-10 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-white text-center">
           {[
             { icon: <Phone className="w-5 h-5" />,  label: "Call Us", value: "+91 9431201060" },
@@ -268,7 +268,7 @@ export default function GrievancesPage() {
               >
                 <span className="font-semibold text-gray-900 dark:text-white text-sm">{faq.q}</span>
                 <ChevronDown
-                  className={`w-4 h-4 text-orange-600 flex-shrink-0 transition-transform duration-200 ${
+                  className={`w-4 h-4 text-orange-600 shrink-0 transition-transform duration-200 ${
                     openFaq === i ? "rotate-180" : ""
                   }`}
                 />

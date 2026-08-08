@@ -45,7 +45,7 @@ export default function AnnouncementsPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -94,7 +94,7 @@ export default function AnnouncementsPage() {
               <div
                 key={ann._id}
                 className="group bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
-                  rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                  rounded-2xl shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 <div className="p-6">
                   {/* Badges */}
@@ -145,7 +145,7 @@ export default function AnnouncementsPage() {
 
       {/* ── Modal ── */}
       {selectedAnnouncement && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
           <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-2xl w-full
             max-h-[90vh] overflow-hidden border border-orange-100 dark:border-orange-900/40">
             {/* Header */}

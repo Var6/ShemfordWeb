@@ -16,7 +16,7 @@ export const Dropdown = ({ label, children,className }: DropdownProps) => {
     <div className={cn("relative inline-block text-left",className)}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1 text-gray-700 hover:text-primary focus:outline-none"
+        className="flex items-center gap-1 text-gray-700 hover:text-primary focus:outline-hidden"
       >
         {label} <ChevronDownIcon className="w-4 h-4" />
       </button>

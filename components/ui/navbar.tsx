@@ -159,7 +159,7 @@ export default function Navbar() {
           {socialLinks.map((s) => (
             <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
               aria-label={s.label}
-              className="p-1.5 rounded hover:text-orange-400 transition-colors">
+              className="p-1.5 rounded-sm hover:text-orange-400 transition-colors">
               <s.Icon className="h-3.5 w-3.5" />
             </a>
           ))}
@@ -167,7 +167,7 @@ export default function Navbar() {
       </div>
 
       {/* ── Main nav bar ── */}
-      <nav className="bg-white border-b border-gray-200 shadow-sm">
+      <nav className="bg-white border-b border-gray-200 shadow-xs">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[4.5rem]">
 
           {/* Logo */}
@@ -309,7 +309,7 @@ export default function Navbar() {
               href="/admission"
               className="hidden sm:inline-flex items-center px-4 py-2 bg-orange-600
                 hover:bg-orange-700 text-white text-sm font-semibold rounded-lg
-                transition-colors shadow-sm"
+                transition-colors shadow-xs"
             >
               Apply Now
             </Link>

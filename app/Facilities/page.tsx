@@ -57,7 +57,7 @@ export default function FacilitiesPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -85,7 +85,7 @@ export default function FacilitiesPage() {
             onChange={e => setSearchTerm(e.target.value)}
             className="w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-900 border-2 border-orange-100
               dark:border-orange-900/40 rounded-xl text-gray-900 dark:text-white
-              placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm shadow-sm"
+              placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-orange-500 text-sm shadow-xs"
           />
         </div>
 
@@ -131,9 +131,9 @@ export default function FacilitiesPage() {
               <div key={i} className="rounded-2xl overflow-hidden animate-pulse">
                 <div className="h-44 bg-orange-100 dark:bg-orange-900/20" />
                 <div className="p-5 space-y-3 border-2 border-orange-100 dark:border-orange-900/30 rounded-b-2xl">
-                  <div className="h-4 bg-orange-100 dark:bg-orange-900/20 rounded w-3/4" />
-                  <div className="h-3 bg-orange-100 dark:bg-orange-900/20 rounded" />
-                  <div className="h-3 bg-orange-100 dark:bg-orange-900/20 rounded w-2/3" />
+                  <div className="h-4 bg-orange-100 dark:bg-orange-900/20 rounded-sm w-3/4" />
+                  <div className="h-3 bg-orange-100 dark:bg-orange-900/20 rounded-sm" />
+                  <div className="h-3 bg-orange-100 dark:bg-orange-900/20 rounded-sm w-2/3" />
                 </div>
               </div>
             ))}
@@ -156,20 +156,20 @@ export default function FacilitiesPage() {
                   <CardBody
                     onClick={() => setSelectedFacility(facility)}
                     className="group bg-white dark:bg-gray-900 border-2 border-orange-100
-                      dark:border-orange-900/30 rounded-2xl shadow-sm hover:shadow-xl
+                      dark:border-orange-900/30 rounded-2xl shadow-xs hover:shadow-xl
                       transition-shadow duration-300 cursor-pointer overflow-hidden w-full"
                   >
                     <CardItem translateZ={20} className="w-full">
-                      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-orange-100 to-amber-100">
+                      <div className="relative h-48 overflow-hidden bg-linear-to-br from-orange-100 to-amber-100">
                         {facility.image?.startsWith('http') ? (
                           <img src={facility.image} alt={facility.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-orange-200 to-amber-200 flex items-center justify-center">
+                          <div className="w-full h-full bg-linear-to-br from-orange-200 to-amber-200 flex items-center justify-center">
                             <IconComp className="w-16 h-16 text-orange-300" />
                           </div>
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent
+                        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent
                           opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute top-3 left-3">
                           <span className="bg-orange-500 text-white text-[10px] font-bold uppercase
@@ -178,7 +178,7 @@ export default function FacilitiesPage() {
                           </span>
                         </div>
                         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                          <div className="w-8 h-8 bg-white/20 backdrop-blur-xs rounded-full flex items-center justify-center">
                             <Eye className="w-4 h-4 text-white" />
                           </div>
                         </div>
@@ -192,7 +192,7 @@ export default function FacilitiesPage() {
                           {facility.title}
                         </h3>
                         <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-500
-                          group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
+                          group-hover:translate-x-1 transition-all shrink-0 mt-0.5" />
                       </div>
                       <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2 mb-3">
                         {facility.description}
@@ -201,7 +201,7 @@ export default function FacilitiesPage() {
                         <div className="space-y-1.5">
                           {facility.features.slice(0, 2).map((feat, i) => (
                             <div key={i} className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 shrink-0" />
                               <span className="truncate">{feat}</span>
                             </div>
                           ))}
@@ -224,20 +224,20 @@ export default function FacilitiesPage() {
       {/* ── Modal ── */}
       {selectedFacility && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
           onClick={e => e.target === e.currentTarget && setSelectedFacility(null)}
         >
           <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl
             max-h-[90vh] overflow-hidden border border-orange-100 dark:border-orange-900/40">
 
-            <div className="relative h-52 overflow-hidden bg-gradient-to-br from-orange-200 to-amber-200 flex-shrink-0">
+            <div className="relative h-52 overflow-hidden bg-linear-to-br from-orange-200 to-amber-200 shrink-0">
               {selectedFacility.image?.startsWith('http') ? (
                 <img src={selectedFacility.image} alt={selectedFacility.title}
                   className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-orange-300 to-amber-300" />
+                <div className="w-full h-full bg-linear-to-br from-orange-300 to-amber-300" />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
               <button
                 onClick={() => setSelectedFacility(null)}
                 className="absolute top-4 right-4 w-9 h-9 bg-white/20 backdrop-blur-md rounded-full
@@ -267,7 +267,7 @@ export default function FacilitiesPage() {
                     {selectedFacility.features.map((feat, i) => (
                       <div key={i} className="flex items-center gap-2 bg-orange-50 dark:bg-orange-900/10
                         border border-orange-100 dark:border-orange-900/30 rounded-xl px-3 py-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0" />
                         <span className="text-sm text-gray-700 dark:text-gray-300">{feat}</span>
                       </div>
                     ))}
@@ -275,7 +275,7 @@ export default function FacilitiesPage() {
                 </div>
               )}
 
-              <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl p-5 text-white
+              <div className="bg-linear-to-r from-orange-500 to-amber-500 rounded-xl p-5 text-white
                 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
                   <h4 className="font-bold mb-0.5">{t("modal.ctaTitle")}</h4>
@@ -284,7 +284,7 @@ export default function FacilitiesPage() {
                 <button
                   onClick={() => setSelectedFacility(null)}
                   className="bg-white text-orange-600 font-bold px-5 py-2 rounded-xl
-                    hover:bg-orange-50 transition-colors text-sm flex-shrink-0"
+                    hover:bg-orange-50 transition-colors text-sm shrink-0"
                 >
                   {t("modal.ctaButton")}
                 </button>

@@ -212,7 +212,7 @@ export default function FacilitiesAdminPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-xl border-b border-white/20 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -222,11 +222,11 @@ export default function FacilitiesAdminPage() {
                 <ArrowLeft className="w-6 h-6" />
               </Link>
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-linear-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                     Facilities Management
                   </h1>
                   <p className="text-sm text-gray-500">Manage your school's facilities</p>
@@ -250,7 +250,7 @@ export default function FacilitiesAdminPage() {
               </div>
               <button
                 onClick={() => setShowForm(!showForm)}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2"
+                className="bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2"
               >
                 <Plus className="w-5 h-5" />
                 <span className="hidden sm:inline">Add Facility</span>
@@ -264,7 +264,7 @@ export default function FacilitiesAdminPage() {
         {/* Create/Edit Form */}
         <div className={`transition-all duration-500 ease-in-out transform origin-top ${showForm ? 'opacity-100 scale-y-100 mb-8' : 'opacity-0 scale-y-0 h-0 overflow-hidden'}`}>
           <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+            <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-white flex items-center space-x-2">
                 <Plus className="w-5 h-5" />
                 <span>{editingId ? "Edit Facility" : "Create New Facility"}</span>
@@ -343,7 +343,7 @@ export default function FacilitiesAdminPage() {
                     <button
                       type="button"
                       onClick={addFeature}
-                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-xl transition-all duration-200"
+                      className="bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-xl transition-all duration-200"
                     >
                       <Plus className="w-5 h-5" />
                     </button>
@@ -356,12 +356,12 @@ export default function FacilitiesAdminPage() {
                   <label className="text-sm font-medium text-gray-700">Features ({features.length})</label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-32 overflow-y-auto bg-gray-50/50 p-4 rounded-xl">
                     {features.map((feature, index) => (
-                      <div key={index} className="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm border">
+                      <div key={index} className="flex items-center justify-between bg-white p-3 rounded-lg shadow-xs border">
                         <span className="text-sm text-gray-700 flex-1">{feature}</span>
                         <button
                           type="button"
                           onClick={() => removeFeature(index)}
-                          className="text-red-500 hover:text-red-700 ml-2 p-1 hover:bg-red-50 rounded transition-all"
+                          className="text-red-500 hover:text-red-700 ml-2 p-1 hover:bg-red-50 rounded-sm transition-all"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -396,7 +396,7 @@ export default function FacilitiesAdminPage() {
                           <button
                             type="button"
                             onClick={() => document.getElementById('file-upload')?.click()}
-                            className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-white/30 transition-all"
+                            className="bg-white/20 backdrop-blur-xs text-white p-2 rounded-lg hover:bg-white/30 transition-all"
                           >
                             <Camera className="w-5 h-5" />
                           </button>
@@ -407,7 +407,7 @@ export default function FacilitiesAdminPage() {
                               setImageFile(null);
                               setImage("");
                             }}
-                            className="bg-red-500/20 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-red-500/30 transition-all"
+                            className="bg-red-500/20 backdrop-blur-xs text-white p-2 rounded-lg hover:bg-red-500/30 transition-all"
                           >
                             <X className="w-5 h-5" />
                           </button>
@@ -454,7 +454,7 @@ export default function FacilitiesAdminPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={loading || uploadingImage}
-                  className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-500 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 disabled:scale-100 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center space-x-2"
+                  className="flex-1 bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-500 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 disabled:scale-100 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center space-x-2"
                 >
                   {loading || uploadingImage ? (
                     <>
@@ -531,7 +531,7 @@ export default function FacilitiesAdminPage() {
             {!showForm && (
               <button
                 onClick={() => setShowForm(true)}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105"
+                className="bg-linear-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105"
               >
                 Add Your First Facility
               </button>
@@ -565,10 +565,10 @@ export default function FacilitiesAdminPage() {
                       ) : facility.image.startsWith('bg-') ? (
                         <div className={`w-full h-full ${facility.image} transition-transform duration-300 group-hover:scale-110`} />
                       ) : (
-                        <div className={`w-full h-full bg-gradient-to-br ${categoryInfo.color} transition-transform duration-300 group-hover:scale-110`} />
+                        <div className={`w-full h-full bg-linear-to-br ${categoryInfo.color} transition-transform duration-300 group-hover:scale-110`} />
                       )
                     ) : (
-                      <div className={`w-full h-full bg-gradient-to-br ${categoryInfo.color} transition-transform duration-300 group-hover:scale-110`} />
+                      <div className={`w-full h-full bg-linear-to-br ${categoryInfo.color} transition-transform duration-300 group-hover:scale-110`} />
                     )}
                     
                     {/* Overlay */}
@@ -576,7 +576,7 @@ export default function FacilitiesAdminPage() {
                     
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4">
-                      <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
+                      <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-xs rounded-full px-3 py-1 border border-white/30">
                         <IconComponent className="w-4 h-4 text-white" />
                         <span className="text-white text-sm font-medium">{categoryInfo.label}</span>
                       </div>
@@ -586,13 +586,13 @@ export default function FacilitiesAdminPage() {
                     <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2">
                       <button
                         onClick={() => handleEdit(facility)}
-                        className="bg-blue-500/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-blue-500/30 transition-all"
+                        className="bg-blue-500/20 backdrop-blur-xs text-white p-2 rounded-full hover:bg-blue-500/30 transition-all"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(facility._id)}
-                        className="bg-red-500/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-red-500/30 transition-all"
+                        className="bg-red-500/20 backdrop-blur-xs text-white p-2 rounded-full hover:bg-red-500/30 transition-all"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -600,7 +600,7 @@ export default function FacilitiesAdminPage() {
 
                     {/* Icon */}
                     <div className="absolute bottom-4 left-4">
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl border border-white/30">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-xs rounded-full flex items-center justify-center text-2xl border border-white/30">
                         {facility.icon}
                       </div>
                     </div>
@@ -628,7 +628,7 @@ export default function FacilitiesAdminPage() {
                         <div className="grid grid-cols-1 gap-2 max-h-20 overflow-y-auto">
                           {facility.features.slice(0, 3).map((feature, featureIndex) => (
                             <div key={featureIndex} className="flex items-center text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-md">
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2 flex-shrink-0" />
+                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2 shrink-0" />
                               <span className="truncate">{feature}</span>
                             </div>
                           ))}

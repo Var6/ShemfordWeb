@@ -12,7 +12,7 @@ type PageData = Record<string, unknown>;
 type SiteData = Record<string, PageData>;
 
 const inputCls =
-  "w-full border border-gray-300 dark:border-gray-600 px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white";
+  "w-full border border-gray-300 dark:border-gray-600 px-3 py-2 rounded-lg text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white";
 
 /* ── One row of a repeating list ── */
 function ListRow({
@@ -40,7 +40,7 @@ function ListRow({
         </span>
         <div className="flex items-center gap-1">
           <button
-            className="px-2 py-1 text-xs rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-30"
+            className="px-2 py-1 text-xs rounded-sm bg-gray-200 dark:bg-gray-700 disabled:opacity-30"
             disabled={index === 0}
             title="Move up"
             type="button"
@@ -49,7 +49,7 @@ function ListRow({
             ↑
           </button>
           <button
-            className="px-2 py-1 text-xs rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-30"
+            className="px-2 py-1 text-xs rounded-sm bg-gray-200 dark:bg-gray-700 disabled:opacity-30"
             disabled={index === total - 1}
             title="Move down"
             type="button"
@@ -58,7 +58,7 @@ function ListRow({
             ↓
           </button>
           <button
-            className="px-2 py-1 text-xs rounded bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/40"
+            className="px-2 py-1 text-xs rounded-sm bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/40"
             title="Remove item"
             type="button"
             onClick={onRemove}
@@ -443,7 +443,7 @@ export default function ContentAdminPage() {
                 return (
                   <section
                     key={group.label}
-                    className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700"
+                    className="bg-white dark:bg-gray-800 rounded-xl shadow-xs border border-gray-200 dark:border-gray-700"
                   >
                     <button
                       className="w-full flex items-center justify-between px-6 py-4 text-left"

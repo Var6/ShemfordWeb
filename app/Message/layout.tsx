@@ -37,7 +37,7 @@ export default function MessageLayout({
         </div>
       ) : (
         // Desktop Layout
-        <div className="flex flex-col items-center justify-center flex-grow px-8 mt-5 pb-10">
+        <div className="flex flex-col items-center justify-center grow px-8 mt-5 pb-10">
           <div className="w-full text-center">{children}</div>
         </div>
       )}

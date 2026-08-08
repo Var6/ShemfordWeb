@@ -52,7 +52,7 @@ export default function EventsPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* ── Hero ── */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -85,10 +85,10 @@ export default function EventsPage() {
                   className={`relative h-48 overflow-hidden rounded-2xl cursor-pointer group
                     shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${event.image}`}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
                   <button
                     onClick={e => { e.stopPropagation(); toggleBookmark(event._id); }}
-                    className="absolute top-4 right-4 w-9 h-9 bg-white/20 backdrop-blur-sm rounded-full
+                    className="absolute top-4 right-4 w-9 h-9 bg-white/20 backdrop-blur-xs rounded-full
                       flex items-center justify-center hover:bg-white/30 transition-colors"
                   >
                     {bookmarkedEvents.includes(event._id)
@@ -116,7 +116,7 @@ export default function EventsPage() {
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-900 border border-orange-200
                 dark:border-orange-800 rounded-xl text-sm text-gray-900 dark:text-white
-                placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder-gray-400 focus:outline-hidden focus:ring-2 focus:ring-orange-500"
             />
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -151,10 +151,10 @@ export default function EventsPage() {
                 key={event._id}
                 onClick={() => setSelectedEvent(event)}
                 className="group bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
-                  rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden"
+                  rounded-2xl shadow-xs hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Image banner */}
-                <div className={`${event.image} h-36 relative bg-gradient-to-br from-orange-200 to-amber-200`}>
+                <div className={`${event.image} h-36 relative bg-linear-to-br from-orange-200 to-amber-200`}>
                   <div className="absolute inset-0 bg-black/20" />
                   <div className="absolute top-3 left-3">
                     <span className="bg-orange-500 text-white text-[10px] font-bold uppercase
@@ -164,7 +164,7 @@ export default function EventsPage() {
                   </div>
                   <button
                     onClick={e => { e.stopPropagation(); toggleBookmark(event._id); }}
-                    className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full
+                    className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-xs rounded-full
                       flex items-center justify-center hover:bg-white/30 transition-colors"
                   >
                     {bookmarkedEvents.includes(event._id)

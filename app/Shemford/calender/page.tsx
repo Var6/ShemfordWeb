@@ -116,7 +116,7 @@ const fetchItems = async () => {
   const getTabStyle = (tab: string) => {
     const config = tabConfig[tab as keyof typeof tabConfig];
     return activeTab === tab 
-      ? `bg-gradient-to-r ${config.color} text-white shadow-lg transform scale-105`
+      ? `bg-linear-to-r ${config.color} text-white shadow-lg transform scale-105`
       : `bg-white ${config.textColor} hover:${config.bgColor} border border-gray-200`;
   };
 
@@ -132,16 +132,16 @@ const fetchItems = async () => {
   const filteredItems = items.filter((item: CalendarItem) => item.type === activeTab);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-6 py-8">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
           <div className="flex items-center gap-4 mb-2">
-            <div className="p-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl">
+            <div className="p-3 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl">
               <Calendar className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Calendar Management
               </h1>
               <p className="text-gray-600 mt-1">Manage holidays, vacations, and important notices</p>
@@ -292,7 +292,7 @@ const fetchItems = async () => {
                   className={`w-full py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
                     loading || !formData.title.trim()
                       ? 'bg-gray-400 cursor-not-allowed' 
-                      : `bg-gradient-to-r ${tabConfig[activeTab].color} hover:shadow-lg transform hover:scale-105`
+                      : `bg-linear-to-r ${tabConfig[activeTab].color} hover:shadow-lg transform hover:scale-105`
                   } text-white`}
                 >
                   {loading ? (

@@ -11,7 +11,7 @@ export default async function MandatoryDisclosure() {
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
       {/* Hero */}
-      <div className="w-full bg-gradient-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
+      <div className="w-full bg-linear-to-r from-orange-600 to-amber-500 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/15
             rounded-2xl mb-5 border border-white/20">
@@ -29,11 +29,11 @@ export default async function MandatoryDisclosure() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
-          rounded-2xl shadow-sm overflow-hidden">
+          rounded-2xl shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-gradient-to-r from-orange-600 to-amber-500 text-white">
+                <tr className="bg-linear-to-r from-orange-600 to-amber-500 text-white">
                   <th className="px-6 py-4 text-center text-sm font-bold w-16">S.No.</th>
                   <th className="px-6 py-4 text-left text-sm font-bold">Information</th>
                   <th className="px-6 py-4 text-left text-sm font-bold">Details</th>

@@ -8,7 +8,7 @@ interface CustomNavbar{
 }
 const CustomNav = ({className,Page}:CustomNavbar) => {
   return (
-    // bg-gradient-to-br from-orange-600 via-orange-300 
+    // bg-linear-to-br from-orange-600 via-orange-300 
     // to-yellow-600
     <div
     className={cn(

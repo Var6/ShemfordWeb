@@ -100,12 +100,12 @@ function NoticeBoard({
 
   return (
     <div className="relative left-1/2 w-screen max-w-none -translate-x-1/2
-      bg-gradient-to-r from-orange-600 to-amber-500">
+      bg-linear-to-r from-orange-600 to-amber-500">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col md:flex-row gap-6 md:gap-10">
 
           {/* Label */}
-          <div className="flex-shrink-0 flex flex-col justify-center items-center md:items-start gap-2 md:w-44">
+          <div className="shrink-0 flex flex-col justify-center items-center md:items-start gap-2 md:w-44">
             <div className="flex items-center gap-2">
               <Bell className="w-5 h-5 text-white animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-100">
@@ -126,9 +126,9 @@ function NoticeBoard({
           <div className="flex-1 relative">
             {/* top/bottom fade */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-6 z-10
-              bg-gradient-to-b from-orange-600 to-transparent" />
+              bg-linear-to-b from-orange-600 to-transparent" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-6 z-10
-              bg-gradient-to-t from-amber-500 to-transparent" />
+              bg-linear-to-t from-amber-500 to-transparent" />
 
             <ul
               ref={listRef}
@@ -140,7 +140,7 @@ function NoticeBoard({
                   key={i}
                   className="flex items-start gap-3 py-2 border-b border-white/10 last:border-0"
                 >
-                  <span className={`mt-1.5 w-2 h-2 rounded-full flex-shrink-0 ${priorityDot(n.priority)}`} />
+                  <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${priorityDot(n.priority)}`} />
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-white leading-snug truncate">
                       {n.title}
@@ -152,7 +152,7 @@ function NoticeBoard({
                     )}
                   </div>
                   {n.category && (
-                    <span className="ml-auto flex-shrink-0 text-[10px] font-semibold uppercase
+                    <span className="ml-auto shrink-0 text-[10px] font-semibold uppercase
                       tracking-wide bg-white/15 text-white px-2 py-0.5 rounded-full">
                       {n.category}
                     </span>
@@ -342,7 +342,7 @@ export default function Home() {
 
           {/* ── Admissions CTA ── */}
           <div className="py-16 md:py-20">
-            <div className="rounded-2xl bg-gradient-to-r from-orange-600 to-amber-500
+            <div className="rounded-2xl bg-linear-to-r from-orange-600 to-amber-500
               px-8 md:px-16 py-14 text-center shadow-xl">
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-100">
                 {t("cta.eyebrow")}
