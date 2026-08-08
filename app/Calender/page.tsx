@@ -4,6 +4,7 @@ import {
   Calendar, Download, Bell, Clock, Sun, Filter, Search,
   ChevronDown, ChevronUp, BookOpen, MapPin,
 } from 'lucide-react';
+import { usePageContent } from "@/lib/content/client";
 
 interface CalendarItem {
   _id: string;
@@ -32,6 +33,7 @@ const priorityBorder: Record<string, string> = {
 };
 
 export default function CalendarPage() {
+  const { t } = usePageContent("calendar");
   const [searchTerm, setSearchTerm]       = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
   const [showUpcoming, setShowUpcoming]   = useState(true);
@@ -70,11 +72,11 @@ export default function CalendarPage() {
             <Calendar className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            Academic Year
+            {t("hero.eyebrow")}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">School Calendar</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("hero.title")}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Holidays, vacations, and important notices — all in one place.
+            {t("hero.subtitle")}
           </p>
           <p className="mt-3 text-sm text-orange-200">
             {currentTime.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}

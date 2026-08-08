@@ -5,6 +5,8 @@ import {
   Heart, Book, Coffee, Zap, MapPin, ChevronRight, Eye, X, Star, Award, Clock, Search,
 } from 'lucide-react';
 import { CardContainer, CardBody, CardItem } from '@/components/ui/3d-card';
+import { usePageContent } from "@/lib/content/client";
+import { ContentIcon } from "@/lib/content/icons";
 
 interface Facility {
   _id: string;
@@ -21,20 +23,10 @@ const iconMap: Record<string, any> = {
   Wifi, Shield, Heart, Book, Coffee, Zap,
 };
 
-const CATEGORIES = [
-  { id: 'all',            label: 'All',              icon: MapPin        },
-  { id: 'academic',       label: 'Academic',          icon: GraduationCap },
-  { id: 'arts',           label: 'Arts & Culture',    icon: Palette       },
-  { id: 'sports',         label: 'Sports',            icon: Users         },
-  { id: 'wellness',       label: 'Health',            icon: Heart         },
-  { id: 'technology',     label: 'Technology',        icon: Monitor       },
-  { id: 'dining',         label: 'Dining',            icon: Coffee        },
-  { id: 'safety',         label: 'Safety',            icon: Shield        },
-  { id: 'sustainability', label: 'Eco',               icon: Zap           },
-  { id: 'events',         label: 'Events',            icon: Star          },
-];
-
 export default function CampusPage() {
+  const { t, list } = usePageContent("campus");
+  const CATEGORIES = list<{ id: string; label: string; icon: string }>("categories");
+  const heroBadges = t("hero.badges").split(",").map((b) => b.trim()).filter(Boolean);
   const [facilities, setFacilities]               = useState<Facility[]>([]);
   const [activeCategory, setActiveCategory]       = useState('all');
   const [selectedFacility, setSelectedFacility]   = useState<Facility | null>(null);
@@ -74,16 +66,18 @@ export default function CampusPage() {
             <GraduationCap className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            Shemford Futuristic School
+            {t("hero.eyebrow")}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Our Campus</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">{t("hero.title")}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto leading-relaxed">
-            World-class facilities designed to nurture learning, creativity, and holistic development.
+            {t("hero.subtitle")}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-orange-100">
-            <span className="flex items-center gap-1.5"><Award className="w-4 h-4" /> Modern Infrastructure</span>
-            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> All-Day Access</span>
-            <span className="flex items-center gap-1.5"><Star  className="w-4 h-4" /> Premium Facilities</span>
+            {heroBadges.map((badge, i) => (
+              <span key={i} className="flex items-center gap-1.5">
+                <ContentIcon className="w-4 h-4" name={["Award", "Clock", "Star"][i % 3]} /> {badge}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -95,7 +89,7 @@ export default function CampusPage() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-orange-400" />
           <input
             type="text"
-            placeholder="Search facilities…"
+            placeholder={t("searchPlaceholder")}
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             className="w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-900 border-2 border-orange-100
@@ -107,7 +101,6 @@ export default function CampusPage() {
         {/* ── Category pills ── */}
         <div className="flex flex-wrap gap-2 mb-10">
           {CATEGORIES.map(cat => {
-            const Icon   = cat.icon;
             const active = activeCategory === cat.id;
             const cnt    = countFor(cat.id);
             return (
@@ -121,7 +114,7 @@ export default function CampusPage() {
                     : 'bg-white dark:bg-gray-900 border-orange-100 dark:border-orange-900/40 text-gray-700 dark:text-gray-300 hover:border-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/10'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${active ? 'text-white' : 'text-orange-500'}`} />
+                <ContentIcon className={`w-3.5 h-3.5 ${active ? 'text-white' : 'text-orange-500'}`} name={cat.icon} />
                 {cat.label}
                 <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                   active ? 'bg-white/20 text-white' : 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400'
@@ -158,9 +151,9 @@ export default function CampusPage() {
           <div className="text-center py-24 bg-orange-50 dark:bg-orange-900/10 rounded-2xl
             border border-orange-100 dark:border-orange-900/30">
             <MapPin className="mx-auto h-12 w-12 text-orange-300 mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No facilities found</h3>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t("empty.title")}</h3>
             <p className="text-gray-500 text-sm">
-              {searchTerm ? `No results for "${searchTerm}".` : 'No facilities in this category.'}
+              {searchTerm ? `No results for "${searchTerm}".` : t("empty.body")}
             </p>
           </div>
         ) : (
@@ -284,7 +277,7 @@ export default function CampusPage() {
               {selectedFacility.features?.length > 0 && (
                 <div>
                   <h3 className="font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-3 text-sm">
-                    <Star className="w-4 h-4 text-orange-500" /> Key Features
+                    <Star className="w-4 h-4 text-orange-500" /> {t("modal.featuresTitle")}
                   </h3>
                   <div className="grid sm:grid-cols-2 gap-2">
                     {selectedFacility.features.map((feat, i) => (
@@ -301,15 +294,15 @@ export default function CampusPage() {
               <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl p-5 text-white
                 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
-                  <h4 className="font-bold mb-0.5">Interested in this facility?</h4>
-                  <p className="text-orange-100 text-sm">Schedule a campus tour today.</p>
+                  <h4 className="font-bold mb-0.5">{t("modal.ctaTitle")}</h4>
+                  <p className="text-orange-100 text-sm">{t("modal.ctaBody")}</p>
                 </div>
                 <button
                   onClick={() => setSelectedFacility(null)}
                   className="bg-white text-orange-600 font-bold px-5 py-2 rounded-xl
                     hover:bg-orange-50 transition-colors text-sm flex-shrink-0"
                 >
-                  Contact Us →
+                  {t("modal.ctaButton")}
                 </button>
               </div>
             </div>

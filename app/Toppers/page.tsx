@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Star, Trophy, GraduationCap, Search, BookOpen } from "lucide-react";
+import { usePageContent } from "@/lib/content/client";
 
 type Topper = {
   _id: string;
@@ -68,6 +69,7 @@ function TopperCard({ t }: { t: Topper }) {
 }
 
 export default function ToppersPage() {
+  const { t } = usePageContent("toppers");
   const [toppers, setToppers] = useState<Topper[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<"All" | "Class Topper" | "CBSE Board">("All");
@@ -118,9 +120,9 @@ export default function ToppersPage() {
             <Star className="w-4 h-4 text-amber-300" />
             Hall of Fame
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Our Toppers</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">{t("hero.title")}</h1>
           <p className="text-orange-100 text-lg max-w-2xl mx-auto">
-            Celebrating the brilliance of our students — from class champions to CBSE board toppers who made Shemford proud.
+            {t("hero.subtitle")}
           </p>
           {!loading && toppers.length > 0 && (
             <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">

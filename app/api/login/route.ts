@@ -1,12 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
+import { SESSION_COOKIE, SESSION_TTL_SECONDS, createSessionToken } from '@/lib/auth';
+
 // Security: Credentials stored in environment variables
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || '';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 
 // Rate limiting: Simple in-memory store (use Redis in production)
 const loginAttempts = new Map<string, { count: number; timestamp: number }>();
+
+// timingSafeEqual throws a RangeError when the buffers differ in length, so
+// compare fixed-width digests instead of the raw credentials.
+function sha256(value: string): Uint8Array {
+  return new Uint8Array(crypto.createHash('sha256').update(value, 'utf8').digest());
+}
+
+function safeEqual(a: string, b: string): boolean {
+  return crypto.timingSafeEqual(sha256(a), sha256(b));
+}
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -43,27 +55,43 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { username, password } = await request.json();
-
     // Validate credentials from environment variables
     if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
-      console.error('Admin credentials not configured in environment variables');
+      console.error(
+        'Admin credentials not configured. Set ADMIN_USERNAME and ADMIN_PASSWORD in .env.local'
+      );
       return NextResponse.json(
         { success: false, message: 'Server configuration error' },
         { status: 500 }
       );
     }
 
+    let body: unknown;
+
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: 'Invalid request body' },
+        { status: 400 }
+      );
+    }
+
+    const { username, password } = (body ?? {}) as {
+      username?: unknown;
+      password?: unknown;
+    };
+
+    if (typeof username !== 'string' || typeof password !== 'string') {
+      return NextResponse.json(
+        { success: false, message: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
     // Use timing-safe comparison to prevent timing attacks
-    const encoder = new TextEncoder();
-    const usernameMatch = crypto.timingSafeEqual(
-      encoder.encode(username || ''),
-      encoder.encode(ADMIN_USERNAME)
-    );
-    const passwordMatch = crypto.timingSafeEqual(
-      encoder.encode(password || ''),
-      encoder.encode(ADMIN_PASSWORD)
-    );
+    const usernameMatch = safeEqual(username, ADMIN_USERNAME);
+    const passwordMatch = safeEqual(password, ADMIN_PASSWORD);
 
     if (usernameMatch && passwordMatch) {
       const response = NextResponse.json({
@@ -71,11 +99,12 @@ export async function POST(request: NextRequest) {
         message: 'Login successful',
       });
 
-      response.cookies.set('admin_logged_in', 'true', {
+      // Signed, HttpOnly session — cannot be forged from the browser.
+      response.cookies.set(SESSION_COOKIE, await createSessionToken(), {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        maxAge: 86400, // 24 hours
+        sameSite: 'lax',
+        maxAge: SESSION_TTL_SECONDS,
         path: '/',
       });
 

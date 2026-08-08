@@ -12,6 +12,8 @@ import  Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
 import AIChartbot from '@/components/AIChat';
 import AdmissionModal from '@/components/AdmissionModal';
+import { getSiteContent } from '@/lib/content/server';
+import { ContentProvider } from '@/lib/content/client';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shemfordpatna.com'),
@@ -85,12 +87,15 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const schemaMarkup = generateSchemaMarkup(EDUCATIONAL_ORG_SCHEMA);
+  // Admin-editable copy for every page, resolved once per render and shared
+  // through context. Falls back to registry defaults if the DB is unreachable.
+  const content = await getSiteContent();
 
   return (
     <html suppressHydrationWarning lang="en">
@@ -107,15 +112,17 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="w-full min-h-screen flex-grow pb-4">
-              {children}
-            </main>
-            <Footer />
-            <AIChartbot />
-            <AdmissionModal />
-          </div>
+          <ContentProvider value={content}>
+            <div className="relative flex min-h-screen flex-col">
+              <Navbar />
+              <main className="w-full min-h-screen flex-grow pb-4">
+                {children}
+              </main>
+              <Footer />
+              <AIChartbot />
+              <AdmissionModal />
+            </div>
+          </ContentProvider>
         </Providers>
         <Analytics/>
       </body>

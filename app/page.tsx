@@ -8,9 +8,11 @@ import Whyshemford from "@/components/ui/whyshemford";
 import HolidayRibbon from "@/components/notificationribbon";
 import { Button } from "@heroui/button";
 import Link from "next/link";
-import { CheckCircle, Users, Medal, Building2, BookOpen, Bell, ExternalLink } from "lucide-react";
+import { BookOpen, Bell, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import { CardSpotlight } from "@/components/ui/card-spotlight";
+import { usePageContent } from "@/lib/content/client";
+import { ContentIcon } from "@/lib/content/icons";
 
 interface Holiday {
   title: string;
@@ -30,62 +32,33 @@ interface Notice {
   createdAt?: string;
 }
 
-const educationalQuotes = [
-  {
-    quote: "Education is not the filling of a pail, but the lighting of a fire.",
-    author: "William Butler Yeats",
-    role: "Poet & Nobel Laureate",
-  },
-  {
-    quote:
-      "The function of education is to teach one to think intensively and to think critically. Intelligence plus character — that is the goal of true education.",
-    author: "Dr. Martin Luther King Jr.",
-    role: "Civil Rights Leader & Scholar",
-  },
-  {
-    quote: "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
-    author: "Benjamin Franklin",
-    role: "Founding Father & Philosopher",
-  },
-];
+interface Quote {
+  quote: string;
+  author: string;
+  role: string;
+}
 
-const statCards = [
-  {
-    icon: <Building2 className="w-6 h-6" />,
-    value: "15+",
-    label: "Modern Facilities",
-    desc: "Labs, libraries & smart classrooms",
-  },
-  {
-    icon: <Users className="w-6 h-6" />,
-    value: "500+",
-    label: "Active Students",
-    desc: "Pre-Primary to Class XII",
-  },
-  {
-    icon: <Medal className="w-6 h-6" />,
-    value: "95%+",
-    label: "Board Results",
-    desc: "Consistent CBSE excellence",
-  },
-  {
-    icon: <CheckCircle className="w-6 h-6" />,
-    value: "CBSE",
-    label: "Affiliated",
-    desc: "Nationally recognised curriculum",
-  },
-];
-
-const images: string[] = [
-  "/assets/banner1.jpg",
-  "/assets/banner2.jpg",
-  "/assets/banner3.jpg",
-  "/assets/banner4.jpg",
-  "/assets/banner5.jpg",
-];
+interface StatCard {
+  icon: string;
+  value: string;
+  label: string;
+  desc: string;
+}
 
 /* ── Scrolling Notice Board ── */
-function NoticeBoard({ notices }: { notices: Notice[] }) {
+function NoticeBoard({
+  notices,
+  eyebrow,
+  title,
+  linkLabel,
+  linkHref,
+}: {
+  notices: Notice[];
+  eyebrow: string;
+  title: string;
+  linkLabel: string;
+  linkHref: string;
+}) {
   const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -136,15 +109,15 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
             <div className="flex items-center gap-2">
               <Bell className="w-5 h-5 text-white animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-100">
-                Notice Board
+                {eyebrow}
               </span>
             </div>
             <p className="text-2xl font-bold text-white leading-tight hidden md:block">
-              Latest<br />Notices
+              {title}
             </p>
-            <Link href="/Announcement">
+            <Link href={linkHref}>
               <span className="inline-flex items-center gap-1 text-xs text-orange-100 hover:text-white transition-colors mt-1">
-                View all <ExternalLink className="w-3 h-3" />
+                {linkLabel} <ExternalLink className="w-3 h-3" />
               </span>
             </Link>
           </div>
@@ -196,10 +169,15 @@ function NoticeBoard({ notices }: { notices: Notice[] }) {
 }
 
 export default function Home() {
+  const { t, list } = usePageContent("home");
   const [holidays, setHolidays]     = useState<Holiday[]>([]);
   const [loading, setLoading]       = useState(true);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [notices, setNotices]       = useState<Notice[]>([]);
+
+  const images          = list<string>("hero.images");
+  const statCards       = list<StatCard>("stats");
+  const educationalQuotes = list<Quote>("quotes.items");
 
   useEffect(() => {
     fetch("/api/calendar")
@@ -217,14 +195,16 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const t = setInterval(
+    if (educationalQuotes.length < 2) return;
+    const timer = setInterval(
       () => setQuoteIndex((i) => (i + 1) % educationalQuotes.length),
       7000,
     );
-    return () => clearInterval(t);
-  }, []);
+    return () => clearInterval(timer);
+  }, [educationalQuotes.length]);
 
-  const q = educationalQuotes[quoteIndex];
+  // An admin can delete quotes, so never index past the end.
+  const q = educationalQuotes[quoteIndex % Math.max(educationalQuotes.length, 1)];
 
   return (
     <>
@@ -233,7 +213,7 @@ export default function Home() {
         <Carousel
           images={images}
           className="w-full h-full"
-          videoUrl="https://res.cloudinary.com/doef42j0e/video/upload/q_auto,f_auto/shemford_hero"
+          videoUrl={t("hero.videoUrl") || undefined}
           videoFirst
         />
       </div>
@@ -248,7 +228,7 @@ export default function Home() {
                   <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/20
                     flex items-center justify-center group-hover:bg-orange-600 transition-colors duration-300">
                     <span className="text-orange-600 group-hover:text-white transition-colors duration-300">
-                      {s.icon}
+                      <ContentIcon name={s.icon} />
                     </span>
                   </div>
                   <span className="text-3xl font-extrabold text-orange-600 dark:text-orange-400">{s.value}</span>
@@ -286,7 +266,15 @@ export default function Home() {
       </section>
 
       {/* ── Notice Board (full-width, between Facilities & Why) ── */}
-      {notices.length > 0 && <NoticeBoard notices={notices} />}
+      {notices.length > 0 && (
+        <NoticeBoard
+          notices={notices}
+          eyebrow={t("notice.eyebrow")}
+          title={t("notice.title")}
+          linkLabel={t("notice.linkLabel")}
+          linkHref={t("notice.linkHref") || "/Announcement"}
+        />
+      )}
 
       <section className="w-full overflow-hidden">
         <div className="w-full px-4 sm:px-6">
@@ -299,12 +287,13 @@ export default function Home() {
           <div className="h-px bg-gray-100 dark:bg-gray-800" />
 
           {/* ── Quote section ── */}
+          {educationalQuotes.length > 0 && (
           <div className="py-16 md:py-20">
             <div className="max-w-3xl mx-auto text-center px-4">
               <div className="flex items-center justify-center gap-2 mb-6">
                 <BookOpen className="w-5 h-5 text-orange-600" />
                 <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600">
-                  Words That Inspire
+                  {t("quotes.eyebrow")}
                 </span>
                 <BookOpen className="w-5 h-5 text-orange-600" />
               </div>
@@ -316,7 +305,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
                 className="text-2xl md:text-3xl font-serif italic text-gray-800 dark:text-gray-100 leading-relaxed"
               >
-                &ldquo;{q.quote}&rdquo;
+                &ldquo;{q?.quote}&rdquo;
               </motion.blockquote>
 
               <motion.div
@@ -327,8 +316,8 @@ export default function Home() {
                 className="mt-6 flex flex-col items-center gap-1"
               >
                 <div className="h-px w-10 bg-orange-500 mb-3" />
-                <p className="font-semibold text-gray-900 dark:text-white">{q.author}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{q.role}</p>
+                <p className="font-semibold text-gray-900 dark:text-white">{q?.author}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{q?.role}</p>
               </motion.div>
 
               <div className="flex items-center justify-center gap-2 mt-6">
@@ -347,6 +336,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          )}
 
           <div className="h-px bg-gray-100 dark:bg-gray-800" />
 
@@ -355,31 +345,30 @@ export default function Home() {
             <div className="rounded-2xl bg-gradient-to-r from-orange-600 to-amber-500
               px-8 md:px-16 py-14 text-center shadow-xl">
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-orange-100">
-                Academic Year 2025–26
+                {t("cta.eyebrow")}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">
-                Admissions Now Open
+                {t("cta.title")}
               </h2>
               <p className="text-orange-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-                Secure your child's place at Patna's most forward-thinking CBSE school.
-                Limited seats available — apply early.
+                {t("cta.body")}
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
-                <Link href="/contact">
+                <Link href={t("cta.primaryHref") || "/contact"}>
                   <Button
                     size="lg"
                     className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 shadow-md transition-colors"
                   >
-                    Apply Now
+                    {t("cta.primaryLabel")}
                   </Button>
                 </Link>
-                <Link href="/admission">
+                <Link href={t("cta.secondaryHref") || "/admission"}>
                   <Button
                     size="lg"
                     variant="bordered"
                     className="border-white/50 text-white hover:border-white hover:bg-white/10 transition-colors"
                   >
-                    Admission Guide
+                    {t("cta.secondaryLabel")}
                   </Button>
                 </Link>
               </div>

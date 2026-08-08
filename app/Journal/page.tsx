@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, User, Calendar, Clock, Search, Filter, X, Heart, Share2, Bookmark, Eye } from 'lucide-react';
 
+import { usePageContent } from '@/lib/content/client';
+
 interface Blog {
   id: number;
   title: string;
   writer: string;
   image: string;
-  content: React.FunctionComponent;
+  body: string;
   category: string;
   readTime: string;
   publishDate: string;
@@ -16,171 +18,54 @@ interface Blog {
   excerpt: string;
 }
 
-const blogData: Blog[] = [
-  {
-    id: 1,
-    title: "IMPORTANCE OF PRESCHOOL EDUCATION",
-    writer: "Rishabh Ranjan",
-    image: "bg-gradient-to-br from-blue-500 to-indigo-600",
-    category: "Education",
-    readTime: "8 min read",
-    publishDate: "March 15, 2025",
-    views: 1250,
-    featured: true,
-    excerpt: "Children are born ready to learn; they learn every second of their lives. The first 6 years of a child's life is crucial for brain development...",
-    content: () => (
-      <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
-        <p className="text-xl leading-relaxed mb-6">
-          Children are born ready to learn; they learn every second of their lives. Though we learn throughout our life but the first 6 years of child's life is very important for learning as brain development is on its peak during this period.
-        </p>
-        
-        <p className="mb-6">
-          In the first 6 years of life, more than one million neural connections are formed each second and 90% child's brain develops. The quality of a child's experiences during this period makes a critical difference as their brains develop, providing either strong or weak foundations for learning.
-        </p>
+/** Renders an article body: "## " starts a subheading, "- " a bullet. */
+const ArticleBody: React.FC<{ body: string }> = ({ body }) => {
+  const blocks = (body ?? '').split('\n').map((l) => l.trim()).filter(Boolean);
 
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Foundation Years</h2>
-        <p className="mb-6">
-          The early years are the most important time to start building a strong foundation for your child as he strives to reach his developmental milestones. Though his learning begins at home and he learns basic skills of language, colors, eating, etc. from you and other family members but as he turn 2, now its time to send him to a good preschool because quality early childhood education can make a big difference.
-        </p>
+  return (
+    <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
+      {blocks.map((block, i) => {
+        if (block.startsWith('## ')) {
+          return (
+            <h2 key={i} className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
+              {block.slice(3)}
+            </h2>
+          );
+        }
+        if (block.startsWith('- ')) {
+          return (
+            <li key={i} className="ml-6 list-disc mb-2 leading-relaxed">
+              {block.slice(2)}
+            </li>
+          );
+        }
 
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Magic of Preschool</h2>
-        <p className="mb-6">
-          The preschool plays a magic role in the development of child's skills. Your Child have first time come out of the entirely protected home environment to an open environment of preschool and transit from being entirely dependent on you, to being independent.
-        </p>
-
-        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl my-8 border-l-4 border-blue-500">
-          <p className="text-blue-800 dark:text-blue-200 font-medium">
-            This is the time when he starts asking 'who', 'what', 'where', 'how', and 'why' all the time and looking for answer for his every small question.
+        return (
+          <p key={i} className="mb-6 leading-relaxed">
+            {block}
           </p>
-        </div>
-
-        <p className="mb-6">
-          Preschool is an entirely new world where he will have structured and playful social environment and the place where he will find answers of most of his questions. He will form new connections with his peer group, teachers and caregivers.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: 2,
-    title: "COGNITIVE DEVELOPMENT IN EARLY YEARS",
-    writer: "Rishabh Stark",
-    image: "bg-gradient-to-br from-purple-500 to-pink-600",
-    category: "Development",
-    readTime: "6 min read",
-    publishDate: "March 12, 2025",
-    views: 980,
-    featured: true,
-    excerpt: "Cognitive skills are the core skills our brain uses to think, read, learn, remember, reason, and pay attention...",
-    content: () => (
-      <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
-        <p className="text-xl leading-relaxed mb-6 bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent font-bold">
-          Cognitive skills are the core skills our brain uses to think, read, learn, remember, reason, and pay attention. Working together, they gain information and move process it into knowledge we apply in our everyday life.
-        </p>
-        
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Understanding Cognitive Skills</h2>
-        <p className="mb-6">
-          Cognitive skill refers to the ability of your child to think, explore and understand. Development of cognitive skill for your child is the development of knowledge, ability to solving problems, figuring out things himself and his capacity to understand the world around him.
-        </p>
-
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Power of Play</h2>
-        <p className="mb-6">
-          Play is most important for your cognitive development of your child and in his preschool he will learn every thing by play-way method it will enhance his ability to think, understand, communicate, remember, imagine and work out what might happen next.
-        </p>
-
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-xl my-8">
-          <h3 className="text-xl font-semibold mb-4 text-purple-800 dark:text-purple-200">Key Cognitive Milestones</h3>
-          <ul className="space-y-2 text-purple-700 dark:text-purple-300">
-            <li>• Learning to solve puzzles from simple to complex</li>
-            <li>• Understanding concepts like 'bigger' and 'taller'</li>
-            <li>• Developing sense of humor and delight in jokes</li>
-            <li>• Predicting what will happen next in stories</li>
-            <li>• Learning to negotiate with friends</li>
-            <li>• Developing concept of time</li>
-          </ul>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 3,
-    title: "SOCIO-EMOTIONAL DEVELOPMENT",
-    writer: "Meera Sinha",
-    image: "bg-gradient-to-br from-green-500 to-teal-600",
-    category: "Psychology",
-    readTime: "10 min read",
-    publishDate: "March 10, 2025",
-    views: 1420,
-    featured: false,
-    excerpt: "Socio-emotional skills are one of the most important skills children develop as they grow. These skills prepare children for effective communication...",
-    content: () => (
-      <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
-        <p className="text-xl leading-relaxed mb-6">
-          Socio-emotional skills are one of the most important skills children develop as they grow. Developing social skills in your child will prepare him for effective communication and cooperation with others.
-        </p>
-
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Social Skills Development</h2>
-        <p className="mb-6">
-          Once your child reaches age three, he will be more likely to play with other children instead of playing with you. During this process, he will start realizing the fact that not everyone thinks exactly the way he does.
-        </p>
-
-        <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl my-8">
-          <h3 className="text-xl font-semibold mb-4 text-green-800 dark:text-green-200">Emotional Skills Include:</h3>
-          <ul className="space-y-3 text-green-700 dark:text-green-300">
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              To identify and understand his own feelings and regulate his own behavior
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              To understand other's feelings
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              To develop empathy for others
-            </li>
-            <li className="flex items-start">
-              <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-              To establish and maintain good relationships
-            </li>
-          </ul>
-        </div>
-
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">The Role of Preschool</h2>
-        <p className="mb-6">
-          Preschool plays a very important role in the cultivation of social and emotional skills in a child. The socio-emotional skills they learn at this stage pave the way for them to understand friendship, develop routines, and interpret various situations.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: 4,
-    title: "BUILDING SOCIAL SKILLS IN PRESCHOOL",
-    writer: "Alice Johnson",
-    image: "bg-gradient-to-br from-orange-500 to-red-600",
-    category: "Social Skills",
-    readTime: "5 min read",
-    publishDate: "March 8, 2025",
-    views: 750,
-    featured: false,
-    excerpt: "Preschool plays a major role in shaping a child's social skills. Learn how structured environments help children develop essential social competencies...",
-    content: () => (
-      <div className="prose prose-lg max-w-none text-gray-700 dark:text-gray-300">
-        <p className="text-xl leading-relaxed mb-6">
-          Preschool plays a major role in shaping a child's social skills. In a structured yet nurturing environment, children learn to interact with peers, share resources, and develop empathy.
-        </p>
-        
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Key Social Milestones</h2>
-        <p className="mb-6">
-          Through guided activities and free play, children develop crucial social competencies that will serve them throughout their lives.
-        </p>
-      </div>
-    ),
-  },
-];
-
-const categories = ['All', 'Education', 'Development', 'Psychology', 'Social Skills'];
+        );
+      })}
+    </div>
+  );
+};
 
 const BlogPage: React.FC = () => {
+  const { t, list } = usePageContent('journal');
+  const categories = t('categories').split(',').map((c) => c.trim()).filter(Boolean);
+  const blogData: Blog[] = list<Record<string, string>>('posts').map((p, i) => ({
+    id: i,
+    title: p.title ?? '',
+    writer: p.writer ?? '',
+    image: p.image ?? '',
+    body: p.body ?? '',
+    category: p.category ?? '',
+    readTime: p.readTime ?? '',
+    publishDate: p.publishDate ?? '',
+    views: Number(p.views) || 0,
+    featured: p.featured === 'yes',
+    excerpt: p.excerpt ?? '',
+  }));
   const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -246,11 +131,11 @@ const BlogPage: React.FC = () => {
             <BookOpen className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            Shemford Journal
+            {t('hero.eyebrow')}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Educational Insights</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('hero.title')}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Discover expert perspectives on early childhood development and education.
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -264,7 +149,7 @@ const BlogPage: React.FC = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search articles..."
+              placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-3 rounded-xl border border-orange-200 dark:border-orange-800
@@ -295,7 +180,7 @@ const BlogPage: React.FC = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <BookOpen className="w-6 h-6 text-orange-600 mr-2" />
-              Featured Articles
+              {t('featuredTitle')}
             </h2>
             <div className="grid gap-8 md:grid-cols-2">
               {featuredBlogs.map((blog, index) => (
@@ -542,7 +427,7 @@ const BlogPage: React.FC = () => {
                   </button>
                 </div>
 
-                <selectedBlog.content />
+                <ArticleBody body={selectedBlog.body} />
               </div>
             </div>
           </div>

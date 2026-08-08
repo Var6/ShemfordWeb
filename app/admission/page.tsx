@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import ContactForm from "@/components/forms/ContactForm";
-import { CheckCircle, FileText, Users, Calendar, Award, BookOpen, Sparkles, Target } from "lucide-react";
+import { CheckCircle, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/button";
+
+import { getPageContent } from "@/lib/content/server";
+import { ContentIcon } from "@/lib/content/icons";
 
 export const metadata: Metadata = {
   title: "Admissions - Shemford Futuristic School",
@@ -22,101 +25,32 @@ export const metadata: Metadata = {
   },
 };
 
-const admissionProcess = [
-  {
-    step: 1,
-    title: "Submit Application",
-    description:
-      "Complete the online form with accurate details about your child and family. Our team reviews every application personally.",
-    icon: <FileText className="w-7 h-7" />,
-  },
-  {
-    step: 2,
-    title: "Assessment & Interaction",
-    description:
-      "An age-appropriate interaction session and brief academic assessment help us understand each child's strengths and learning style.",
-    icon: <Users className="w-7 h-7" />,
-  },
-  {
-    step: 3,
-    title: "Merit-Based Selection",
-    description:
-      "Results are communicated within 7 working days. Selection is transparent, fair, and based on merit and seat availability.",
-    icon: <CheckCircle className="w-7 h-7" />,
-  },
-  {
-    step: 4,
-    title: "Enrolment & Onboarding",
-    description:
-      "Complete the joining formalities, collect your welcome kit, and prepare for an extraordinary academic journey.",
-    icon: <Calendar className="w-7 h-7" />,
-  },
-];
+interface InfoCard {
+  emoji: string;
+  title: string;
+  body: string;
+  note: string;
+}
 
-const classesOffered = [
-  {
-    class: "Pre-Primary (Nursery – KG)",
-    age: "2½ – 5 years",
-    description:
-      "A play-centred environment that builds language, motor skills, and social confidence through structured exploration.",
-  },
-  {
-    class: "Primary (Classes I – V)",
-    age: "5 – 11 years",
-    description:
-      "Strong conceptual foundations in literacy, numeracy, sciences, and the arts — with emphasis on curiosity over rote learning.",
-  },
-  {
-    class: "Secondary (Classes VI – VIII)",
-    age: "11 – 14 years",
-    description:
-      "Subject specialisation deepens alongside personality development, leadership opportunities, and the ShemEduMAX™ enrichment tracks.",
-  },
-  {
-    class: "Senior Secondary (Classes IX – XII)",
-    age: "14 – 18 years",
-    description:
-      "Rigorous CBSE board preparation, IIT-JEE / NEET integrated foundation, and dedicated career counselling for every stream.",
-  },
-];
+interface IconItem {
+  icon: string;
+  title: string;
+  description: string;
+}
 
-const whyChooseShemford = [
-  {
-    title: "World-Class Infrastructure",
-    description:
-      "Smart classrooms, four specialised laboratories, a 1,000+ volume library, and a multi-sport campus — every space is purpose-built for learning.",
-    icon: <Award className="w-7 h-7" />,
-  },
-  {
-    title: "Expert, Caring Faculty",
-    description:
-      "Highly qualified educators with progressive training who treat every child as an individual, not a roll number.",
-    icon: <Users className="w-7 h-7" />,
-  },
-  {
-    title: "Holistic Development",
-    description:
-      "Academics, sports, performing arts, coding, and community service — because a well-rounded education produces well-rounded human beings.",
-    icon: <Sparkles className="w-7 h-7" />,
-  },
-  {
-    title: "Future-Focused Curriculum",
-    description:
-      "The ShemEduMAX™ system integrates 21st-century skills — critical thinking, digital fluency, and global awareness — into every subject.",
-    icon: <Target className="w-7 h-7" />,
-  },
-];
+export default async function AdmissionPage() {
+  const { t, list } = await getPageContent("admission");
 
-const requiredDocuments = [
-  "Original Birth Certificate",
-  "Recent Passport-size Photographs (4 copies)",
-  "Immunisation / Vaccination Certificate",
-  "Previous School Transfer Certificate (if applicable)",
-  "Proof of Residence (utility bill or rental agreement)",
-  "Parent / Guardian Government-issued ID Proof",
-];
+  const quickInfo = list<InfoCard>("quickInfo");
+  const classesOffered = list<{ class: string; age: string; description: string }>("classes.items");
+  const whyChooseShemford = list<IconItem>("why.items");
+  const admissionProcess = list<IconItem>("process.steps");
+  const faqs = list<{ q: string; a: string }>("faq.items");
+  const requiredDocuments = t("documents.items")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 
-export default function AdmissionPage() {
   return (
     <div className="min-h-screen">
 
@@ -124,18 +58,16 @@ export default function AdmissionPage() {
       <div className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm font-semibold uppercase tracking-widest mb-4 opacity-80">
-            Academic Year 2025 – 26 · Admissions Open
+            {t("hero.eyebrow")}
           </p>
           <h1 className="text-5xl md:text-6xl font-bold mb-5 leading-tight">
-            Begin an Extraordinary Journey
+            {t("hero.title")}
           </h1>
           <p className="text-xl md:text-2xl mb-4 opacity-95 font-light">
-            Where every child is seen, inspired, and empowered.
+            {t("hero.subtitle")}
           </p>
-          <p className="text-base opacity-85 max-w-2xl mx-auto leading-relaxed">
-            Shemford Futuristic School offers a transformative education rooted
-            in the CBSE framework and elevated by the ShemEduMAX™ system —
-            nurturing future leaders from Pre-Primary through Class XII.
+          <p className="text-base opacity-85 max-w-2xl mx-auto leading-relaxed whitespace-pre-line">
+            {t("hero.body")}
           </p>
         </div>
       </div>
@@ -143,26 +75,7 @@ export default function AdmissionPage() {
       {/* Quick-info cards */}
       <div className="max-w-6xl mx-auto px-4 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              emoji: "📅",
-              title: "Admission Season",
-              body: "January – March (priority window)",
-              note: "Limited seats available year-round",
-            },
-            {
-              emoji: "👶",
-              title: "Age Eligibility",
-              body: "Pre-Primary: 2½+ years",
-              note: "CBSE age norms apply for all other classes",
-            },
-            {
-              emoji: "⚡",
-              title: "Decision Timeline",
-              body: "Results within 7 working days",
-              note: "Swift, transparent, and merit-based",
-            },
-          ].map((card, i) => (
+          {quickInfo.map((card, i) => (
             <div
               key={i}
               className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border-l-4 border-orange-500 rounded-2xl p-7 shadow-md
@@ -182,7 +95,7 @@ export default function AdmissionPage() {
       {/* Classes Offered */}
       <div className="max-w-6xl mx-auto px-4 pb-14">
         <h2 className="text-4xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-          Classes We Offer
+          {t("classes.title")}
         </h2>
         <div className="flex justify-center mb-12">
           <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
@@ -219,7 +132,7 @@ export default function AdmissionPage() {
       <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-gray-900 dark:to-gray-800 py-14 my-4">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-            Why Shemford?
+            {t("why.title")}
           </h2>
           <div className="flex justify-center mb-12">
             <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
@@ -233,7 +146,7 @@ export default function AdmissionPage() {
               >
                 <div className="flex items-start gap-4">
                   <div className="text-orange-500 flex-shrink-0 group-hover:scale-110 transition-transform">
-                    {item.icon}
+                    <ContentIcon className="w-7 h-7" name={item.icon} />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -253,22 +166,24 @@ export default function AdmissionPage() {
       {/* Admission Process */}
       <div className="max-w-6xl mx-auto px-4 py-14">
         <h2 className="text-4xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-          Our 4-Step Admission Process
+          {t("process.title")}
         </h2>
         <div className="flex justify-center mb-12">
           <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {admissionProcess.map((item) => (
-            <div key={item.step} className="relative group">
+          {admissionProcess.map((item, idx) => (
+            <div key={idx} className="relative group">
               <div
                 className="bg-white dark:bg-gray-800 border-2 border-orange-100 dark:border-orange-900/40 rounded-2xl p-6 h-full shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                 style={{ perspective: "800px" }}
               >
                 <div className="bg-gradient-to-br from-orange-400 to-orange-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold mb-4 shadow group-hover:scale-110 transition-transform">
-                  {item.step}
+                  {idx + 1}
                 </div>
-                <div className="text-orange-500 mb-3">{item.icon}</div>
+                <div className="text-orange-500 mb-3">
+                  <ContentIcon className="w-7 h-7" name={item.icon} />
+                </div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   {item.title}
                 </h3>
@@ -276,7 +191,7 @@ export default function AdmissionPage() {
                   {item.description}
                 </p>
               </div>
-              {item.step < 4 && (
+              {idx < admissionProcess.length - 1 && (
                 <div className="hidden lg:flex absolute top-1/2 -right-4 text-orange-400 text-2xl z-10 items-center">
                   →
                 </div>
@@ -289,7 +204,7 @@ export default function AdmissionPage() {
       {/* Required Documents */}
       <div className="max-w-6xl mx-auto px-4 pb-14">
         <h2 className="text-4xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-          Documents Required
+          {t("documents.title")}
         </h2>
         <div className="flex justify-center mb-12">
           <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
@@ -313,43 +228,22 @@ export default function AdmissionPage() {
       {/* Contact Form */}
       <div className="py-12">
         <ContactForm
-          title="Start Your Admission Process"
-          subtitle="Fill out the form and our admissions team will reach out within 24 hours."
           formType="admission"
+          subtitle={t("form.subtitle")}
+          title={t("form.title")}
         />
       </div>
 
       {/* FAQ */}
       <div className="max-w-6xl mx-auto px-4 py-14">
         <h2 className="text-4xl font-bold text-center mb-3 text-gray-900 dark:text-white">
-          Frequently Asked Questions
+          {t("faq.title")}
         </h2>
         <div className="flex justify-center mb-12">
           <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full" />
         </div>
         <div className="space-y-4">
-          {[
-            {
-              q: "When do admissions open?",
-              a: "The priority admission window runs from January to March each year. Applications outside this period are reviewed based on seat availability — so early enquiry is always recommended.",
-            },
-            {
-              q: "What is the application and tuition fee structure?",
-              a: "We believe in transparency. Please contact our admissions office for the current fee schedule. We also offer flexible payment plans and merit-based financial assistance for deserving families.",
-            },
-            {
-              q: "Do you accept mid-year transfer admissions?",
-              a: "Yes. Transfer cases are considered throughout the year subject to seat availability in the respective class. Please contact us with your child's most recent academic records to initiate the process.",
-            },
-            {
-              q: "Are merit scholarships available?",
-              a: "Absolutely. We offer merit-based scholarships for academically outstanding students and need-based assistance for families facing financial constraints. Speak to our admissions counsellor for eligibility details.",
-            },
-            {
-              q: "What makes Shemford different from other CBSE schools?",
-              a: "Beyond the curriculum, it is our philosophy. The ShemEduMAX™ system, a student-to-teacher ratio that allows personal attention, integrated IIT/NEET preparation, and a campus culture that values both excellence and empathy — these set Shemford apart.",
-            },
-          ].map((faq, i) => (
+          {faqs.map((faq, i) => (
             <details
               key={i}
               className="bg-white dark:bg-gray-800 border-2 border-orange-100 dark:border-orange-900/40 rounded-2xl p-6 cursor-pointer hover:shadow-md transition-shadow group"
@@ -369,29 +263,26 @@ export default function AdmissionPage() {
       {/* Final CTA */}
       <div className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Ready to Take the First Step?
-          </h2>
-          <p className="text-xl mb-10 opacity-90 font-light">
-            Join hundreds of families who have chosen Shemford as the foundation
-            of their child's future.
+          <h2 className="text-4xl font-bold mb-4">{t("cta.title")}</h2>
+          <p className="text-xl mb-10 opacity-90 font-light whitespace-pre-line">
+            {t("cta.body")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
+            <Link href={t("cta.primaryHref") || "/contact"}>
               <Button
                 size="lg"
                 className="bg-white text-orange-600 font-bold hover:bg-orange-50 shadow-lg"
               >
-                Apply Now
+                {t("cta.primaryLabel")}
               </Button>
             </Link>
-            <Link href="/about">
+            <Link href={t("cta.secondaryHref") || "/about"}>
               <Button
                 size="lg"
                 variant="bordered"
                 className="border-white text-white hover:bg-white/10"
               >
-                Learn More About Us
+                {t("cta.secondaryLabel")}
               </Button>
             </Link>
           </div>

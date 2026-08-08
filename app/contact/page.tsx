@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import ContactForm from "@/components/forms/ContactForm";
 
+import { getPageContent } from "@/lib/content/server";
+
 export const metadata: Metadata = {
   title: "Contact Us - Admission Inquiry",
   description:
@@ -15,13 +17,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const { t } = await getPageContent("contact");
+
   return (
     <div className="min-h-screen py-10">
-      <ContactForm
-        title="Get In Touch"
-        subtitle="Have questions about admissions? Reach out to us!"
-      />
+      <ContactForm subtitle={t("subtitle")} title={t("title")} />
     </div>
   );
 }

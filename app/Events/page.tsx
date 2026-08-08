@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, Users, Star, Search, Bookmark, BookmarkCheck } from 'lucide-react';
+import { usePageContent } from "@/lib/content/client";
 
 interface Event {
   _id: string;
@@ -18,9 +19,10 @@ interface Event {
   organizer: string;
 }
 
-const categories = ['All', 'Academic', 'Sports', 'Cultural', 'Workshop'];
 
 export default function EventsPage() {
+  const { t } = usePageContent("events");
+  const categories = t("categories").split(",").map((c) => c.trim()).filter(Boolean);
   const [events, setEvents]               = useState<Event[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery]     = useState('');
@@ -57,11 +59,11 @@ export default function EventsPage() {
             <Calendar className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            School Events
+            {t("hero.eyebrow")}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Upcoming Events</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("hero.title")}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Discover and participate in exciting school activities and programmes.
+            {t("hero.subtitle")}
           </p>
         </div>
       </div>
@@ -71,9 +73,9 @@ export default function EventsPage() {
         {/* ── Featured ── */}
         {featuredEvents.length > 0 && (
           <div className="mb-14">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600 mb-2">Highlights</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600 mb-2">{t("featured.eyebrow")}</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-              <Star className="w-5 h-5 text-orange-500" /> Featured Events
+              <Star className="w-5 h-5 text-orange-500" /> {t("featured.title")}
             </h2>
             <div className="grid gap-5 md:grid-cols-2">
               {featuredEvents.map(event => (
@@ -109,7 +111,7 @@ export default function EventsPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-orange-400" />
             <input
               type="text"
-              placeholder="Search events…"
+              placeholder={t("searchPlaceholder")}
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-900 border border-orange-200
@@ -139,8 +141,8 @@ export default function EventsPage() {
           <div className="text-center py-20 bg-orange-50 dark:bg-orange-900/10 rounded-2xl
             border border-orange-100 dark:border-orange-900/30">
             <Calendar className="mx-auto w-12 h-12 text-orange-300 mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No events found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter.</p>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t("empty.title")}</h3>
+            <p className="text-gray-500">{t("empty.body")}</p>
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

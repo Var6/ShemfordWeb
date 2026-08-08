@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { Trophy, Award, Star, Sparkles, X, ChevronRight, ChevronLeft, Medal, Images } from "lucide-react";
+import { usePageContent } from "@/lib/content/client";
 
 type Achievement = {
   _id: string;
@@ -169,6 +170,7 @@ function ModalGallery({ photos, gradientCSS }: { photos: string[]; gradientCSS: 
 
 /* ── Page ── */
 export default function AchievementsPage() {
+  const { t } = usePageContent("achievements");
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [selected, setSelected] = useState<Achievement | null>(null);
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -207,10 +209,9 @@ export default function AchievementsPage() {
             <Sparkles className="w-4 h-4 text-amber-300" />
             Excellence &amp; Recognition
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Our Achievements</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">{t("hero.title")}</h1>
           <p className="text-lg text-orange-100 max-w-2xl mx-auto leading-relaxed">
-            Celebrating the milestones, honors, and recognitions that reflect our commitment
-            to academic excellence and holistic development.
+            {t("hero.subtitle")}
           </p>
           {!loading && achievements.length > 0 && (
             <div className="mt-10 flex flex-wrap justify-center gap-8 text-center">

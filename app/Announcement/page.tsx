@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Calendar, Bell, X, ChevronRight } from 'lucide-react';
+import { usePageContent } from "@/lib/content/client";
 
 interface Announcement {
   _id: string;
@@ -19,6 +20,7 @@ const priorityStyle = {
 };
 
 export default function AnnouncementsPage() {
+  const { t } = usePageContent("announcements");
   const [announcements, setAnnouncements]       = useState<Announcement[]>([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Announcement | null>(null);
   const [filter, setFilter]                     = useState<string>('all');
@@ -50,11 +52,11 @@ export default function AnnouncementsPage() {
             <Bell className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            School Notices
+            {t("hero.eyebrow")}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Announcements</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("hero.title")}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Stay updated with the latest news, notices, and school communications.
+            {t("hero.subtitle")}
           </p>
         </div>
       </div>

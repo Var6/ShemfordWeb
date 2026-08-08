@@ -26,7 +26,10 @@ export default function AdminLoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        document.cookie = "admin_logged_in=true; path=/";
+        // The session cookie is set by the server as HttpOnly — nothing to do
+        // here but navigate. `refresh()` makes the proxy re-evaluate the new
+        // cookie before the client-side route change.
+        router.refresh();
         router.push('/Shemford');
       } else {
         setError(data.message || "Invalid credentials");

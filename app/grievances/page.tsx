@@ -14,42 +14,15 @@ import {
   Clock,
   ChevronDown,
 } from "lucide-react";
-
-const categories = [
-  "Academic — Teaching Quality",
-  "Academic — Curriculum / Syllabus",
-  "Administrative — Fee / Finance",
-  "Administrative — Records / Documents",
-  "Facility — Infrastructure",
-  "Facility — Safety & Security",
-  "Staff Conduct",
-  "Bullying / Ragging",
-  "Transport",
-  "Other",
-];
-
-const relationships = ["Parent / Guardian", "Student", "Staff Member", "Alumni", "Other"];
-
-const faqs = [
-  {
-    q: "How long will it take to resolve my grievance?",
-    a: "We acknowledge all grievances within 48 hours and aim to resolve them within 7 working days. Complex matters may take up to 21 days.",
-  },
-  {
-    q: "Is my submission confidential?",
-    a: "Yes. All grievance submissions are handled with strict confidentiality. Your identity will not be disclosed without your consent.",
-  },
-  {
-    q: "Can I submit a grievance anonymously?",
-    a: "You may leave the contact fields blank; however, providing contact details allows us to follow up and resolve your concern more effectively.",
-  },
-  {
-    q: "What happens after I submit?",
-    a: "Your grievance is reviewed by the Grievance Redressal Committee. You will receive an acknowledgement by email and be informed of the outcome.",
-  },
-];
+import { usePageContent } from "@/lib/content/client";
+import { ContentIcon } from "@/lib/content/icons";
 
 export default function GrievancesPage() {
+  const { t, list } = usePageContent("grievances");
+  const categories = t("form.categories").split("\n").map((c) => c.trim()).filter(Boolean);
+  const relationships = t("form.relationships").split("\n").map((r) => r.trim()).filter(Boolean);
+  const faqs = list<{ q: string; a: string }>("faq.items");
+  const cards = list<{ icon: string; title: string; body: string }>("cards");
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading]     = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -93,10 +66,10 @@ export default function GrievancesPage() {
             </div>
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            Shemford Futuristic School
+            {t("hero.eyebrow")}
           </p>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-            Grievance Redressal
+            {t("hero.title")}
           </h1>
           <p className="text-lg text-orange-100 max-w-2xl mx-auto leading-relaxed">
             We are committed to a transparent, fair, and prompt resolution of
@@ -109,26 +82,12 @@ export default function GrievancesPage() {
       {/* ── Quick info cards ── */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              icon: <Clock className="w-6 h-6 text-orange-600" />,
-              title: "48-Hour Acknowledgement",
-              body: "Every submission is acknowledged within two working days.",
-            },
-            {
-              icon: <ShieldAlert className="w-6 h-6 text-orange-600" />,
-              title: "Strictly Confidential",
-              body: "Your identity and details are protected at every step.",
-            },
-            {
-              icon: <CheckCircle className="w-6 h-6 text-orange-600" />,
-              title: "7-Day Resolution Target",
-              body: "Most grievances are resolved within 7 working days.",
-            },
-          ].map((c, i) => (
+          {cards.map((c, i) => (
             <div key={i} className="bg-orange-50 dark:bg-orange-900/10 border-l-4 border-orange-400
               dark:border-orange-600 rounded-2xl p-6 shadow-sm">
-              <div className="mb-3">{c.icon}</div>
+              <div className="mb-3">
+                <ContentIcon className="w-6 h-6 text-orange-600" name={c.icon} />
+              </div>
               <h3 className="font-bold text-gray-900 dark:text-white mb-1">{c.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{c.body}</p>
             </div>
@@ -140,10 +99,10 @@ export default function GrievancesPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="text-center mb-10">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-orange-600 mb-2">
-            Submit a Grievance
+            {t("form.eyebrow")}
           </p>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Tell Us What's Wrong
+            {t("form.title")}
           </h2>
           <p className="text-gray-500 dark:text-gray-400 mt-2">
             Please fill in as much detail as possible so we can act quickly.
@@ -293,7 +252,7 @@ export default function GrievancesPage() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Frequently Asked Questions
+            {t("faq.title")}
           </h2>
         </div>
         <div className="space-y-3">

@@ -1,28 +1,13 @@
 import Link from 'next/link';
-import { BookOpen, Info, GraduationCap } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
-const cbseLinks = [
-  {
-    text: 'Mandatory Disclosure',
-    href: '/CBSE/Disclouser',
-    icon: BookOpen,
-    desc: 'View all mandatory CBSE disclosures as required by the board.',
-  },
-  {
-    text: 'School Information',
-    href: '/CBSE/Information',
-    icon: Info,
-    desc: 'Detailed information about the school, affiliations, and infrastructure.',
-  },
-  {
-    text: 'Pedagogical Information',
-    href: '/CBSE/Pedagogical',
-    icon: GraduationCap,
-    desc: 'Teaching methodology, curriculum, and pedagogical committee details.',
-  },
-];
+import { getPageContent } from '@/lib/content/server';
+import { ContentIcon } from '@/lib/content/icons';
 
-export default function CBSE() {
+export default async function CBSE() {
+  const { t, list } = await getPageContent('cbse');
+  const cbseLinks = list<{ text: string; href: string; icon: string; desc: string }>('links');
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
@@ -34,19 +19,18 @@ export default function CBSE() {
             <BookOpen className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            Shemford Futuristic School
+            {t('hero.eyebrow')}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">CBSE Compliance</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('hero.title')}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Transparent disclosures and school information as required by the
-            Central Board of Secondary Education.
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {cbseLinks.map(({ text, href, icon: Icon, desc }) => (
+          {cbseLinks.map(({ text, href, icon, desc }) => (
             <Link
               key={href}
               href={href}
@@ -56,7 +40,7 @@ export default function CBSE() {
             >
               <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/20 rounded-2xl
                 flex items-center justify-center group-hover:bg-orange-600 transition-colors">
-                <Icon className="w-7 h-7 text-orange-600 group-hover:text-white transition-colors" />
+                <ContentIcon className="w-7 h-7 text-orange-600 group-hover:text-white transition-colors" name={icon} />
               </div>
               <h2 className="text-lg font-bold text-gray-900 dark:text-white
                 group-hover:text-orange-600 transition-colors">{text}</h2>

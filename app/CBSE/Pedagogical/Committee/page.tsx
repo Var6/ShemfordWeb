@@ -1,38 +1,12 @@
 import React from 'react';
+
+import { getPageContent } from '@/lib/content/server';
 import { Users } from 'lucide-react';
 
-const committeeMembers = [
-  { name: "Ms. Meera Sinha",           designation: "Chairperson School Management",  role: "Advisor"               },
-  { name: "Mr. Savio Pinto",           designation: "Director Academics",              role: "Advisor"               },
-  { name: "Ms. Jaisa P J",             designation: "Principal",                       role: "Chairperson"           },
-  { name: "Mr. Manish Chandra Pathak", designation: "Teacher Secondary school",        role: "Member"                },
-  { name: "Mr. Abhishek Kumar",        designation: "Teacher – Mathematics",           role: "Member"                },
-  { name: "Mr. Abhishek Kumar",        designation: "Teacher – Science",               role: "Member"                },
-  { name: "Mr. Abhishek Kumar",        designation: "Teacher – Computer",              role: "Member"                },
-  { name: "Ms. Leena Sinha",           designation: "Teacher Secondary school",        role: "Member"                },
-  { name: "Ms. Vivek Kumar",           designation: "Teacher Secondary school",        role: "Member"                },
-  { name: "Ms. Anshu Priya",           designation: "Teacher Secondary school",        role: "Member"                },
-  { name: "Mr. Ayush Kumar",           designation: "Teacher Secondary school",        role: "Member"                },
-  { name: "Ms. Ruby Priya",            designation: "Teacher Secondary school",        role: "Member"                },
-  { name: "Ms. Rachana Jha",           designation: "Teacher Primary school",          role: "Member"                },
-  { name: "Ms. Komili Sharma",         designation: "Teacher Primary school",          role: "Member"                },
-  { name: "Ms. Preeti Lata",           designation: "Teacher Primary school",          role: "Member"                },
-  { name: "Ms. Poonam Sinha",          designation: "Teacher Primary school",          role: "Member"                },
-  { name: "Ms. Neetu Kumari",          designation: "Teacher Primary school",          role: "Member"                },
-  { name: "Ms. Anushka",               designation: "Teacher Primary school",          role: "Member"                },
-  { name: "Ms. Arpana Priya",          designation: "Teacher Nursery school",          role: "Member"                },
-  { name: "Ms. Priyanka Sinha",        designation: "Teacher Nursery school",          role: "Member"                },
-  { name: "Mr. Manoj Kumar",           designation: "Teacher Physical Education",      role: "Member"                },
-  { name: "Ms. Priyanka Kumari",       designation: "Teacher Art and Craft",           role: "Member"                },
-  { name: "Ms. Shwet Prity",           designation: "Teacher Music",                   role: "Member"                },
-  { name: "Mr. Ashutosh Kumar",        designation: "Teacher Dance",                   role: "Member"                },
-  { name: "Ms. Neha Kumari",           designation: "HR Manager and Operation Head",  role: "Meeting & Documentation"},
-  { name: "Mr. Mukesh Kumar",          designation: "Librarian",                       role: "Member"                },
-  { name: "Mr. Imran Hussain",         designation: "Parent",                          role: "Member"                },
-  { name: "Ms. Parveen Baby",          designation: "Parent",                          role: "Member"                },
-];
+export default async function PedagogicalPlanningCommittee() {
+  const { t, list } = await getPageContent('cbseCommittee');
+  const committeeMembers = list<{ name: string; designation: string; role: string }>('members');
 
-export default function PedagogicalPlanningCommittee() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
@@ -44,11 +18,11 @@ export default function PedagogicalPlanningCommittee() {
             <Users className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            CBSE Compliance
+            {t('hero.eyebrow')}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Pedagogical Planning Committee</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('hero.title')}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Members of the Annual Pedagogical Planning Committee for Academic Year 2024–25.
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -58,14 +32,8 @@ export default function PedagogicalPlanningCommittee() {
         {/* Intro */}
         <div className="bg-white dark:bg-gray-900 border-2 border-orange-100 dark:border-orange-900/30
           rounded-2xl p-8 shadow-sm">
-          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
-            An annual plan contains all academic and co-curricular activities to be taken in the specified
-            academic year. It is the act of developing a strategy for the upcoming year based on the
-            experiences gained from the previous year's performance. Pedagogical planning is undertaken
-            after a series of discussions reviewing curricular and co-curricular activities, identifying
-            lacunae, analyzing achievement levels, and considering the needs of the learner and society.
-            Based on these discussions, the School Management Committee has established the Annual
-            Pedagogical Planning Committee to prepare the plan for 2024-25.
+          <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm whitespace-pre-line">
+            {t('intro')}
           </p>
         </div>
 

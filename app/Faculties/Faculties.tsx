@@ -4,6 +4,7 @@ import { useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 import { GraduationCap, X, Star, Search } from "lucide-react";
+import { usePageContent } from "@/lib/content/client";
 
 type Faculty = {
   _id: string;
@@ -25,6 +26,7 @@ const getExperienceYears = (experience: string): number => {
 };
 
 export default function Faculties({ initialFaculties }: { initialFaculties: Faculty[] }) {
+  const { t } = usePageContent("faculties");
   const { data: faculties = [], isLoading } = useSWR<Faculty[]>(
     "/api/faculties",
     fetcher,
@@ -59,12 +61,11 @@ export default function Faculties({ initialFaculties }: { initialFaculties: Facu
             <GraduationCap className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            Shemford Futuristic School
+            {t("hero.eyebrow")}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Faculty</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("hero.title")}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Meet our team of {faculties.length} dedicated educators committed to
-            nurturing every child's potential.
+            {t("hero.subtitle").replace("{count}", String(faculties.length))}
           </p>
         </div>
       </div>

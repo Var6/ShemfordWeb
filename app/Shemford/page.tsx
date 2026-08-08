@@ -6,6 +6,7 @@ export default function ShemfordPage() {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const sections = [
+    { id: "content", title: "Website Content", icon: "📝", path: "/Shemford/content", color: "bg-teal-500" },
     { id: "achievements", title: "Achievements", icon: "🏆", path: "/Shemford/achievements", color: "bg-yellow-500" },
     { id: "toppers", title: "Toppers", icon: "🏅", path: "/Shemford/toppers", color: "bg-amber-500" },
     { id: "announcements", title: "Announcements", icon: "📢", path: "/Shemford/announcements", color: "bg-blue-500" },

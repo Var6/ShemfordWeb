@@ -1,18 +1,12 @@
 import React from 'react';
+
+import { getPageContent } from '@/lib/content/server';
 import { Info } from 'lucide-react';
 
-const schoolDetails = [
-  { label: "Name of School",              value: "Shemford Futuristic School Patna" },
-  { label: "Affiliation Number",          value: "330701" },
-  { label: "School Code",                 value: "65698" },
-  { label: "Complete Address",            value: "Shemford Futuristic School, Udaini, New Jaganpura Road, PO – Mittanchak, PS – Gopalpur, Patna – 804453" },
-  { label: "Principal Name",              value: "Jaisa P.J" },
-  { label: "Principal Qualification",     value: "M.Sc., M.Ed., NET" },
-  { label: "School Email ID",             value: "admissions@pat.shemford.com, principal@pat.shemford.com, director@pat.shemford.com", isEmail: true },
-  { label: "Contact Details",             value: "+91 9534098666, +91 9431201060, +91 7061928947", isPhone: true },
-];
+export default async function SchoolInfo() {
+  const { t, list } = await getPageContent('cbseInformation');
+  const schoolDetails = list<{ label: string; value: string; kind: string }>('rows');
 
-export default function SchoolInfo() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
 
@@ -24,11 +18,11 @@ export default function SchoolInfo() {
             <Info className="w-8 h-8 text-white" />
           </div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-orange-100 mb-3">
-            CBSE Compliance
+            {t('hero.eyebrow')}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">School Information</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('hero.title')}</h1>
           <p className="text-orange-100 text-lg max-w-xl mx-auto">
-            Detailed information about Shemford Futuristic School as required by the Central Board of Secondary Education.
+            {t('hero.subtitle')}
           </p>
         </div>
       </div>
@@ -60,7 +54,7 @@ export default function SchoolInfo() {
                       {item.label}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
-                      {item.isEmail ? (
+                      {item.kind === 'email' ? (
                         <div className="flex flex-col gap-1">
                           {item.value.split(', ').map((email, i) => (
                             <a key={i} href={`mailto:${email.trim()}`}
@@ -69,7 +63,7 @@ export default function SchoolInfo() {
                             </a>
                           ))}
                         </div>
-                      ) : item.isPhone ? (
+                      ) : item.kind === 'phone' ? (
                         <div className="flex flex-col gap-1">
                           {item.value.split(', ').map((phone, i) => (
                             <a key={i} href={`tel:${phone.trim().replace(/\s/g, '')}`}
