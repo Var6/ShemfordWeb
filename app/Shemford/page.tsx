@@ -32,12 +32,14 @@ export default function ShemfordPage() {
               Shemford Admin Panel
             </h1>
             <div className="flex items-center space-x-4">
-              <Link 
+              {/* A plain <a>, never next/link: Link prefetches everything in the
+                  viewport, so this logged the admin straight back out on load. */}
+              <a
                 href="/api/logout"
                 className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200"
               >
                 Logout
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -6,7 +6,16 @@
  */
 
 export const SESSION_COOKIE = "admin_session";
-export const SESSION_TTL_SECONDS = 60 * 60 * 12; // 12 hours
+
+/** Stay signed in for 30 days. */
+export const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
+
+/**
+ * Once a session is more than halfway through its life, the proxy issues a
+ * fresh cookie. Someone who uses the admin panel regularly is never logged
+ * out; someone who stops using it expires after SESSION_TTL_SECONDS.
+ */
+export const SESSION_RENEW_AFTER_SECONDS = SESSION_TTL_SECONDS / 2;
 
 const encoder = new TextEncoder();
 
@@ -61,6 +70,19 @@ export async function createSessionToken(now = Date.now()): Promise<string> {
   const payload = String(expiresAt);
 
   return `${payload}.${await sign(payload)}`;
+}
+
+/** True once the session is past halfway and should be re-issued. */
+export function shouldRenew(token: string | undefined | null): boolean {
+  if (!token) return false;
+
+  const expiresAt = Number(token.slice(0, token.lastIndexOf(".")));
+
+  if (!Number.isFinite(expiresAt)) return false;
+
+  const remaining = expiresAt - Date.now();
+
+  return remaining > 0 && remaining < SESSION_RENEW_AFTER_SECONDS * 1000;
 }
 
 export async function verifySessionToken(token: string | undefined | null): Promise<boolean> {

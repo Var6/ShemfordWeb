@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { SESSION_COOKIE, verifySessionToken } from '@/lib/auth';
+import {
+  SESSION_COOKIE,
+  SESSION_TTL_SECONDS,
+  createSessionToken,
+  shouldRenew,
+  verifySessionToken,
+} from '@/lib/auth';
 
 /** API namespaces whose writes are admin-only. Reads stay public. */
 const PROTECTED_API = [
@@ -46,7 +52,26 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL('/Shemford', request.url));
   }
 
-  return NextResponse.next();
+  return withRenewedSession(NextResponse.next(), token, isLoggedIn);
+}
+
+/** Slide the session forward so active admins are never logged out. */
+async function withRenewedSession(
+  response: NextResponse,
+  token: string | undefined,
+  isLoggedIn: boolean,
+) {
+  if (!isLoggedIn || !shouldRenew(token)) return response;
+
+  response.cookies.set(SESSION_COOKIE, await createSessionToken(), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: SESSION_TTL_SECONDS,
+    path: '/',
+  });
+
+  return response;
 }
 
 export const config = {

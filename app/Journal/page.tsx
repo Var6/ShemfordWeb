@@ -192,9 +192,9 @@ const BlogPage: React.FC = () => {
                 >
                   {/* Hero Image */}
                   <div className={`${blog.image} h-56 relative`}>
-                    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div className="absolute inset-0 bg-black/20"></div>
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs font-medium bg-white bg-opacity-20 backdrop-blur-xs text-white rounded-full border border-white border-opacity-30">
+                      <span className="px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-xs text-white rounded-full border border-white/30">
                         Featured
                       </span>
                     </div>
@@ -204,7 +204,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleLike(blog.id);
                         }}
-                        className="p-2 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-2 bg-white/20 backdrop-blur-xs rounded-full hover:bg-white/30 transition-all"
                       >
                         <Heart className={`w-4 h-4 ${likedBlogs.includes(blog.id) ? 'text-red-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -213,7 +213,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleBookmark(blog.id);
                         }}
-                        className="p-2 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-2 bg-white/20 backdrop-blur-xs rounded-full hover:bg-white/30 transition-all"
                       >
                         <Bookmark className={`w-4 h-4 ${bookmarkedBlogs.includes(blog.id) ? 'text-yellow-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -280,14 +280,14 @@ const BlogPage: React.FC = () => {
                   onClick={() => openModal(blog.id)}
                 >
                   <div className={`${blog.image} h-40 relative`}>
-                    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                    <div className="absolute inset-0 bg-black/20"></div>
                     <div className="absolute top-3 right-3 flex gap-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleLike(blog.id);
                         }}
-                        className="p-1.5 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-1.5 bg-white/20 backdrop-blur-xs rounded-full hover:bg-white/30 transition-all"
                       >
                         <Heart className={`w-4 h-4 ${likedBlogs.includes(blog.id) ? 'text-red-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -296,7 +296,7 @@ const BlogPage: React.FC = () => {
                           e.stopPropagation();
                           toggleBookmark(blog.id);
                         }}
-                        className="p-1.5 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
+                        className="p-1.5 bg-white/20 backdrop-blur-xs rounded-full hover:bg-white/30 transition-all"
                       >
                         <Bookmark className={`w-4 h-4 ${bookmarkedBlogs.includes(blog.id) ? 'text-yellow-500 fill-current' : 'text-white'}`} />
                       </button>
@@ -355,20 +355,20 @@ const BlogPage: React.FC = () => {
 
         {/* Blog Modal */}
         {selectedBlog && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-xs">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               {/* Modal Header */}
               <div className={`${selectedBlog.image} h-64 relative rounded-t-2xl`}>
-                <div className="absolute inset-0 bg-black bg-opacity-50 rounded-t-2xl"></div>
+                <div className="absolute inset-0 bg-black/50 rounded-t-2xl"></div>
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 p-2 bg-white bg-opacity-20 backdrop-blur-xs rounded-full hover:bg-opacity-30 transition-all"
+                  className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-xs rounded-full hover:bg-white/30 transition-all"
                 >
                   <X className="w-5 h-5 text-white" />
                 </button>
                 <div className="absolute bottom-6 left-6 text-white">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 text-sm font-medium bg-white bg-opacity-20 backdrop-blur-xs rounded-full border border-white border-opacity-30">
+                    <span className="px-3 py-1 text-sm font-medium bg-white/20 backdrop-blur-xs rounded-full border border-white/30">
                       {selectedBlog.category}
                     </span>
                     <div className="flex items-center text-sm">
@@ -382,7 +382,7 @@ const BlogPage: React.FC = () => {
                   </div>
                   <h1 className="text-3xl font-bold mb-2">{selectedBlog.title}</h1>
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-white bg-opacity-20 backdrop-blur-xs rounded-full flex items-center justify-center mr-3">
+                    <div className="w-10 h-10 bg-white/20 backdrop-blur-xs rounded-full flex items-center justify-center mr-3">
                       <User className="w-5 h-5 text-white" />
                     </div>
                     <div>

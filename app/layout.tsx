@@ -10,8 +10,7 @@ import { siteConfig } from '@/config/site';
 // import { fontSans } from '@/config/fonts';
 import  Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
-import AIChartbot from '@/components/AIChat';
-import AdmissionModal from '@/components/AdmissionModal';
+import PublicWidgets from '@/components/PublicWidgets';
 import { getSiteContent } from '@/lib/content/server';
 import { ContentProvider } from '@/lib/content/client';
 
@@ -119,8 +118,7 @@ export default async function RootLayout({
                 {children}
               </main>
               <Footer />
-              <AIChartbot />
-              <AdmissionModal />
+              <PublicWidgets />
             </div>
           </ContentProvider>
         </Providers>

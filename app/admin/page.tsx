@@ -1,6 +1,5 @@
  "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function AdminLoginPage() {
@@ -8,7 +7,6 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   async function handleLogin() {
     setError("");
@@ -26,11 +24,13 @@ export default function AdminLoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // The session cookie is set by the server as HttpOnly — nothing to do
-        // here but navigate. `refresh()` makes the proxy re-evaluate the new
-        // cookie before the client-side route change.
-        router.refresh();
-        router.push('/Shemford');
+        // Full document navigation, not router.push(): the App Router caches
+        // the pre-login redirect of /Shemford -> /admin on the client, and a
+        // soft navigation replays it and bounces straight back to this page.
+        // A real page load re-requests /Shemford with the new session cookie.
+        window.location.assign('/Shemford');
+
+        return;
       } else {
         setError(data.message || "Invalid credentials");
       }
@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-linear-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center pb-14 w-full">
       <div className="absolute inset-0 bg-black opacity-50 w-fit hover:shadow-2xl"></div>
       <div className="relative z-10 w-full max-w-md">
-        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 mt-4 border border-white border-opacity-20">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 mt-4 border border-white/20">
           <div className="text-center mb-2">
             <div className="inline-flex items-center justify-center w-40 h-40  rounded-full mb-1">
              <Image src="/icon.png" alt="Logo" width={150} height={150} className="rounded-full" />
@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
               <input
                 type="text"
                 placeholder="Enter your username"
-                className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 rounded-lg text-white placeholder-blue-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-blue-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
@@ -72,7 +72,7 @@ export default function AdminLoginPage() {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 bg-white bg-opacity-20 backdrop-blur-sm border border-white border-opacity-30 rounded-lg text-white placeholder-blue-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-blue-200 focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
@@ -80,7 +80,7 @@ export default function AdminLoginPage() {
             </div>
 
             {error && (
-              <div className="bg-red-500 bg-opacity-20 border border-red-500 border-opacity-50 rounded-lg p-3">
+              <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-3">
                 <p className="text-red-200 text-sm">{error}</p>
               </div>
             )}

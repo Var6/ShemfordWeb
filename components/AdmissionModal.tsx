@@ -66,8 +66,10 @@ export default function AdmissionModal() {
       />
 
       {/* Modal */}
-      <div className="fixed inset-0 z-9999 flex items-end justify-end p-4">
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-h-90 max-w-sm w-full">
+      {/* pointer-events-none so the transparent area does not swallow clicks;
+          the card re-enables them, and the backdrop below stays clickable. */}
+      <div className="fixed inset-0 z-9999 flex items-end justify-end p-4 pointer-events-none">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-h-90 max-w-sm w-full pointer-events-auto">
           {/* Header */}
           <div className="bg-linear-to-r from-[#FF705B] to-[#FFB457] p-6 flex justify-between items-center rounded-t-2xl">
             <div>

@@ -16,7 +16,29 @@ function clearSession(response: NextResponse) {
   return response;
 }
 
+/**
+ * A browser or router may speculatively fetch a link before the user clicks
+ * it. Logging out on a prefetch would sign the admin out for merely rendering
+ * a page that links here, so those requests are answered without touching the
+ * session.
+ */
+function isPrefetch(request: NextRequest) {
+  const headers = request.headers;
+
+  return (
+    headers.get('next-router-prefetch') === '1' ||
+    headers.get('purpose') === 'prefetch' ||
+    headers.get('x-purpose') === 'prefetch' ||
+    headers.get('x-moz') === 'prefetch' ||
+    (headers.get('sec-purpose') ?? '').includes('prefetch')
+  );
+}
+
 export async function GET(request: NextRequest) {
+  if (isPrefetch(request)) {
+    return new NextResponse(null, { status: 204 });
+  }
+
   return clearSession(NextResponse.redirect(new URL('/admin', request.url)));
 }
 

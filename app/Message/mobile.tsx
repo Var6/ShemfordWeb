@@ -57,7 +57,7 @@ export default function MessagesPage() {
 
       {/* Modal Popup */}
       {selected && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 p-4 z-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl max-w-lg w-full shadow-lg relative flex flex-col max-h-[80vh] overflow-y-auto">
             <button
               className="absolute top-2 right-2 text-gray-600 dark:text-gray-300 text-lg"
