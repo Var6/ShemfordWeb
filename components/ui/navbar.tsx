@@ -231,8 +231,12 @@ export default function Navbar() {
 
                   {/* Dropdown */}
                   <div
+                    /* No overflow-hidden here: the third-level flyout (Student Life)
+                       sits outside this box at left-full, and clipping it made
+                       Events/Achievements/Announcements/Toppers unreachable. The
+                       py-1 padding already keeps child hovers off the rounded corners. */
                     className={`absolute top-full ${isRight ? "right-0" : "left-0"} mt-1.5 min-w-[220px]
-                      bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden py-1
+                      bg-white border border-gray-200 rounded-xl shadow-xl py-1
                       transition-all duration-150 ${
                         activeMenu === item.label
                           ? "opacity-100 visible translate-y-0"
