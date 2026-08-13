@@ -38,13 +38,13 @@ const navLinks: NavItem[] = [
     label: "Academics",
     items: [
       { label: "CBSE Disclosure", href: "/CBSE"       },
-      { label: "Calendar",        href: "/Calender"   },
       { label: "Admission",       href: "/admission"  },
       { label: "Facilities",      href: "/Facilities" },
       { label: "Faculties",       href: "/Faculties"  },
     ],
   },
-  { label: "Campus", href: "/Campus" },
+  { label: "Campus",   href: "/Campus"   },
+  { label: "Calendar", href: "/Calender" },
   {
     // Promoted to the top level: these are the pages families look for most,
     // and as a third-level flyout they took two hovers to reach.
@@ -198,7 +198,7 @@ export default function Navbar() {
                   <li key={item.label}>
                     <Link
                       href={item.href || "#"}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      className={`px-3 xl:px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                         isActive
                           ? "text-orange-600 bg-orange-50"
                           : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
@@ -224,7 +224,7 @@ export default function Navbar() {
                 >
                   <button
                     type="button"
-                    className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-1 px-3 xl:px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                       activeMenu === item.label || inSection
                         ? "text-orange-600 bg-orange-50"
                         : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
@@ -324,7 +324,7 @@ export default function Navbar() {
               href="/admission"
               className="hidden sm:inline-flex items-center px-4 py-2 bg-orange-600
                 hover:bg-orange-700 text-white text-sm font-semibold rounded-lg
-                transition-colors shadow-xs"
+                whitespace-nowrap transition-colors shadow-xs"
             >
               Apply Now
             </Link>
