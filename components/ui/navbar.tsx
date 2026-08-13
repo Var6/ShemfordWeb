@@ -24,6 +24,13 @@ const socialLinks = [
   { label: "Twitter",   href: siteConfig.links.twitter,   Icon: Twitter   },
 ];
 
+/** True when this item, or anything nested under it, is the current page. */
+function containsPath(item: NavItem, pathname: string): boolean {
+  if (item.href) return item.href === pathname;
+
+  return (item.items ?? []).some((child) => containsPath(child, pathname));
+}
+
 const navLinks: NavItem[] = [
   { label: "Home",  href: "/" },
   { label: "About", href: "/about" },
@@ -37,19 +44,16 @@ const navLinks: NavItem[] = [
       { label: "Faculties",       href: "/Faculties"  },
     ],
   },
+  { label: "Campus", href: "/Campus" },
   {
-    label: "Campus",
+    // Promoted to the top level: these are the pages families look for most,
+    // and as a third-level flyout they took two hovers to reach.
+    label: "Student Life",
     items: [
-      { label: "Overview", href: "/Campus" },
-      {
-        label: "Student Life",
-        items: [
-          { label: "Events",        href: "/Events"       },
-          { label: "Achievements",  href: "/Achivement"   },
-          { label: "Announcements", href: "/Announcement" },
-          { label: "Toppers",       href: "/Toppers"      },
-        ],
-      },
+      { label: "Events",        href: "/Events"       },
+      { label: "Achievements",  href: "/Achivement"   },
+      { label: "Announcements", href: "/Announcement" },
+      { label: "Toppers",       href: "/Toppers"      },
     ],
   },
   {
@@ -83,7 +87,11 @@ function MobileNavItem({
         <button
           onClick={() => setOpen((o) => !o)}
           style={{ paddingLeft: pl }}
-          className="w-full flex items-center justify-between pr-4 py-3 text-sm font-medium text-gray-800 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+          className={`w-full flex items-center justify-between pr-4 py-3 text-sm font-medium transition-colors ${
+            containsPath(item, pathname ?? "")
+              ? "text-orange-600 bg-orange-50"
+              : "text-gray-800 hover:text-orange-600 hover:bg-orange-50"
+          }`}
         >
           <span>{item.label}</span>
           <ChevronDown
@@ -203,6 +211,9 @@ export default function Navbar() {
               }
 
               const isRight = item.label === "Campus" || item.label === "Connect";
+              // Highlight the section while browsing any page inside it, not
+              // only while the menu is being hovered.
+              const inSection = containsPath(item, pathname ?? "");
 
               return (
                 <li
@@ -214,7 +225,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      activeMenu === item.label
+                      activeMenu === item.label || inSection
                         ? "text-orange-600 bg-orange-50"
                         : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
                     }`}
